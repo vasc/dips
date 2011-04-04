@@ -43,6 +43,11 @@ public class BasicBalance extends SingleValueHolder implements CDProtocol {
     // ------------------------------------------------------------------------
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Initial quota. Defaults to 1.
      * 
      * @config

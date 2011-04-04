@@ -38,6 +38,11 @@ public final class UniformRandomTransport implements Transport
 //Parameters
 //---------------------------------------------------------------------
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** 
  * String name of the parameter used to configure the minimum latency.
  * @config

@@ -34,6 +34,11 @@ public class IdleProtocol implements Protocol, Linkable
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * Default init capacity
  */
 private static final int DEFAULT_INITIAL_CAPACITY = 10;

@@ -40,7 +40,11 @@ public class InetCoordinates implements Protocol {
     // Fields
     // ------------------------------------------------------------------------
 
-    /** 2d coordinates components. */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/** 2d coordinates components. */
     private double x, y;
 
     // ------------------------------------------------------------------------

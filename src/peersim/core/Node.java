@@ -18,13 +18,15 @@
 
 package peersim.core;
 
+import java.io.Serializable;
+
 /**
  * Class that represents one node with a network address. An {@link Network} is
  * made of a set of nodes. The functionality of this class is thin: it must be
  * able to represent failure states and store a list of protocols. It is the
  * protocols that do the interesting job.
  */
-public interface Node extends Fallible, Cloneable
+public interface Node extends Fallible, Cloneable, Serializable
 {
 
 /**

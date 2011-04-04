@@ -38,6 +38,11 @@ import peersim.cdsim.CDProtocol;
  */
 public class AverageFunction extends SingleValueHolder implements CDProtocol {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Creates a new {@link example.aggregation.AverageFunction} protocol
      * instance.
      * 

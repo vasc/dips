@@ -29,6 +29,11 @@ public class TestVectors extends SingleValueHolder
 //Fields
 //--------------------------------------------------------------------------
 	
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** Value held by this protocol */
 protected float fvalue;
 

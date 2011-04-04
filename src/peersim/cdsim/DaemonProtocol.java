@@ -36,6 +36,11 @@ public class DaemonProtocol implements CDProtocol {
 
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
 * This is the prefix for network dynamism managers.
 * @config
 */

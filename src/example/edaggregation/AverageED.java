@@ -36,6 +36,11 @@ implements CDProtocol, EDProtocol {
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * @param prefix string prefix for config properties
  */
 public AverageED(String prefix) { super(prefix); }

@@ -42,6 +42,11 @@ public class E2ETransport implements Transport, RouterInfo
 //---------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The delay that corresponds to the time spent on the source (and destination)
  * nodes. In other words, full latency is calculated by fetching the latency
  * that belongs to communicating between two routers, incremented by

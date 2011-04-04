@@ -41,6 +41,11 @@ import peersim.config.FastConfig;
  */
 public class AvgBalance extends BasicBalance {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The overall system average load. It is computed once by
      * {@link #calculateAVG(int)} method.
      */

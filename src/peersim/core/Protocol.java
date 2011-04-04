@@ -18,13 +18,15 @@
 
 package peersim.core;
 
+import java.io.Serializable;
+
 /**
  * Interface to identify protocols.
  * 
  * @author Alberto Montresor
  * @version $Revision: 1.5 $
  */
-public interface Protocol extends Cloneable
+public interface Protocol extends Cloneable, Serializable
 {
 
 /**

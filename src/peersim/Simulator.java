@@ -152,7 +152,8 @@ public static void main(String[] args)
 	
 	System.err.println("Simulator: loading configuration");
 	Configuration.setConfig( new ParsedProperties(args) );
-
+	
+	
 	PrintStream newout =
 		(PrintStream)Configuration.getInstance(PAR_REDIRECT,System.out);
 	if(newout!=System.out) System.setOut(newout);

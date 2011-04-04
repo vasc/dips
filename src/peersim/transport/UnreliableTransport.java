@@ -43,6 +43,11 @@ public final class UnreliableTransport implements Transport
 //---------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The name of the underlying transport protocol. This transport is
  * extended with dropping messages.
  * @config

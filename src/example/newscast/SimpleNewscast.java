@@ -36,6 +36,11 @@ public class SimpleNewscast implements CDProtocol, Linkable
 // of them. these are used by all SimpleNewscast protocols included
 // in the protocol array so its size is the maximum of the cache sizes
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** Temp array for merging. Its size is the same as the cache size. */
 private static Node[] tn;
 
