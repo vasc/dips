@@ -1,8 +1,8 @@
-/home/vasco/projs/dips/dips/build/classes:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/resources.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/rt.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/jsse.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/jce.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/charsets.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-6-sun-1.6.0.24/jre/lib/ext/localedata.jar:/home/vasco/projs/dips/peersim/build/jar/peersim.jar:/home/vasco/bin/eclipse/configuration/org.eclipse.osgi/bundles/303/1/.cp/lib/scala-library.jar:/home/vasco/bin/eclipse/configuration/org.eclipse.osgi/bundles/303/1/.cp/lib/scala-dbc.jar:/home/vasco/bin/eclipse/configuration/org.eclipse.osgi/bundles/303/1/.cp/lib/scala-swing.jar
+/home/vasco/projs/dips/dips/build/classes:/usr/lib/jvm/java-6-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rhino.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/ext/pulse-java.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/ext/gnome-java-bridge.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/ext/localedata.jar:/home/vasco/projs/dips/peersim/build/jar/peersim.jar:/home/vasco/bin/eclipse/configuration/org.eclipse.osgi/bundles/303/1/.cp/lib/scala-library.jar:/home/vasco/bin/eclipse/configuration/org.eclipse.osgi/bundles/303/1/.cp/lib/scala-dbc.jar:/home/vasco/bin/eclipse/configuration/org.eclipse.osgi/bundles/303/1/.cp/lib/scala-swing.jar
 -------
 /home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/src/scopt/Options.scala
-/home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/src/dips/DEDSimulator.scala
 /home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/src/dips/Dips.scala
+/home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/src/dips/DEDSimulator.scala
 /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala -> /home/vasco/projs/dips/dips/src/dips/test/SimpleBootstrap.scala
 /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala -> /home/vasco/projs/dips/dips/src/dips/Linkable.scala
 /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala -> /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala
@@ -32,6 +32,7 @@
 /home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/build/classes/dips/Dips$$anon$1.class
 /home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/build/classes/dips/Dips.class
 /home/vasco/projs/dips/dips/src/dips/Dips.scala -> /home/vasco/projs/dips/dips/build/classes/dips/Dips$$anon$1$$anonfun$3.class
+/home/vasco/projs/dips/dips/src/dips/test/Stop.scala -> /home/vasco/projs/dips/dips/build/classes/dips/test/Stop.class
 /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala -> /home/vasco/projs/dips/dips/build/classes/dips/test/AveragePing$.class
 /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala -> /home/vasco/projs/dips/dips/build/classes/dips/test/AveragePong$.class
 /home/vasco/projs/dips/dips/src/dips/test/SimpleAverage.scala -> /home/vasco/projs/dips/dips/build/classes/dips/test/AveragePing.class

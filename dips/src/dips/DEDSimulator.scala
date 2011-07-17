@@ -56,7 +56,7 @@ object DEDSimulator {
   }
   
   def processNextMessage:Boolean = {
-    controls filter { _.scheduler.active } foreach { _.control.execute }
+    if (!( controls filter { _.scheduler.active } forall { !_.control.execute } ) ) return false
     controller.dequeue match{
       case Some(msg) =>
         CommonState.setTime(CommonState.getTime + 1)

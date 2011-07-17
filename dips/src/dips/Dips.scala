@@ -3,9 +3,11 @@ package dips
 import peersim.Simulator
 import peersim.config.Configuration
 import scopt.OptionParser
+import java.lang.Runtime
 
 object Dips extends Simulator {
   val DEDSIM = 2
+  var initial_mem = Runtime.getRuntime.totalMemory 
   simName = simName :+ "dips.dedsim.DEDSimulator"
   
   override def getSimID():Int = {
@@ -27,6 +29,8 @@ object Dips extends Simulator {
   }
   
   def main(args: Array[String]): Unit = { 
+    
+    
     Simulator.setSimulator(this)
     
     var port:String = ""

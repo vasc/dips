@@ -3,7 +3,7 @@ import scala.actors.remote.RemoteActor._
 import scala.actors.remote.{ Node, RemoteActor, TcpService }
 import scala.actors.{ Actor, AbstractActor }
 import scala.Symbol
-import java.net.InetAddress
+import java.net.{InetAddress, UnknownHostException}
 
 import scopt.OptionParser
 
@@ -16,7 +16,16 @@ class Point2Point extends PostOffice {
   var connected = false
   
   val service:Symbol = 'point
-  val host:String = InetAddress.getLocalHost().getHostAddress()
+  
+  
+  val host = {
+    try{ InetAddress.getLocalHost().getHostAddress() }
+    catch { case e:UnknownHostException =>
+      System.err.println("Unable to find host, using localhost");
+      "localhost"
+    }
+  }
+  
   val port = TcpService.generatePort
   alive(port)
   register('point, this)

@@ -1,0 +1,4 @@
+import re
+
+if __name__ == '__main__':
+    pat = re.compile('[0-9]+ (?P<mem>[0-9]+)')

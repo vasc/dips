@@ -1,0 +1,12 @@
+set terminal png 
+set output "avg_mem_per_nodes.png"
+set title "Average memory used per process with a 2GiB JVM"
+set ylabel "Average memory [MiB]"
+set xlabel "Number of nodes"
+set style data histogram
+set style histogram clustered gap 1
+set style fill solid border -1
+set key off
+set grid ytics nomytics 
+set xtics nomirror rotate by -45
+plot "gnuplot.data/avg_mem_per_nodes.data" using 2:xticlabels(1) 

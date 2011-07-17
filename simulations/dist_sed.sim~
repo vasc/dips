@@ -1,0 +1,50 @@
+# PEERSIM EXAMPLE 1
+
+distributed
+distributed.size 1000000
+distributed.controller OneOnOne
+
+random.seed 1234567890
+#simulation.cycles 30
+
+#control.shf Shuffle
+
+#network.size 10000
+
+#protocol.lnk IdleProtocol
+protocol.lnk SimpleLink
+
+protocol.avg SimpleAverage
+protocol.avg.linkable lnk
+
+#init.rnd WireKOut
+init.rnd dips.test.SimpleWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+init.peak example.aggregation.PeakDistributionInitializer
+init.peak.value 10000
+init.peak.protocol avg
+
+init.lin LinearDistribution
+init.lin.protocol avg
+init.lin.max 100
+init.lin.min 1
+
+# you can change this to select the peak initializer instead
+include.init rnd lin
+
+#control.avgo example.aggregation.AverageObserver
+#control.avgo.protocol avg
+#control.avgo.step 1000
+
+control.bs SimpleBootstrap
+control.bs.protocol avg
+control.bs.message_count 20
+control.bs.at 0
+
+control.mo MemoryObserver
+control.mo.step 100
+
+control.s Stop
+control.s.at 20000

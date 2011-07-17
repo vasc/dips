@@ -1,0 +1,51 @@
+import re
+import sys
+
+outfile='gnuplot.data/mem_usage_per_cycles.data'
+
+files = dict()
+
+if __name__ == '__main__':
+    out = open(outfile, 'w')
+    pat = re.compile('control.mo: max=(?P<max>[0-9]+), total=(?P<total>[0-9]+), free=(?P<free>[0-9]+)')
+    fpat = re.compile('(?P<nodes>[0-9]+)')
+
+    for f in sys.argv[1:]:
+        fm = fpat.match(f)
+        if not fm:
+            print 'Unable to parse number of nodes for file ' + f
+            exit(1)
+        fl = open(f)
+        files[fm.group('nodes')] = [l for l in fl.readlines() if l.startswith('control.mo:')]
+
+    def cmp(x, y):
+        print x, y
+        print int(x) < int(y)
+        return int(x) < int(y)
+
+    a = sorted(files.items(), cmp, lambda x: x[0])
+
+    b = [s[0] for s in a]
+    c = [s[1] for s in a]
+
+    tuples = map(None, *c)
+
+    out.write("# Cycles\t\t")
+    for f in b:
+        out.write(f + "\t\t")
+    out.write("\n")
+
+    cycle = 0
+    
+    for f in tuples:
+        out.write(str(cycle) + "\t\t\t")
+        cycle += 100
+        for line in f:
+            m = pat.match(line)
+            if m:
+                s = (int(m.group('total')) - int( m.group('free'))) / (1024*1024)
+                out.write(str(s) + "\t\t")
+
+        out.write("\n")
+
+    out.close()
