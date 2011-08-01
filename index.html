@@ -1,0 +1,266 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8" />
+	<title>dips - distributed implementation of the peersim simulator</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+	
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+	
+<link rel="stylesheet" href="stylesheets/dips.css">
+<link rel="stylesheet" href="stylesheets/pygments.css">
+<link href="http://fonts.googleapis.com/css?family=Inconsolata:regular&amp;v1" rel="stylesheet" type="text/css">
+
+	
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" />
+	
+</head>
+<body>
+
+
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+	
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">	
+		
+  <div class="three columns sidebar">
+    <nav>
+      <h3 id="logo">Dips</h3>
+      <ul>
+        
+          
+          <li><a href="#Bounded_Divergence">Bounded Divergence</a></li>
+          
+        
+          
+          <li><a href="#Control">Control</a></li>
+          
+        
+          
+          <li class="min">pseudo-code: <a href="#MessageBundle">MessageBundle</a></li>
+          
+        
+          
+          <li><a href="#Cycle_based_Simulation">Cycle based Simulation</a></li>
+          
+        
+      </ul>
+    </nav>
+    &nbsp;
+  </div>
+
+  <div class="twelve columns content offset-by-one">
+    <header>
+      <h1 class="remove-bottom">Distributed implementation of the Peersim Simulator</h1>
+      <hr />
+    </header>
+
+    
+      <div id="Bounded_Divergence">
+        
+          <h2>Bounded Divergence</h2>
+          <p>Bounded divergence is a mechanism that allows simulation creator to define the maximum "latency" the simulation can tolerate.</p>
+<p>Assinchronous message passing creates unrealistic clusters of simulated nodes that have much lower latency than outside messages. As locally generated messages are immediately delivered as opposed to outside messages that are bundled together to minimize the strain on the network. This bundling of messages may result in unrealistic latency that we wish to minimize.</p>
+<p>Minimization is guaranteed by processing all outstanding messages whitin a gives time frame. All simulation instances maintain an event counter and and vector counter with one entry per simulation instance including the local one. The event counter must not be more than N events ( where N is defined in the simulation configuration ) ahead than any of the values in the vector counter. The event counter is updated every time an event is processed. Each vector counter is updated to the current event counter value when, either a message bundle is received from that instance or a request is made to that instance for new messages, which the simulator must do in order to proceed when the event counter reaches the N barrier. </p>
+        
+        
+        
+        <hr />
+      </div>
+    
+      <div id="Control">
+        
+          <h2>Control</h2>
+          <p>A DIPS implementation requires communication between two or more instances of peersim. Peersim event simulator processes events as they arrive, however this poses several problems. As DIPS requires several instances to communicate, it becomes necessary to create a protocol to handle the communication. The protocol must be able to handle the initialization, control, failure and termination stages. </p>
+<p>The relatively small number of instances involved in the process permits an approach where every instance knows of all others. This well know behavior guarantees simplicity allowing messages to be broadcasted to the entire network. The control protocol is a token based one, where only the token holder may send control messages to the network. Any instance may hold the token however, only one instance may hold it at any given time. An instance that initiates a simulation becomes responsible for it and may only relinquish the token when the simulation is over. </p>
+<p>In order to acquire the token an instance must request it from it's current owner. If the owner is no longer responsible for a simulation and therefore may relinquish the token, it does so immediately after the first request, responding with the new owner's ID, to subsequent requests. If the current owner is forced to maintain the token in virtue of it's responsibility to the simulation it must maintain a queue of requests in the order of arrival. When the token is free to be passed along, the owner contacts each of the requesters in the queue order until one declares interest in the token or the queue ends. When the token is passed, the remaining requests in the queue are also passed and, take priority over new requests made to the new owner. </p>
+<p>The only defined control messages are the INITIALIZE command, to start the execution of a new simulation and the TERMINATE command. The INITIALIZE command starts a new simulation and is accompanied by a description of the simulation as defined in peersim configuration files, with some simple additions.</p>
+<p>TODO: Termination</p>
+<p>The control protocol must also define how the simulated nodes are mapped to the instances running the simulation. This is necessary as messages passed between simulated nodes on different instances must be delivered efficiently. The network is defined as a distributed hash table where each instance position is given by the hash value of the instance's ip and port (as the "ip:port" string) the hash table is also extended as CHORD like circular structure. Simulated nodes are hashed according to their global identification number,  and the simulation instance responsible for any given node is defined (as in CHORD) as the instance with hash value immediately before the node own hash value. This method was chosen in order to facilitate future improvements in failure protocol, allowing the implementation of the CHORD protocol without change to the current behavior, even though a simple division of the nodes per number of simulation instances would be more efficient and would also guarantee an equalitarian distribution of the nodes independently of the number of simulation instances. </p>
+        
+        
+        
+        <hr />
+      </div>
+    
+      <div id="MessageBundle">
+        
+          
+          <h2>MessageBundle <span class="tag">&nbsp;(pseudo-code)</span></h2>
+          <table class="annotated">
+            <tbody>
+          
+            
+              <tr>
+                <td class="comment"><h5>Bundling of messages</h5>
+<p>Pseudo-code on the implementation of the message bundling.</p></td>
+                <td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nx">MessageBundle</span>
+    <span class="nv">constructor: </span><span class="nf">(size) -&gt;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nv">size = </span><span class="nx">size</span>
+        <span class="k">this</span><span class="p">.</span><span class="nv">messages = </span><span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Add message to the buffer, return true if the buffer is full.</p></td>
+                <td class="code"><div class="highlight"><pre>    <span class="nv">add_message: </span><span class="nf">(message) -&gt;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">append</span> <span class="nx">message</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">size</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span>
+
+<span class="nf">(size) -&gt;</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Join the network.</p></td>
+                <td class="code"><div class="highlight"><pre>    <span class="nv">dht = </span><span class="k">new</span> <span class="nx">DHT</span><span class="p">(</span><span class="nv">contact = </span><span class="s1">&#39;ip:port&#39;</span><span class="p">)</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Initiate message bundles in instance stubs.</p></td>
+                <td class="code"><div class="highlight"><pre>    <span class="k">for</span> <span class="nx">instance</span> <span class="k">in</span> <span class="nx">dht</span>
+        <span class="nv">instance.mb = </span><span class="k">new</span> <span class="nx">MessageBundle</span> <span class="nx">size</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Execute while there are messages outstanding.</p></td>
+                <td class="code"><div class="highlight"><pre>    <span class="k">while</span><span class="p">(</span><span class="nv">message = </span><span class="nx">receive_message</span><span class="p">())</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Find the message destination.</p></td>
+                <td class="code"><div class="highlight"><pre>        <span class="nv">instance = </span><span class="nx">dht</span><span class="p">.</span><span class="nx">route</span> <span class="nx">message</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>If bundle is full, send messages and create new buffer.</p></td>
+                <td class="code"><div class="highlight"><pre>        <span class="k">if</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">mb</span><span class="p">.</span><span class="nx">add_messsage</span> <span class="nx">message</span>
+            <span class="nx">instance</span><span class="p">.</span><span class="nx">flush_mb</span><span class="p">()</span>
+            <span class="nv">instance.mb = </span><span class="k">new</span> <span class="nx">MessageBundle</span> <span class="nx">size</span>
+     
+</pre></div>
+</td>
+              </tr>
+
+          
+            </tbody>
+          </table>
+          <div class="raw_code">
+            <div class="highlight"><pre><span class="c1">###### Bundling of messages</span>
+<span class="c1">#Pseudo-code on the implementation of the message bundling.</span>
+<span class="k">class</span> <span class="nx">MessageBundle</span>
+    <span class="nv">constructor: </span><span class="nf">(size) -&gt;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nv">size = </span><span class="nx">size</span>
+        <span class="k">this</span><span class="p">.</span><span class="nv">messages = </span><span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span>
+
+    <span class="c1">#Add message to the buffer, return true if the buffer is full.</span>
+    <span class="nv">add_message: </span><span class="nf">(message) -&gt;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">append</span> <span class="nx">message</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">size</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span>
+
+<span class="nf">(size) -&gt;</span>
+    <span class="c1">#Join the network.</span>
+    <span class="nv">dht = </span><span class="k">new</span> <span class="nx">DHT</span><span class="p">(</span><span class="nv">contact = </span><span class="s1">&#39;ip:port&#39;</span><span class="p">)</span>
+
+    <span class="c1">#Initiate message bundles in instance stubs.</span>
+    <span class="k">for</span> <span class="nx">instance</span> <span class="k">in</span> <span class="nx">dht</span>
+        <span class="nv">instance.mb = </span><span class="k">new</span> <span class="nx">MessageBundle</span> <span class="nx">size</span>
+
+    <span class="c1">#Execute while there are messages outstanding.</span>
+    <span class="k">while</span><span class="p">(</span><span class="nv">message = </span><span class="nx">receive_message</span><span class="p">())</span>
+        <span class="c1">#Find the message destination.</span>
+        <span class="nv">instance = </span><span class="nx">dht</span><span class="p">.</span><span class="nx">route</span> <span class="nx">message</span>
+
+        <span class="c1">#If bundle is full, send messages and create new buffer.</span>
+        <span class="k">if</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">mb</span><span class="p">.</span><span class="nx">add_messsage</span> <span class="nx">message</span>
+            <span class="nx">instance</span><span class="p">.</span><span class="nx">flush_mb</span><span class="p">()</span>
+            <span class="nv">instance.mb = </span><span class="k">new</span> <span class="nx">MessageBundle</span> <span class="nx">size</span>
+     
+</pre></div>
+
+          </div>
+        
+        
+        
+        <hr />
+      </div>
+    
+      <div id="Cycle_based_Simulation">
+        
+          <h2>Cycle based Simulation</h2>
+          <p>Cycle based simulation is done through proxies. Linker protocols are required to request nodes from the Simulation class, which in turn will return proxies to the nodes simulated in other instances. Any call to these proxies will execute a network call to those nodes. A call to VOID methods will result in an asynchronous call, methods with a return type will result in a synchronous call, effectively stopping the simulation. Any proxy will be garbage collected after the execution of the currents node's call. </p>
+        
+        
+        
+        
+      </div>
+    
+  </div>
+
+
+	</div><!-- container -->
+
+		
+		
+		
+		
+	<!-- JS
+	================================================== -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+	<script>window.jQuery || document.write("<script src='javascripts/jquery-1.5.1.min.js'>\x3C/script>")</script>
+	<script src="javascripts/app.js"></script>
+	
+<!-- End Document
+================================================== -->
+</body>
+</html>

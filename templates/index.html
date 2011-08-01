@@ -1,0 +1,74 @@
+{% extends "skeleton.html" %}
+
+{% block extra_stylesheets %}
+<link rel="stylesheet" href="stylesheets/dips.css">
+<link rel="stylesheet" href="stylesheets/pygments.css">
+<link href="http://fonts.googleapis.com/css?family=Inconsolata:regular&amp;v1" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+  <div class="three columns sidebar">
+    <nav>
+      <h3 id="logo">Dips</h3>
+      <ul>
+        {% for item in items %}
+          {% if item.type == "text" %}
+          <li><a href="#{{ item.name|sws }}">{{ item.name }}</a></li>
+          {% elif item.type == "code" %}
+          <li class="min">{{ item.language }}: <a href="#{{ item.name|sws }}">{{ item.name }}</a></li>
+          {% endif %}
+        {% endfor%}
+      </ul>
+    </nav>
+    &nbsp;
+  </div>
+
+  <div class="twelve columns content offset-by-one">
+    <header>
+      <h1 class="remove-bottom">Distributed implementation of the Peersim Simulator</h1>
+      <hr />
+    </header>
+
+    {% for item in items %}
+      <div id="{{ item.name|sws }}">
+        {% if item.type == "text" %}
+          <h2>{{ item.name }}</h2>
+          {{ item.html }}
+        {% elif item.type == "code" %}
+          
+          <h2>{{ item.name }} <span class="tag">&nbsp;({{ item.language }})</span></h2>
+          <table class="annotated">
+            <tbody>
+          {% for annotation in item.annotated_code %}
+            {#<!--<div class="row clearfix code">
+              <div class="five columns alpha comment">
+                {% if code[0] %}
+                  {{ code[0] }}
+                {% else %}
+                  &nbsp;
+                {% endif %}
+              </div>
+              <div class="seven columns omega">
+                {{ code[1] }}
+              </div>
+            </div>-->#}
+              <tr>
+                <td class="comment">{{ annotation[0] }}</td>
+                <td class="code">{{ annotation[1] }}</td>
+              </tr>
+
+          {% endfor%}
+            </tbody>
+          </table>
+          <div class="raw_code">
+            {{ item.code }}
+          </div>
+        {% endif %}
+        
+        
+        {% if not loop.last %}<hr />{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

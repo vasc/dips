@@ -1,0 +1,95 @@
+.raw_code{
+	display: none;
+}
+
+body {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+  font-size: 15px;
+  line-height: 22px;
+  color: #252519;
+  margin: 0; padding: 0;
+}
+
+.container{
+	margin-top: 60px;
+}
+
+.sidebar{
+	text-align: right;
+}
+
+.sidebar nav{
+	position: fixed;
+	width: 160px;
+}
+
+.sidebar a{
+	text-decoration: none;
+	color: #555;
+	font-weight: bold;
+}
+
+.sidebar h3{
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.content h1{
+	font-size: 60px;
+	line-height: 55px;
+}
+
+li.min{
+	font-size: 0.8em;
+	font-weight: regular;
+}
+
+pre{
+	font-family: Inconsolata, monospace;
+}
+
+.code.row{
+	margin-bottom: 0px;
+}
+
+.annotated td.code{
+	background-color: #F5F5FF;
+	border-left: 1px solid #E5E5EE;
+	padding: 5px 12px;
+}
+
+.annotated td.comment{
+	padding: 5px 30px 5px 0px;	
+}
+
+h2>span{
+	font-size: 0.5em;
+	color: #999;
+	vertical-align: middle;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    header h1 { font-size: 42px !important; line-height: 46px !important; }
+    nav { position: relative; }
+    .sidebar { display: none; }
+    #logo { display: none; }
+}
+
+/* Mobile Landscape */
+/*@media only screen and (min-width: 480px) and (max-width: 767px) {
+    nav ul { display: none; }
+}*/
+
+/* Non 960 */
+@media only screen and (max-width: 959px) {
+    #logo { 
+        font-size: 21px;
+        margin-bottom: 15px; }
+    .raw_code{
+    	display: block;
+    }
+    .annotated{
+    	display: none;
+    }
+}
