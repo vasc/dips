@@ -56,7 +56,7 @@ def make_text(item):
 def strip_whitespace(value):
 	return value.replace(' ', '_')
 
-def main():
+def make():
 	env = Environment(loader=FileSystemLoader('templates'))
 	env.filters['sws'] = strip_whitespace
 
@@ -65,9 +65,11 @@ def main():
 
 	values = map(make_text, files)
 	template = env.get_template('index.html')
+	return template.render(items=values)
 
+def main():
 	with open('index.html', 'w') as f:
-		f.write(template.render(items=values))
+		f.write(make())
 
 if __name__ == '__main__':
 	main()
