@@ -125,7 +125,7 @@
                 <td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nx">MessageBundle</span>
     <span class="nv">constructor: </span><span class="nf">(size) -&gt;</span>
         <span class="k">this</span><span class="p">.</span><span class="nv">size = </span><span class="nx">size</span>
-        <span class="k">this</span><span class="p">.</span><span class="nv">messages = </span><span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nv">messages = </span><span class="k">new</span> <span class="nx">Buffer</span> <span class="nx">size</span>
 </pre></div>
 </td>
               </tr>
@@ -166,7 +166,7 @@
             
               <tr>
                 <td class="comment"><p>Execute while there are messages outstanding.</p></td>
-                <td class="code"><div class="highlight"><pre>    <span class="k">while</span><span class="p">(</span><span class="nv">message = </span><span class="nx">receive_message</span><span class="p">())</span>
+                <td class="code"><div class="highlight"><pre>    <span class="k">while</span> <span class="nv">message = </span><span class="nx">receive_message</span><span class="p">()</span>
 </pre></div>
 </td>
               </tr>
@@ -201,7 +201,7 @@
 <span class="k">class</span> <span class="nx">MessageBundle</span>
     <span class="nv">constructor: </span><span class="nf">(size) -&gt;</span>
         <span class="k">this</span><span class="p">.</span><span class="nv">size = </span><span class="nx">size</span>
-        <span class="k">this</span><span class="p">.</span><span class="nv">messages = </span><span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">size</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nv">messages = </span><span class="k">new</span> <span class="nx">Buffer</span> <span class="nx">size</span>
 
     <span class="c1">#Add message to the buffer, return true if the buffer is full.</span>
     <span class="nv">add_message: </span><span class="nf">(message) -&gt;</span>
@@ -217,7 +217,7 @@
         <span class="nv">instance.mb = </span><span class="k">new</span> <span class="nx">MessageBundle</span> <span class="nx">size</span>
 
     <span class="c1">#Execute while there are messages outstanding.</span>
-    <span class="k">while</span><span class="p">(</span><span class="nv">message = </span><span class="nx">receive_message</span><span class="p">())</span>
+    <span class="k">while</span> <span class="nv">message = </span><span class="nx">receive_message</span><span class="p">()</span>
         <span class="c1">#Find the message destination.</span>
         <span class="nv">instance = </span><span class="nx">dht</span><span class="p">.</span><span class="nx">route</span> <span class="nx">message</span>
 
