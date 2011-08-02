@@ -1,6 +1,6 @@
 body {
   font-family: 'Droid Sans', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 22px;
   color: #252519;
   margin: 0; padding: 0;
@@ -27,7 +27,14 @@ a:hover{
 }
 
 pre{
-	font-size: 14px;
+	font-size: 12px;
+}
+
+
+strong{
+	color: #D92A20;
+	font-style: normal;
+	font-weight: normal;
 }
 
 .container{
@@ -91,7 +98,16 @@ pre{
 }
 
 .annotated td.comment{
-	padding: 5px 30px 5px 0px;	
+	padding: 5px 15px 5px 0px;
+	font-size: 13px;
+}
+
+.annotated td.comment p{
+	text-align: left;
+}
+
+.annotated td.comment *{
+	font-family: "PT Sans Caption";
 }
 
 h2>span{
