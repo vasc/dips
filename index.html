@@ -23,15 +23,17 @@
   ================================================== -->
 	<link rel="stylesheet" href="stylesheets/base.css">
 	<link rel="stylesheet" href="stylesheets/skeleton.css">
-	<link rel="stylesheet" href="stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">	
+	
 	
 <link rel="stylesheet" href="stylesheets/dips.css">
 <link rel="stylesheet" href="stylesheets/pygments.css">
 <link href='http://fonts.googleapis.com/css?family=Cousine:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 <link href="http://fonts.googleapis.com/css?family=Cantarell:regular,italic,bold,bolditalic&amp;v1" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold&amp;v1" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Caption:regular,bold&v1" rel="stylesheet" type="text/css">
 
-	
+
 	<!-- Favicons
 	================================================== -->
 	<link rel="shortcut icon" href="images/favicon.ico">
@@ -67,6 +69,10 @@
           
         
           
+          <li class="min">pseudo-code: <a href="#MessageHandler">MessageHandler</a></li>
+          
+        
+          
           <li><a href="#Control">Control</a></li>
           
         
@@ -96,6 +102,183 @@
           <p>Bounded divergence is a mechanism that allows simulation creator to define the maximum "latency" the simulation can tolerate.</p>
 <p>Assinchronous message passing creates unrealistic clusters of simulated nodes that have much lower latency than outside messages. As locally generated messages are immediately delivered as opposed to outside messages that are bundled together to minimize the strain on the network. This bundling of messages may result in unrealistic latency that we wish to minimize.</p>
 <p>Minimization is guaranteed by processing all outstanding messages whitin a gives time frame. All simulation instances maintain an event counter and and vector counter with one entry per simulation instance including the local one. The event counter must not be more than N events ( where N is defined in the simulation configuration ) ahead than any of the values in the vector counter. The event counter is updated every time an event is processed. Each vector counter is updated to the current event counter value when, either a message bundle is received from that instance or a request is made to that instance for new messages, which the simulator must do in order to proceed when the event counter reaches the N barrier. </p>
+        
+        
+        
+        <hr />
+      </div>
+    
+      <div id="MessageHandler">
+        
+          
+          <h2>MessageHandler <span class="tag">&nbsp;(pseudo-code)</span></h2>
+          <table class="annotated">
+            <tbody>
+          
+            
+              <tr>
+                <td class="comment"><p>Example code of a class to handle the message queue
+implementing the <strong>bounded divergence</strong> algorithm.</p></td>
+                <td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nx">MessageHandler</span>
+   <span class="nv">constructor: </span><span class="nf">(bound_limit, dht) -&gt;</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>The limit of divergence allowed.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="k">this</span><span class="p">.</span><span class="nv">bound_limit = </span><span class="nx">bound_limit</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>The network abstraction.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="k">this</span><span class="p">.</span><span class="nv">dht = </span><span class="nx">dht</span>
+      <span class="k">this</span><span class="p">.</span><span class="nv">message_queue = </span><span class="k">new</span> <span class="nx">Queue</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Global object containing the local simulation time. </p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="nv">current_time = </span><span class="nx">Globals</span><span class="p">.</span><span class="nx">time</span>
+      
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Set each instance clock to the current simulation time.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="k">for</span> <span class="nx">instance</span> <span class="k">in</span> <span class="nx">dht</span><span class="p">.</span><span class="nx">instances</span>
+         <span class="nv">instance.last_seen = </span><span class="nx">current_time</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Method to be called in order to add a message to the queue.</p></td>
+                <td class="code"><div class="highlight"><pre>   <span class="nv">add_message: </span><span class="nf">(message) -&gt;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message_queue</span><span class="p">.</span><span class="nx">enqueue</span> <span class="nx">message</span>
+      <span class="nv">origin = </span><span class="k">this</span><span class="p">.</span><span class="nx">dht</span><span class="p">.</span><span class="nx">route</span> <span class="nx">message</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>The <em>last_seen</em> field is updated to the current time.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="nv">origin.last_seen = </span><span class="nx">Globals</span><span class="p">.</span><span class="nx">time</span>
+      
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Method to be called to get the next message.</p></td>
+                <td class="code"><div class="highlight"><pre>   <span class="nv">retrieve_message: </span><span class="nf">() -&gt;</span>
+      <span class="nv">current_time = </span><span class="nx">Globals</span><span class="p">.</span><span class="nx">time</span>
+      
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Filters the network list leaving only the ones that have not sent messages
+for longer than the limit.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="nv">over_the_limit = </span><span class="nx">dht</span><span class="p">.</span><span class="nx">instances</span><span class="p">.</span><span class="nx">filter</span> <span class="nf">(instance) -&gt;</span>
+         <span class="nv">difference = </span><span class="nx">current_time</span> <span class="o">-</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">last_seen</span>
+         <span class="k">return</span> <span class="nx">difference</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">bound_limit</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Retreive any avilable messages from those instances.
+This <strong>blocks the simulation</strong> until all responses have arrived.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="k">for</span> <span class="nx">instance</span> <span class="k">in</span> <span class="nx">over_the_limit</span>
+         <span class="nx">instance</span><span class="p">.</span><span class="nx">get_messages</span> <span class="nf">(message) -&gt;</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">add_message</span> <span class="nx">message</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            
+              <tr>
+                <td class="comment"><p>Return the next message to process.</p></td>
+                <td class="code"><div class="highlight"><pre>      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">message_queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">()</span>
+</pre></div>
+</td>
+              </tr>
+
+          
+            </tbody>
+          </table>
+          <div class="raw_code">
+            <div class="highlight"><pre><span class="c1">#Example code of a class to handle the message queue</span>
+<span class="c1">#implementing the **bounded divergence** algorithm.</span>
+<span class="k">class</span> <span class="nx">MessageHandler</span>
+   <span class="nv">constructor: </span><span class="nf">(bound_limit, dht) -&gt;</span>
+      <span class="c1">#The limit of divergence allowed.</span>
+      <span class="k">this</span><span class="p">.</span><span class="nv">bound_limit = </span><span class="nx">bound_limit</span>
+      <span class="c1">#The network abstraction.</span>
+      <span class="k">this</span><span class="p">.</span><span class="nv">dht = </span><span class="nx">dht</span>
+      <span class="k">this</span><span class="p">.</span><span class="nv">message_queue = </span><span class="k">new</span> <span class="nx">Queue</span>
+
+      <span class="c1">#Global object containing the local simulation time. </span>
+      <span class="nv">current_time = </span><span class="nx">Globals</span><span class="p">.</span><span class="nx">time</span>
+      
+      <span class="c1">#Set each instance clock to the current simulation time.</span>
+      <span class="k">for</span> <span class="nx">instance</span> <span class="k">in</span> <span class="nx">dht</span><span class="p">.</span><span class="nx">instances</span>
+         <span class="nv">instance.last_seen = </span><span class="nx">current_time</span>
+
+   <span class="c1">#Method to be called in order to add a message to the queue.</span>
+   <span class="nv">add_message: </span><span class="nf">(message) -&gt;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">message_queue</span><span class="p">.</span><span class="nx">enqueue</span> <span class="nx">message</span>
+      <span class="nv">origin = </span><span class="k">this</span><span class="p">.</span><span class="nx">dht</span><span class="p">.</span><span class="nx">route</span> <span class="nx">message</span>
+
+      <span class="c1">#The *last_seen* field is updated to the current time.</span>
+      <span class="nv">origin.last_seen = </span><span class="nx">Globals</span><span class="p">.</span><span class="nx">time</span>
+      
+   <span class="c1">#Method to be called to get the next message.</span>
+   <span class="nv">retrieve_message: </span><span class="nf">() -&gt;</span>
+      <span class="nv">current_time = </span><span class="nx">Globals</span><span class="p">.</span><span class="nx">time</span>
+      
+      <span class="c1">#Filters the network list leaving only the ones that have not sent messages</span>
+      <span class="c1">#for longer than the limit.</span>
+      <span class="nv">over_the_limit = </span><span class="nx">dht</span><span class="p">.</span><span class="nx">instances</span><span class="p">.</span><span class="nx">filter</span> <span class="nf">(instance) -&gt;</span>
+         <span class="nv">difference = </span><span class="nx">current_time</span> <span class="o">-</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">last_seen</span>
+         <span class="k">return</span> <span class="nx">difference</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">bound_limit</span>
+
+      <span class="c1">#Retreive any avilable messages from those instances.</span>
+      <span class="c1">#This **blocks the simulation** until all responses have arrived.</span>
+      <span class="k">for</span> <span class="nx">instance</span> <span class="k">in</span> <span class="nx">over_the_limit</span>
+         <span class="nx">instance</span><span class="p">.</span><span class="nx">get_messages</span> <span class="nf">(message) -&gt;</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">add_message</span> <span class="nx">message</span>
+
+      <span class="c1">#Return the next message to process.</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">message_queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">()</span>
+</pre></div>
+
+          </div>
         
         
         
