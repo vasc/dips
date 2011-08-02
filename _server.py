@@ -12,7 +12,7 @@ def start():
     
     def make(environ, start_response):
         start_response('200 OK', [('Content-Type','text/html; charset=utf-8')])
-        return [str(m.make())]
+        yield str(m.make())
     
     stylesheets = views.Staticfile('stylesheets')
     evwsgi.wsgi_cb(('/stylesheets', stylesheets))
@@ -20,6 +20,8 @@ def start():
     javascripts = views.Staticfile('javascripts')
     evwsgi.wsgi_cb(('/javascripts', javascripts))
 
+    images = views.Staticfile('images')
+    evwsgi.wsgi_cb(('/images', images))
 
     evwsgi.wsgi_cb(("/", make))
     evwsgi.set_debug(0)    

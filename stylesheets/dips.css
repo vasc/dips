@@ -4,11 +4,30 @@ body {
   line-height: 22px;
   color: #252519;
   margin: 0; padding: 0;
-  background-color: #E0E0D8;
+  background-color: #EDEDE8;
+
 }
 
-h1, h2, h3, h4, h5, .sidebar{
+header.ribbon{
+	height: 7px;
+	width: 100%;
+	top: 0;
+	z-index: 100;
+	background-color: #D92A20;
+	position: fixed;
+}
+
+h1, h2, h3, h4, h5, h6, .sidebar{
 	font-family: 'Cantarell', sans-serif;
+	color: #333;
+}
+
+a:hover{
+	color: #D92A20;
+}
+
+pre{
+	font-size: 14px;
 }
 
 .container{
@@ -17,6 +36,10 @@ h1, h2, h3, h4, h5, .sidebar{
 
 .sidebar{
 	text-align: right;
+}
+
+.sidebar img.logo{
+	margin-bottom: 16px;
 }
 
 .sidebar nav{
@@ -32,12 +55,12 @@ h1, h2, h3, h4, h5, .sidebar{
 
 .sidebar h3{
 	font-weight: bold;
-	margin-bottom: 30px;
+	margin-bottom: 12px;
 }
 
 .content h1{
 	font-size: 60px;
-	line-height: 55px;
+	line-height: 69px;
 }
 
 li.min{
@@ -46,7 +69,7 @@ li.min{
 }
 
 pre{
-	font-family: Inconsolata, monospace;
+	font-family: Cousine, monospace;
 }
 
 .code.row{
@@ -54,9 +77,17 @@ pre{
 }
 
 .annotated td.code{
-	background-color: #D0D0CD;
-	border-left: 1px solid #A8A8A8;
+	background-color: #E6E6E5;
+	border-left: 1px solid #C2C2C2;
 	padding: 5px 12px;
+}
+
+.annotated tr:first-child td:last-child{
+	border-top-right-radius: 5px;
+}
+
+.annotated tr:last-child td:last-child{
+	border-bottom-right-radius: 5px;
 }
 
 .annotated td.comment{
@@ -79,6 +110,10 @@ h2>span{
     nav { position: relative; }
     .sidebar { display: none; }
     #logo { display: none; }
+    pre{
+    	line-height: normal;
+    	font-size: 12px;
+    }
 }
 
 /* Mobile Landscape */
