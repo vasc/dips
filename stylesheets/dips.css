@@ -49,6 +49,7 @@ strong{
 	/*border: 1px solid #a9a9a9*/
 	border-width: 13px 9px 9px 9px;
 	-webkit-border-image: url('../images/right-corner-books.png') 13 9 9 9 repeat repeat;
+	-moz-border-image: url('../images/right-corner-books.png') 13 9 9 9 repeat repeat;
 	border-image: url('../images/right-corner-books.png') 13 9 9 9 repeat;
 }
 
@@ -158,6 +159,7 @@ h2>span{
 	-khtml-background-size: 100%;
 	-moz-background-size: 100%;
 	background-size: 100%;
+	background-color: white !important;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
@@ -182,6 +184,16 @@ h2>span{
     .slider{
     	width:280px; /* Change this to your images width */
     	height:210px; /* Change this to your images height */
+	}
+
+	body{
+	  background-image: url('../images/dips-inset-small.png'), url('../images/wood-dark.jpg');
+	  background-repeat: no-repeat, repeat;
+	  background-position: bottom center, top left;
+	}
+
+	.container{
+		margin-bottom: 130px;
 	}
 }
 
