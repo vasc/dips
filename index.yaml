@@ -1,17 +1,29 @@
 - type: 'text'
-  name: 'Bounded Divergence'
-  path: '/home/vasco/Dropbox/notes/Dips/Bounded Divergence.txt'
+  name: 'Soft Bounded Divergence'
+  path: '/home/vasco/Dropbox/notes/Dips/DIPS/DIPS Simulation Protocol/Soft Bounded Divergence.txt'
+
 - type: 'code'
   name: 'MessageHandler'
   language: 'pseudo-code'
   path: '/home/vasco/Dropbox/notes/Dips/Code/BoundedDivergence.coffee'
+
+- type: 'text'
+  name: 'Strictly Bounded Divergence'
+  path: '/home/vasco/Dropbox/notes/Dips/DIPS/DIPS Simulation Protocol/Strictly Bounded Divergence.txt'
+
+- type: 'text'
+  name: 'Load Balancing'
+  path: '/home/vasco/Dropbox/notes/Dips/DIPS/DIPS Simulation Protocol/Load Balancing.txt'
+
 - type: 'text'
   name: 'Control'
   path: '/home/vasco/Dropbox/notes/Dips/Control.txt'
+
 - type: 'code'
   name: 'MessageBundle'
   language: 'pseudo-code'
   path: '/home/vasco/Dropbox/notes/Dips/Code/MessageBundle.txt'
+
 - type: 'text'
   name: 'Cycle based Simulation'
   path: '/home/vasco/Dropbox/notes/Dips/Cycle based simulation.txt'
