@@ -23,6 +23,9 @@ def start():
     images = views.Staticfile('images')
     evwsgi.wsgi_cb(('/images', images))
 
+    fonts = views.Staticfile('fonts')
+    evwsgi.wsgi_cb(('/fonts', fonts))
+
     evwsgi.wsgi_cb(("/", make))
     evwsgi.set_debug(0)    
     evwsgi.run()

@@ -37,5 +37,11 @@ $(document).ready(function() {
 				
 			} 
 		});
-	}); 
+	});
+	
+	$('.slider').nivoSlider({
+		manualAdvance:true,
+		animSpeed:200,
+		effect: 'fade'
+	});
 });

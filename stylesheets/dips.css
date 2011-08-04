@@ -1,3 +1,4 @@
+
 body {
   font-family: 'Droid Sans', sans-serif;
   font-size: 14px;
@@ -5,16 +6,18 @@ body {
   color: #252519;
   margin: 0; padding: 0;
   background-color: #EDEDE8;
-
+  background-image: url('../images/dips-inset.png'), url('../images/wood-dark.jpg');
+  background-repeat: no-repeat, repeat;
+  background-position: bottom center, top left;
 }
 
 header.ribbon{
-	height: 7px;
+	height: 0px;
 	width: 100%;
 	top: 0;
 	z-index: 100;
 	background-color: #D92A20;
-	position: fixed;
+	/*position: fixed;*/
 }
 
 h1, h2, h3, h4, h5, h6, .sidebar{
@@ -38,7 +41,15 @@ strong{
 }
 
 .container{
-	margin-top: 60px;
+	margin-top: 30px;
+	margin-bottom: 120px;
+	padding: 30px 14px;
+	/*background-image: url('../images/background.jpg');*/
+	/*background-color: #F7F7F7;*/
+	/*border: 1px solid #a9a9a9*/
+	border-width: 13px 9px 9px 9px;
+	-webkit-border-image: url('../images/right-corner-books.png') 13 9 9 9 repeat repeat;
+	border-image: url('../images/right-corner-books.png') 13 9 9 9 repeat;
 }
 
 .sidebar{
@@ -50,8 +61,8 @@ strong{
 }
 
 .sidebar nav{
-	position: fixed;
-	width: 160px;
+	/*position: fixed;
+	width: 160px;*/
 }
 
 .sidebar a{
@@ -66,8 +77,8 @@ strong{
 }
 
 .content h1{
-	font-size: 60px;
-	line-height: 69px;
+	font-size: 4.3em;
+	line-height: 1.2em;
 }
 
 li.min{
@@ -129,6 +140,7 @@ h2>span{
     pre{
     	line-height: normal;
     	font-size: 12px;
+    	white-space: pre-wrap;
     }
 }
 
@@ -148,4 +160,25 @@ h2>span{
     .annotated{
     	display: none;
     }
+}
+
+/*Nivo Slider*/
+
+.slider {
+    position:relative;
+    width:640px; /* Change this to your images width */
+    height:480px; /* Change this to your images height */
+    background:url(../images/loading.gif) no-repeat 50% 50%;
+    margin-bottom: 60px;
+    margin: 0 auto 60px auto;
+}
+.slider img {
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:none;
+}
+.slider a {
+    border:0;
+    display:block;
 }

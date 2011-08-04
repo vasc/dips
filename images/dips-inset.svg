@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="755.04572"
+   height="618.01367"
+   id="svg3793"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   inkscape:export-filename="/home/vasco/projs/dips-pages/images/dips.png"
+   inkscape:export-xdpi="14.3"
+   inkscape:export-ydpi="14.3"
+   sodipodi:docname="dips-inset.svg">
+  <defs
+     id="defs3795">
+    <linearGradient
+       id="linearGradient4356">
+      <stop
+         style="stop-color:#cccccc;stop-opacity:1;"
+         offset="0"
+         id="stop4358" />
+      <stop
+         style="stop-color:#898989;stop-opacity:1;"
+         offset="1"
+         id="stop4360" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4356"
+       id="radialGradient4370"
+       cx="459.46735"
+       cy="159.94275"
+       fx="459.46735"
+       fy="159.94275"
+       r="219.20189"
+       gradientTransform="matrix(0.7087232,-0.14139566,0.0130492,0.12262373,61.214635,288.34622)"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       id="filter4758"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-.25"
+       y="-.25">
+      <feGaussianBlur
+         id="feGaussianBlur4760"
+         in="SourceAlpha"
+         stdDeviation="1"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix4762"
+         result="bluralpha"
+         type="matrix"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 " />
+      <feOffset
+         id="feOffset4764"
+         in="bluralpha"
+         dx="0"
+         dy="4"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge4766">
+        <feMergeNode
+           id="feMergeNode4768"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode4770"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter
+       id="filter4958"
+       inkscape:label="Drop shadow"
+       width="1.5"
+       height="1.5"
+       x="-.25"
+       y="-.25">
+      <feGaussianBlur
+         id="feGaussianBlur4960"
+         in="SourceAlpha"
+         stdDeviation="0.5"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix4962"
+         result="bluralpha"
+         type="matrix"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 " />
+      <feOffset
+         id="feOffset4964"
+         in="bluralpha"
+         dx="0"
+         dy="2"
+         result="offsetBlur" />
+      <feMerge
+         id="feMerge4966">
+        <feMergeNode
+           id="feMergeNode4968"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode4970"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.01"
+     inkscape:cx="490.63162"
+     inkscape:cy="487.36123"
+     inkscape:document-units="pt"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="pt"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="744"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3798">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-28.242872,-74.89076)">
+    <image
+       y="-4.2428565"
+       x="-45.350906"
+       id="image4601"
+       xlink:href="file:///home/vasco/projs/dips-pages/images/wood-dark.jpg"
+       height="768"
+       width="1024" />
+    <path
+       style="fill:#000000;fill-opacity:0.11637932;fill-rule:evenodd;stroke:none;filter:url(#filter4758)"
+       d="m 263.88226,92.058868 c -27.03229,0 -48.94629,21.914002 -48.94629,48.946302 0,27.03229 21.914,48.94629 48.94629,48.94629 6.78387,0 13.24591,-1.38017 19.11965,-3.87491 l 4.88614,7.8348 c -5.25686,5.09452 -8.52312,12.22374 -8.52312,20.12237 0,15.47911 12.54604,28.02515 28.02515,28.02515 15.47912,0 28.02516,-12.54604 28.02516,-28.02515 0,-15.47912 -12.54604,-28.02516 -28.02516,-28.02516 -2.27176,0 -4.47904,0.27162 -6.59415,0.78179 l -5.26852,-8.45514 c 7.2478,-6.14981 12.68481,-14.36298 15.38919,-23.74235 l 28.11862,1.35962 c 4.50934,16.47845 19.59084,28.586 37.5,28.586 21.46966,0 38.87662,-17.40697 38.87662,-38.87662 0,-21.46965 -17.40696,-38.86813 -38.87662,-38.86813 -19.25521,0 -35.24003,14.00008 -38.33276,32.37595 l -25.47587,-1.22366 C 311.14802,112.33823 289.88752,92.058868 263.88226,92.058868 z"
+       id="path3801-3"
+       inkscape:export-xdpi="48"
+       inkscape:export-ydpi="48"
+       inkscape:export-filename="/home/vasco/projs/dips-pages/images/dips-inset.png"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="matrix(0.94560813,0,-0.01439148,0.94560813,19.479369,3.0165042)"
+       style="font-size:257.51794434px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.10775865;stroke:none;font-family:Sans"
+       id="text4396-9" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="-130"
+       y="350.87082"
+       id="text4520"
+       sodipodi:linespacing="125%"
+       transform="translate(28.242872,74.89076)"><tspan
+         sodipodi:role="line"
+         id="tspan4522"
+         x="-130"
+         y="350.87082" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.11764706;stroke:none;filter:url(#filter4958);font-family:Sans"
+       x="452.50696"
+       y="175.70633"
+       id="text4772"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/vasco/projs/dips-pages/images/dips-inset.png"
+       inkscape:export-xdpi="48"
+       inkscape:export-ydpi="48"><tspan
+         sodipodi:role="line"
+         id="tspan4774"
+         x="452.50696"
+         y="175.70633"
+         style="font-size:28px;font-weight:bold;-inkscape-font-specification:Sans Bold">© Vasco Fernandes, inesc id</tspan></text>
+  </g>
+</svg>
