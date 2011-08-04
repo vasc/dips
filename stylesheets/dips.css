@@ -131,37 +131,6 @@ h2>span{
 	display: none;
 }
 
-/* Mobile */
-@media only screen and (max-width: 767px) {
-    header h1 { font-size: 42px !important; line-height: 46px !important; }
-    nav { position: relative; }
-    .sidebar { display: none; }
-    #logo { display: none; }
-    pre{
-    	line-height: normal;
-    	font-size: 12px;
-    	white-space: pre-wrap;
-    }
-}
-
-/* Mobile Landscape */
-/*@media only screen and (min-width: 480px) and (max-width: 767px) {
-    nav ul { display: none; }
-}*/
-
-/* Non 960 */
-@media only screen and (max-width: 959px) {
-    #logo { 
-        font-size: 21px;
-        margin-bottom: 15px; }
-    .raw_code{
-    	display: block;
-    }
-    .annotated{
-    	display: none;
-    }
-}
-
 /*Nivo Slider*/
 
 .slider {
@@ -181,4 +150,58 @@ h2>span{
 .slider a {
     border:0;
     display:block;
+}
+
+.slider.nivoSlider, .nivo-slice{
+	-webkit-background-size: 100%;
+	-o-background-size: 100%;
+	-khtml-background-size: 100%;
+	-moz-background-size: 100%;
+	background-size: 100%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.slider{
+    	width:556px; /* Change this to your images width */
+    	height:417px; /* Change this to your images height */
+	}
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    header h1 { font-size: 42px !important; line-height: 46px !important; }
+    nav { position: relative; }
+    .sidebar { display: none; }
+    #logo { display: none; }
+    pre{
+    	line-height: normal;
+    	font-size: 12px;
+    	white-space: pre-wrap;
+    }
+
+    .slider{
+    	width:280px; /* Change this to your images width */
+    	height:210px; /* Change this to your images height */
+	}
+}
+
+/* Mobile Landscape */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .slider{
+    	width:420px; /* Change this to your images width */
+    	height:315px; /* Change this to your images height */
+	}
+}
+
+/* Non 960 */
+@media only screen and (max-width: 959px) {
+    #logo { 
+        font-size: 21px;
+        margin-bottom: 15px; }
+    .raw_code{
+    	display: block;
+    }
+    .annotated{
+    	display: none;
+    }
 }

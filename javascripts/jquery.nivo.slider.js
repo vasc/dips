@@ -44,11 +44,13 @@
                 }
                 child = child.find('img:first');
             }
+
+            /*
             //Get img width & height
             var childWidth = child.width();
-            if(childWidth == 0) childWidth = child.attr('width');
+            //if(childWidth == 0) childWidth = child.attr('width');
             var childHeight = child.height();
-            if(childHeight == 0) childHeight = child.attr('height');
+            //if(childHeight == 0) childHeight = child.attr('height');
             //Resize the slider
             if(childWidth > slider.width()){
                 slider.width(childWidth);
@@ -56,6 +58,8 @@
             if(childHeight > slider.height()){
                 slider.height(childHeight);
             }
+            */
+
             if(link != ''){
                 link.css('display','none');
             }
