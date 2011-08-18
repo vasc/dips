@@ -3,3 +3,7 @@ build
 dips/libs/lib/scala-compiler.jar
 dips/libs/lib/scala-library.jar
 .scala_dependencies
+lib/
+old/
+project/
+target/
