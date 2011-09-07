@@ -4,12 +4,12 @@ import scala.actors.AbstractActor
 
 class DHT extends PostOffice {
 
-  def connect(uri: Any): Unit = {  }
+  def connect(uri: Any) {  }
 
-  def disconnect(): Unit = {  }
+  def disconnect() {  }
 
   def translate(dest: Any): AbstractActor = { null }
 
-  def routing_event(event: Routing): Unit = {  }
+  def routing_event(event: Routing) {  }
 
 }

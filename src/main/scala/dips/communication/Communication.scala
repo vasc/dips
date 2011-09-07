@@ -2,6 +2,7 @@ package dips.communication
 
 import scala.actors.{Actor, AbstractActor}
 import scala.actors.Actor.actor
+import dips.surge.Routable
 
 //import org.scalatest.FunSuite
 
@@ -10,8 +11,27 @@ sealed trait Communication
 
 case object Exit extends Communication
 
-trait Message extends Communication
-case class MessageHolder[T](msg:T) extends Message
+trait Message extends Communication{
+  val dest:Routable = null
+  val origin:Routable = null
+}
+
+case class Envelope[T](msg:T) extends Message
+
+object Message{
+  def createMessage[T](msg:T, dest:Routable, origin:Routable) = {
+    Envelope(msg, origin, dest)
+  }
+  
+  def createMessage[T](msg:T, dest:Routable) = {
+   Envelope(msg, dest)
+  }
+  
+  def createMessage[T](msg:T) = {
+    Envelope(msg)
+  }
+}
+
 case class Post(dest:Any, msg:Message) extends Communication
 case object Retrieve extends Communication
 
@@ -68,15 +88,15 @@ object Run extends App{
   po.start()
   
   po ! Connect
-  po.post_message(None, MessageHolder("message1"))
-  po.post_message(None, MessageHolder("message2"))
-  po.post_message(None, MessageHolder("message3"))
-  po.post_message(None, MessageHolder("message4"))
-  po.post_message(None, MessageHolder("message5"))
+  po.post_message(None, Message.createMessage("message1"))
+  po.post_message(None, Message.createMessage("message2"))
+  po.post_message(None, Message.createMessage("message3"))
+  po.post_message(None, Message.createMessage("message4"))
+  po.post_message(None, Message.createMessage("message5"))
   
   val msgs = po.retrieve_messages()
  
-  msgs match{ case msgs:List[MessageHolder[String]] => msgs.reverse.foreach(println)}
+  msgs match{ case msgs:List[Message] => msgs.reverse.foreach(println)}
   po ! Exit
 }
 
