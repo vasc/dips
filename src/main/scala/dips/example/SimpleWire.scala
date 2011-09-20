@@ -7,6 +7,7 @@ import peersim.core.Control
 import peersim.core.CommonState
 import peersim.core.Simulation
 import dips.core.DistributedNetwork
+import dips.simulation.DistributedSimulation
 
 class SimpleWire(prefix:String) extends Control {
   val linkable_pid = Configuration getPid prefix+".protocol"
@@ -14,8 +15,8 @@ class SimpleWire(prefix:String) extends Control {
   
   def execute(): Boolean = {
     //val network_size = DEDSimulator.full_network_size
-    val network_size = DistributedNetwork.network.full_size
-    for(node <- DistributedNetwork.network.nodes){  
+    val network_size = DistributedSimulation.network.full_size
+    for(node <- DistributedSimulation.network.nodes){  
       val lnk = node.getProtocol(linkable_pid).asInstanceOf[Linkable]
       lnk.init_neighbors(degree)
       for(j <- 0 until degree){

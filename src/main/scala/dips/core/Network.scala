@@ -7,11 +7,10 @@ import scala.collection.mutable.HashMap
 import dips.NotImplementedException
 import peersim.config.Configuration
 import dips.util.Logger.log
+import dips.simulation.DistributedSimulation
 
 
-object DistributedNetwork{
-  def network = Simulation.network.asInstanceOf[DistributedNetwork]
-}
+
 
 class DistributedNetwork(val dht:DHT) extends Network {
   //TODO: network becomes fragile after a remove
@@ -42,7 +41,7 @@ class DistributedNetwork(val dht:DHT) extends Network {
     log.debug("--- Generating nodes")
     node_map = new HashMap()
     for(val i:Long <- 0L until network_size if dht local i){
-      log.debug("---- node: " + i)
+      //log.debug("---- node: " + i)
       val node = prototype.duplicate(i)
       //log.debug(i)
       node.setIndex(node_map.size)

@@ -71,11 +71,10 @@ case class Uri(val ip:String, val port:Int, val service:Symbol) extends Addressa
   override lazy val hash = sha1((ip + ":" + port + ":" + service).getBytes)
 }
 
-trait Message extends Routable {
-  val destination_node_id:Long
-  val origin_node_id:Long
-  val pid:Int
-  val msg:Any
-}
+case class Message(
+    val destination_node_id:Long,
+    val origin_node_id:Long,
+    val pid:Int,
+    val msg:Any){}
 
 

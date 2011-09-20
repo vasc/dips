@@ -19,6 +19,6 @@ class Migrator(dht:DHT, local_nodes:List[Routable], msgs:Queue[Message]) {
 	    dht.send_to(msgs_tupple._1, Migration(msgs_tupple._2))
 	  }
 	  
-	  msgs.filter(!dht.route(_).isInstanceOf[Local]) foreach ( dht send _ )
+	  msgs.filter(msg => !dht.route( msg.destination_node_id ).isInstanceOf[Local]) foreach ( dht send _ )
 	}
 }

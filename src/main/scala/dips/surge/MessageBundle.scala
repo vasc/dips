@@ -24,7 +24,7 @@ object MessageBundler{
   }
   
   def on_new_message(msg:Message){
-    val i = dht route msg
+    val i = dht route msg.destination_node_id
     if( i.mb add_message msg ){
       i.flush_mb()
     }

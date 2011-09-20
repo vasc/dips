@@ -14,7 +14,7 @@ object Detacher {
   }
   
   def on_new_message(dht:DHT, msg:Message){
-    val destination = dht route msg
+    val destination = dht route msg.destination_node_id
     destination ! msg
   }
 }

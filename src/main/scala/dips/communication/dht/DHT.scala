@@ -1,23 +1,22 @@
 package dips.communication.dht
 
 import java.net.InetAddress
-
 import scala.actors.remote.Node
 import scala.actors.remote.RemoteActor
 import scala.actors.remote.TcpService
-import scala.actors.OutputChannel
 import scala.actors.AbstractActor
+import scala.actors.OutputChannel
 import scala.annotation.serializable
 import scala.collection.immutable.TreeSet
-import scala.collection.mutable.HashSet
 import scala.collection.mutable.HashMap
-
+import scala.collection.mutable.HashSet
 import dips.communication.Addressable
 import dips.communication.Anounce
 import dips.communication.Connect
 import dips.communication.Envelope
 import dips.communication.Message
 import dips.communication.PostOffice
+import dips.communication.Retrieve
 import dips.communication.Routable
 import dips.communication.Routing
 import dips.communication.Subscription
@@ -25,6 +24,7 @@ import dips.communication.Uri
 import dips.surge.MessageBundle
 import dips.util.Logger.log
 import dips.NotImplementedException
+import scala.actors.Debug
 
 class Instance(uri:Uri) extends Addressable{
   val port = uri.port
@@ -39,10 +39,10 @@ class Instance(uri:Uri) extends Addressable{
   }
   /*def send(msg:Message){
     throw new NotImplementedException()
-  }
+  }*/
   def flush_mb(){
     throw new NotImplementedException()
-  }*/
+  }
   
   override lazy val hash = uri.hash
   
@@ -62,7 +62,7 @@ object DHT{
 }
 
 class DHT(var local_port:Int) extends PostOffice{
-  //Debug.level = 9
+  Debug.level = 9
   
   if(local_port == 0){ local_port = TcpService.generatePort }
   val local_addr:Uri = new Uri(InetAddress.getLocalHost.getHostAddress, local_port, DHT.DEFAULT_SERVICE)
@@ -103,11 +103,8 @@ class DHT(var local_port:Int) extends PostOffice{
     result
   }
   
-  /**
-   * Syntactic sugar to send_to(route(Routable), msg)
-   */
   def send(msg:Message) {
-    send_to(this route msg, Envelope(msg, local_addr))
+    send_to(this route msg.destination_node_id, Envelope(msg, local_addr))
   }
   
   /**
@@ -115,6 +112,7 @@ class DHT(var local_port:Int) extends PostOffice{
    * override routing
    */
   def send_to(i:Instance, msg:Any) {
+    //log.debug("Sending message " + msg)
     //TODO: Create envelope on send
     translate(i) ! msg
   }
@@ -131,9 +129,14 @@ class DHT(var local_port:Int) extends PostOffice{
   /**
    * Take message from message queue
    */
-  def dequeue():Option[Message] = {
-    //TODO: self_disconnect
-    throw new NotImplementedException()
+  def get_messages() = {
+    while(this.messages.size == 0){
+      log.debug("Waiting new messages")
+      Thread.sleep(1000)
+    }
+    
+    log.debug("Updated message queue with " + this.messages.size + " remote messages")
+    (this !? Retrieve).asInstanceOf[List[Message]]
   }
   
   /**

@@ -14,12 +14,14 @@ import peersim.core.Control
 import peersim.core.Scheduler
 import peersim.core.Simulation
 import dips.util.sha1
+import scala.collection.mutable.Queue
 
 
 object DEDSimulator {
   val PAR_DIST = "distributed"
   var dht:DHT = _
   var controls = new LinkedList[ScheduledControl]
+  var queue:Queue[Message] = _
   //val controller = Configuration.getInstance(PAR_DIST+".controller").asInstanceOf[DistributionController]
   /*val dht = {  
 	  if(Configuration.contains(PAR_DIST+".connection.host")){
@@ -46,6 +48,8 @@ object DEDSimulator {
   
   def newExperiment:Unit = {
     //configureDistributedExperiment
+    queue = new Queue[Message]()
+    
     log.debug("Starting new simulation")
     
     log.debug("Creating network")    
@@ -71,19 +75,26 @@ object DEDSimulator {
    * Executes all control objects scheduled and then processes the next message in the queue
    */
   def processNextMessage:Boolean = {
-    log.debug("Processing next message at " + CommonState.getTime)
+    if(CommonState.getTime % 1000 == 0){
+      log.debug("Processing message at " + CommonState.getTime)
+    }
     if (!( controls filter { _.scheduler.active } forall { !_.control.execute } ) ) return false
-    dht.dequeue match{
-      case Some(msg:Message) =>
+    
+    if(queue.isEmpty){
+      queue ++= dht.get_messages
+    }
+    
+    queue.dequeue match{
+      case msg:Message =>
         CommonState.setTime(CommonState.getTime + 1)
-	    DistributedNetwork.network.get(msg.destination_node_id).getProtocol(msg.pid).asInstanceOf[DEDProtocol]
+	    DistributedSimulation.network.get(msg.destination_node_id).getProtocol(msg.pid).asInstanceOf[DEDProtocol]
 		    .processEvent(
 		        msg.destination_node_id,
 		        msg.origin_node_id,
 		        msg.pid,
 		        msg.msg)
 		true
-      case None =>
+      /*case None =>
         if(!dht.finished){
 	        println("Event queue is empty, awaiting external events.")
 	        Thread.sleep(2000)
@@ -91,7 +102,7 @@ object DEDSimulator {
         }
         else{
           false
-        }
+        }*/
     }
   }
   
@@ -124,15 +135,14 @@ object DEDSimulator {
   }*/
   
   def sendMessage(srcId:Long, destId:Long, protocolId:Int, event:AnyRef) = {
-    val message = new Message(){
-      val origin_node_id = srcId
-      val destination_node_id = destId
-      val pid = protocolId
-      val msg = event
-      lazy val hash = sha1(msg.toString.getBytes)
-    }
+    val message = new Message(srcId, destId, protocolId, event)
     
-    dht.send(message)
+    if(dht local message.destination_node_id){
+      queue enqueue message
+    }
+    else{
+      dht send message
+    }
   }
   
 }

@@ -8,6 +8,7 @@ import dips.util.Logger.log
 import dips.communication.dht.DHT
 import dips.communication.Addressable
 import dips.simulation.DEDSimulator
+import dips.simulation.DistributedSimulation
 
 object Dips extends Simulator {
   val DEDSIM = 2
@@ -65,6 +66,7 @@ object Dips extends Simulator {
     log.debug("arguments parsed: " + (remote_host, remote_port, local_port) )
     
     dht = new DHT(local_port)
+    DistributedSimulation.dht = dht
     
     if (remote_host != "" && remote_port != 0) { 
       log.debug("connecting to " + remote_host + ", " + remote_port )

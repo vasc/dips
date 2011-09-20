@@ -1,6 +1,8 @@
 package dips.example
 
 import dips.core.Linkable
+import dips.simulation.DistributedSimulation
+import dips.util.Logger.log
 
 class SimpleLink(prefix:String) extends Linkable {
   var degree:Int = 0
@@ -13,6 +15,8 @@ class SimpleLink(prefix:String) extends Linkable {
   def getNeighbor(i: Int): Long = { neighbors(i) }
 
   def addNeighbor(n: Long) = {
+    //val is_local = if(DistributedSimulation.dht local n) "local" else "remote"
+    //log.debug("Adding neighbor " + n + ", " + is_local)
     neighbors(degree) = n
     degree += 1
   }
