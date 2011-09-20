@@ -1,4 +1,4 @@
-package dips.test
+package dips.example
 
 import peersim.core.Control
 import dips.Dips

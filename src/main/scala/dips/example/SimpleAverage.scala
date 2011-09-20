@@ -1,16 +1,19 @@
-package dips.test
+package dips.example
 
-import dips.{DEDProtocol, DEDSimulator, Linkable}
-
-import peersim.core.{Node, Network, CommonState}
+import dips.core.DEDProtocol
+import dips.core.Linkable
+import dips.simulation.DEDSimulator
 import peersim.config.FastConfig
+import peersim.core.CommonState
+import peersim.core.Simulation
 import peersim.vector.SingleValueHolder
+import dips.core.DistributedNetwork
 
 case class AveragePing(value:Double)
 case class AveragePong(avg:Double)
 
 class SimpleAverage(prefix:String) extends SingleValueHolder(prefix) with DEDProtocol with Bootstrapable{
-  def processEvent(node:Int, from:Int, pid:Int, event:AnyRef): Unit = { 
+  def processEvent(node:Long, from:Long, pid:Int, event:Any): Unit = { 
     event match{
       case event:AveragePing =>
       	setValue((getValue + event.value) / 2)
@@ -23,8 +26,8 @@ class SimpleAverage(prefix:String) extends SingleValueHolder(prefix) with DEDPro
     send_message(node, pid)
   }
   
-  def send_message(node:Int, pid:Int) = {
-    val linkable = Network.get(node).getProtocol( FastConfig.getLinkable(pid) ).asInstanceOf[Linkable]
+  def send_message(node:Long, pid:Int) = {
+    val linkable = DistributedNetwork.network.get(node).getProtocol( FastConfig.getLinkable(pid) ).asInstanceOf[Linkable]
     
     val neighbor = linkable.getNeighbor(CommonState.r.nextInt(linkable.degree))
     
@@ -32,6 +35,6 @@ class SimpleAverage(prefix:String) extends SingleValueHolder(prefix) with DEDPro
   }
   
   def bootstrap(pid:Int) = {
-    send_message(CommonState.r.nextInt(Network.size), pid)
+    send_message(CommonState.r.nextInt(Simulation.network.size), pid)
   }
 }

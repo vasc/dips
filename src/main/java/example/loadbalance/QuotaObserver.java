@@ -84,8 +84,8 @@ public class QuotaObserver implements Control {
         IncrementalStats stats = new IncrementalStats();
         long time = peersim.core.CommonState.getTime();
 
-        for (int i = 0; i < Network.size(); i++) {
-            BasicBalance protocol = (BasicBalance) Network.get(i).getProtocol(
+        for (int i = 0; i < Simulation.network.size(); i++) {
+            BasicBalance protocol = (BasicBalance) Simulation.network.get(i).getProtocol(
                     pid);
             stats.add(protocol.quota);
         }

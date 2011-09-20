@@ -97,7 +97,7 @@ try {
 	FileReader fr = new FileReader(file);
 	LineNumberReader lnr = new LineNumberReader(fr);
 	String line;
-	while ((line = lnr.readLine()) != null && i < Network.size()) {
+	while ((line = lnr.readLine()) != null && i < Simulation.network.size()) {
 		if (line.startsWith("#"))
 			continue;
 		StringTokenizer st = new StringTokenizer(line);
@@ -115,10 +115,10 @@ catch(IOException e)
 	throw new RuntimeException("Unable to read file: " + e);
 }
 	
-	if (i < Network.size())
+	if (i < Simulation.network.size())
 		throw new RuntimeException(
 		"Too few values in file '" + file + "' (only "
-		+ i + "); we need " + Network.size() + ".");
+		+ i + "); we need " + Simulation.network.size() + ".");
 	
 	return false;
 }

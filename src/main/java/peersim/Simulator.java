@@ -26,7 +26,7 @@ import peersim.config.IllegalParameterException;
 import peersim.config.MissingParameterException;
 import peersim.config.ParsedProperties;
 import peersim.core.CommonState;
-import peersim.core.Network;
+import peersim.core.Simulation;
 import peersim.edsim.EDSimulator;
 
 /**
@@ -204,7 +204,7 @@ public class Simulator {
 		if (Configuration.contains("__t"))
 			System.out.println(System.currentTimeMillis() - time);
 		if (Configuration.contains("__x"))
-			Network.test();
+			Simulation.network.test();
 	}
 
 	public void parse_configuration(String[] args) {

@@ -1,20 +1,21 @@
 package dips.surge
+
 import scala.actors.Future
 import dips.communication.Message
-import dips.surge.BoundedDivergence.RoutableMessage
-
-case class Disconnect extends Message
+import dips.communication.dht.DHT
+import dips.communication.Routing
+import dips.communication.Disconnect
 
 object Detacher {
-  def detach(dht:Dht){
-    val confirmations:Future[Boolean] = dht broadcast Disconnect()
-    dht.self_disconnect()
-    confirmations()
+  def detach(dht:DHT){
+    
+    //while(! (dht broadcast Disconnect)){}
+    dht.disconnect()
   }
   
-  def on_new_message(dht:Dht, msg:RoutableMessage){
+  def on_new_message(dht:DHT, msg:Message){
     val destination = dht route msg
-    destination send msg
+    destination ! msg
   }
 }
 

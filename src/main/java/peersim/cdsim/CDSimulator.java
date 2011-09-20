@@ -188,7 +188,7 @@ public static final void nextExperiment()
 	System.err.println("CDSimulator: resetting");
 	controls = null;
 	ctrlSchedules = null;
-	Network.reset();
+	Simulation.network.reset();
 	System.err.println("CDSimulator: running initializers");
 	runInitializers();
 

@@ -82,4 +82,11 @@ public long getID();
  */
 public Object clone();
 
+public Node duplicate();
+
+public Node duplicate(long ID);
 }
+
+
+
+

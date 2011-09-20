@@ -94,7 +94,7 @@ private void init() {
 	pid = Configuration.getPid(prefix + "." + protocol);
 	methodName = Configuration.getString(prefix+"."+methodn,"getValue");
 	// Search the method
-	Class<? extends Protocol> clazz = Network.prototype.getProtocol(pid).getClass();
+	Class<? extends Protocol> clazz = Simulation.network.prototype.getProtocol(pid).getClass();
 	try {
 		method = GetterSetterFinder.getGetterMethod(clazz, methodName);
 	} catch (NoSuchMethodException e) {
@@ -210,7 +210,7 @@ public double getDouble(Node n) {
 * by {@link #pid}.
 * @return the read value.
 */
-public Number get(int i) { return get(Network.get(i)); }
+public Number get(int i) { return get(Simulation.network.get(i)); }
 
 // --------------------------------------------------------------------------
 
@@ -221,7 +221,7 @@ public Number get(int i) { return get(Network.get(i)); }
 * by {@link #pid}.
 * @return the read value.
 */
-public long getLong(int i) { return getLong(Network.get(i)); }
+public long getLong(int i) { return getLong(Simulation.network.get(i)); }
 
 // --------------------------------------------------------------------------
 
@@ -232,7 +232,7 @@ public long getLong(int i) { return getLong(Network.get(i)); }
 * by {@link #pid}.
 * @return the read value.
 */
-public double getDouble(int i) { return getDouble(Network.get(i)); }
+public double getDouble(int i) { return getDouble(Simulation.network.get(i)); }
 
 }
 

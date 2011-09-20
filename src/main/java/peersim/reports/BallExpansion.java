@@ -87,7 +87,7 @@ private final RandPermutation rp = new RandPermutation(CommonState.r);
 public BallExpansion(String name)
 {
 	super(name);
-	maxd = Configuration.getInt(name + "." + PAR_MAXD, Network.size());
+	maxd = Configuration.getInt(name + "." + PAR_MAXD, Simulation.network.size());
 	n = Configuration.getInt(name + "." + PAR_N, 1000);
 	stats = Configuration.contains(name + "." + PAR_STATS);
 	b = new int[maxd];

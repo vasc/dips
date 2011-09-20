@@ -106,7 +106,7 @@ try
 		if(!st.hasMoreTokens()) continue;
 		
 		final int from = Integer.parseInt(st.nextToken());
-		if( from < 0 || from >= Network.size() )
+		if( from < 0 || from >= Simulation.network.size() )
 		{
 			wasOutOfRange = true;
 			continue;
@@ -115,7 +115,7 @@ try
 		for(int i=0; i<k && st.hasMoreTokens(); ++i)
 		{
 			final int to = Integer.parseInt(st.nextToken());
-			if( to < 0 || to >= Network.size() )
+			if( to < 0 || to >= Simulation.network.size() )
 				wasOutOfRange = true;
 			else
 				g.setEdge(from,to);

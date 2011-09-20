@@ -66,7 +66,7 @@ public class VectorComparator implements Comparator<Object> {
 
 	public VectorComparator(int pid, String methodName) {
 		this.pid = pid;
-		Node n = Network.prototype;
+		Node n = Simulation.network.prototype;
 		if (n == null) {
 			throw new IllegalStateException(
 					"No prototype node can be used to search methods");

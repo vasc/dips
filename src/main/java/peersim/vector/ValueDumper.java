@@ -106,7 +106,7 @@ try
 		System.out.println("writing "+filename);
 		PrintStream pstr =
 			new PrintStream(new FileOutputStream(filename));
-		for (int i = 0; i < Network.size(); ++i)
+		for (int i = 0; i < Simulation.network.size(); ++i)
 		{
 			pstr.println(getter.get(i));
 		}
@@ -115,7 +115,7 @@ try
 	else
 	{
 		System.out.println();
-		for (int i = 0; i < Network.size(); ++i)
+		for (int i = 0; i < Simulation.network.size(); ++i)
 		{
 			System.out.println(getter.get(i));
 		}

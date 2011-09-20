@@ -83,19 +83,19 @@ public class Network {
 	 * necessary to know that the actual node set is only the first
 	 * {@link #size()} items of the array.
 	 */
-	static Node[] node = null;
+	Node[] node = null;
 
 	/**
 	 * Actual size of the network.
 	 */
-	private static int len;
+	private int len;
 
 	/**
 	 * The prototype node which is used to populate the simulation via cloning.
 	 * After all the nodes have been cloned, {@link Control} components can be
 	 * applied to perform any further initialization.
 	 */
-	public static Node prototype = null;
+	public Node prototype = null;
 
 	// ====================== initialization ===========================
 	// =================================================================
@@ -104,7 +104,7 @@ public class Network {
 	 * Reads configuration parameters, constructs the prototype node, and
 	 * populates the network by cloning the prototype.
 	 */
-	public static void reset() {
+	public void reset() {
 
 		if (prototype != null) {
 			// not first experiment
@@ -122,15 +122,7 @@ public class Network {
 
 		node = new Node[maxlen];
 
-		// creating prototype node
-		Node tmp = null;
-		if (!Configuration.contains(PAR_NODE)) {
-			System.err.println("Network: no node defined, using GeneralNode");
-			tmp = new GeneralNode(/*""*/);
-		} else {
-			tmp = (Node) Configuration.getInstance(PAR_NODE);
-		}
-		prototype = tmp;
+		prototype = createPrototypeNode();
 		prototype.setIndex(-1);
 
 		// cloning the nodes
@@ -147,15 +139,27 @@ public class Network {
 		}
 	}
 
-	/** Disable instance construction */
-	private Network() {
+	public Node createPrototypeNode() {
+		// creating prototype node
+		Node tmp = null;
+		if (!Configuration.contains(PAR_NODE)) {
+			System.err.println("Network: no node defined, using GeneralNode");
+			tmp = new GeneralNode(/*""*/);
+		} else {
+			tmp = (Node) Configuration.getInstance(PAR_NODE);
+		}
+		return tmp;
 	}
+
+	/** Disable instance construction */
+	/*private Network() {
+	}*/
 
 	// =============== public methods ===================================
 	// ==================================================================
 
 	/** Number of nodes currently in the network */
-	public static int size() {
+	public int size() {
 		return len;
 	}
 
@@ -167,7 +171,7 @@ public class Network {
 	 * old size of the node list, than the end of the list is cut. The nodes
 	 * that get removed via this cutting are removed through {@link #remove()}.
 	 */
-	public static void setCapacity(int newSize) {
+	public void setCapacity(int newSize) {
 
 		if (node == null || newSize != node.length) {
 			for (int i = newSize; i < len; ++i)
@@ -187,7 +191,7 @@ public class Network {
 	 * Returns the maximal number of nodes that can be stored without
 	 * reallocating the underlying array to increase capacity.
 	 */
-	public static int getCapacity() {
+	public int getCapacity() {
 		return node.length;
 	}
 
@@ -197,7 +201,7 @@ public class Network {
 	 * The node will be appended to the end of the list. If necessary, the
 	 * capacity of the internal array is increased.
 	 */
-	public static void add(Node n) {
+	public void add(Node n) {
 
 		if (len == node.length)
 			setCapacity(3 * node.length / 2 + 1);
@@ -214,7 +218,7 @@ public class Network {
 	 * access iterator. This method does not perform range checks to increase
 	 * efficiency. The maximal valid index is {@link #size()}.
 	 */
-	public static Node get(int index) {
+	public Node get(int index) {
 		
 		return node[index];
 	}
@@ -225,7 +229,7 @@ public class Network {
 	 * The node at the end of the list is removed. Returns the removed node. It
 	 * also sets the fail state of the node to {@link Fallible#DEAD}.
 	 */
-	public static Node remove() {
+	public Node remove() {
 
 		Node n = node[len - 1]; // if len was zero this throws and exception
 		node[len - 1] = null;
@@ -245,7 +249,7 @@ public class Network {
 	 * node. Only the last node is moved to the given position and will get
 	 * index i.
 	 */
-	public static Node remove(int i) {
+	public Node remove(int i) {
 
 		if (i < 0 || i >= len)
 			throw new IndexOutOfBoundsException("" + i);
@@ -258,7 +262,7 @@ public class Network {
 	/**
 	 * Swaps the two nodes at the given indexes.
 	 */
-	public static void swap(int i, int j) {
+	public void swap(int i, int j) {
 
 		Node n = node[i];
 		node[i] = node[j];
@@ -272,7 +276,7 @@ public class Network {
 	/**
 	 * Shuffles the node array. The index of each node is updated accordingly.
 	 */
-	public static void shuffle() {
+	public void shuffle() {
 
 		for (int i = len; i > 1; i--)
 			swap(i - 1, CommonState.r.nextInt(i));
@@ -287,7 +291,7 @@ public class Network {
 	 *            The comparator to be used for sorting the nodes. If null, the
 	 *            natural order of the nodes is used.
 	 */
-	public static void sort(Comparator<? super Node> c) {
+	public void sort(Comparator<? super Node> c) {
 
 		Arrays.sort(node, 0, len, c);
 		for (int i = 0; i < len; i++)
@@ -296,7 +300,7 @@ public class Network {
 
 	// ------------------------------------------------------------------
 
-	public static void test() {
+	public void test() {
 
 		System.err.println("number of nodes = " + len);
 		System.err.println("capacity (max number of nodes) = " + node.length);

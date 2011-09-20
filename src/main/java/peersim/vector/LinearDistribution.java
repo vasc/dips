@@ -78,12 +78,12 @@ public LinearDistribution(String prefix)
 		min=Long.valueOf(Configuration.getLong(prefix + "." + PAR_MIN, 
 				-max.longValue()));
 		step= (max.longValue()-min.longValue())/
-			((double)(Network.size()-1));
+			((double)(Simulation.network.size()-1));
 	} else { // we know it's double or float
 		max = new Double(Configuration.getDouble(prefix+"."+PAR_MAX));
 		min = new Double(Configuration.getDouble(prefix+"."+PAR_MIN, 
 				-max.doubleValue()));
-		step= (max.doubleValue()-min.doubleValue())/(Network.size()-1);
+		step= (max.doubleValue()-min.doubleValue())/(Simulation.network.size()-1);
 	}
 }
 
@@ -100,7 +100,7 @@ public boolean execute() {
 	
 	if ( setter.isInteger() )
 	{
-		for(int i=0; i<Network.size(); ++i)
+		for(int i=0; i<Simulation.network.size(); ++i)
 		{
 			// we avoid the entire expression being cast to double
 			setter.set(i,Math.round(i*step)+min.longValue());
@@ -108,7 +108,7 @@ public boolean execute() {
 	}
 	else
 	{
-		for(int i=0; i<Network.size(); ++i)
+		for(int i=0; i<Simulation.network.size(); ++i)
 		{
 			setter.set(i,i*step+min.doubleValue());
 		}

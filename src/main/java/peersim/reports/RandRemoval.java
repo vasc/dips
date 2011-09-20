@@ -88,7 +88,7 @@ public boolean execute()
 	
 	System.out.println(name + ":");
 	
-	final int size = Network.size();
+	final int size = Simulation.network.size();
 	final int steps = 50;
 	IncrementalStats[] maxClust = new IncrementalStats[steps];
 	IncrementalStats[] clustNum = new IncrementalStats[steps];
@@ -110,7 +110,7 @@ public boolean execute()
 			maxClust[i].add(stats.getMax());
 			clustNum[i].add(clst.size());
 		}
-		if( j+1 < n ) Network.shuffle();
+		if( j+1 < n ) Simulation.network.shuffle();
 	}
 	for (int i = 0; i < steps; ++i) {
 		System.out.println(maxClust[i].getAverage() + " "

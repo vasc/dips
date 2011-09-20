@@ -90,13 +90,13 @@ public MethodInvoker(String prefix) {
 		// find protocols that implement method
 		ArrayList<Integer> pids = new ArrayList<Integer>();
 		ArrayList<Method> methods = new ArrayList<Method>();
-		for(int i=0; i<Network.prototype.protocolSize(); ++i)
+		for(int i=0; i<Simulation.network.prototype.protocolSize(); ++i)
 		{
 			Method m = null;
 			try
 			{
 				m = MethodInvoker.getMethod(
-			  	  Network.prototype.getProtocol(i).getClass(),
+				Simulation.network.prototype.getProtocol(i).getClass(),
 			  	  methodName );
 			}
 			catch(NoSuchMethodException e) {}
@@ -129,7 +129,7 @@ public MethodInvoker(String prefix) {
 		{
 			method = new Method[1];
 			method[0]=MethodInvoker.getMethod(
-			  Network.prototype.getProtocol(pid[0]).getClass(),
+			Simulation.network.prototype.getProtocol(pid[0]).getClass(),
 			  methodName );
 		}
 		catch (NoSuchMethodException e)
@@ -174,9 +174,9 @@ throws NoSuchMethodException {
 /** Invokes method on all the nodes. */
 public boolean execute() {
 
-	for(int i=0; i<Network.size(); ++i)
+	for(int i=0; i<Simulation.network.size(); ++i)
 	{
-		initialize(Network.get(i));
+		initialize(Simulation.network.get(i));
 	}
 
 	return false;

@@ -292,7 +292,7 @@ private static boolean executeNext() {
 		}
 		return ctrl.execute();
 	}
-	else if (ev.node != Network.prototype && ev.node.isUp() )
+	else if (ev.node != Simulation.network.prototype && ev.node.isUp() )
 	{
 		CommonState.setPid(pid);
 		CommonState.setNode(ev.node);
@@ -349,7 +349,7 @@ public static void nextExperiment()
 	controls = null;
 	ctrlSchedules = null;
 	nextlog = 0;
-	Network.reset();
+	Simulation.network.reset();
 	System.err.println("EDSimulator: running initializers");
 	runInitializers();
 	scheduleControls();

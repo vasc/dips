@@ -1,16 +1,17 @@
 package dips
-
+/*
 import dips.communication._
 import scala.collection.mutable.Queue
+import dips.communication.Message
 
-case object Empty extends Message
+case object Empty
 
 trait DistributionController{
    
   def init(size:Int):Unit
   def make_connection(uri:Uri):Unit
-  def send(msg:MessageWrapper)
-  def dequeue:Option[MessageWrapper]
+  def send(msg:Message)
+  def dequeue:Option[Message]
   def local_size:Int
   def size:Int
   def finished:Boolean
@@ -21,7 +22,7 @@ class OneOnOne(prefix:String) extends DistributionController{
   val po = new Point2Point
   var local_size:Int = _
   var size:Int = _
-  val eventQueue = new Queue[MessageWrapper]()
+  val eventQueue = new Queue[Message]()
   var finished = false
   
   po.start
@@ -43,9 +44,9 @@ class OneOnOne(prefix:String) extends DistributionController{
     po.connect(uri)
   }
   
-  def send(msg:MessageWrapper) = { 
-    if(msg.destination >= local_size){
-      po.post_message(None, msg) 
+  def send(msg:Message) = { 
+    if(msg.destination_node_id >= local_size){
+      po.post_message(msg) 
     }
     else{
       eventQueue enqueue msg
@@ -55,17 +56,17 @@ class OneOnOne(prefix:String) extends DistributionController{
   
   def check_messages = {
     po.retrieve_messages().asInstanceOf[List[Message]] foreach {
-      case msg:MessageWrapper =>
-        eventQueue enqueue MessageWrapper(
-            msg.msg,
-            msg.sender + local_size,
-            msg.destination - local_size,
-            msg.pid)
-      case Empty =>
+      case m:Message =>
+        eventQueue enqueue new Message(){
+            val msg = m.msg
+            val origin_node_id = m.origin_node_id + local_size
+            val destination_node_id = m.destination_node_id - local_size
+            val pid = m.pid}
+      /*case Empty =>
         println("Empty :(")
         if(eventQueue.isEmpty) finished = true
-        po.post_message(None, Empty)
-        
+        po.post_message(Empty)
+      */  
     }
     
     
@@ -81,11 +82,11 @@ class OneOnOne(prefix:String) extends DistributionController{
     }*/
   }
   
-  def dequeue:Option[MessageWrapper] = { 
+  def dequeue:Option[Message] = { 
     if(eventQueue.isEmpty) check_messages
     
     if(eventQueue.isEmpty) {
-      po.post_message(None, Empty)
+      po.post_message(Empty)
       None
     }
     else Some(eventQueue.dequeue())
@@ -95,3 +96,5 @@ class OneOnOne(prefix:String) extends DistributionController{
     po ! Exit
   }
 }
+
+*/

@@ -75,10 +75,10 @@ public UniformRouterAssignment(String prefix)
 */
 public boolean execute()
 {
-	int nsize = Network.size();
+	int nsize = Simulation.network.size();
 	int nrouters = E2ENetwork.getSize();
 	for (int i=0; i < nsize; i++) {
-		Node node = Network.get(i);
+		Node node = Simulation.network.get(i);
 		RouterInfo t = (RouterInfo) node.getProtocol(pid);
 		int r = CommonState.r.nextInt(nrouters);
 		t.setRouter(r);

@@ -73,16 +73,16 @@ public NextCycle(String prefix) {
 public boolean execute() {
 
 	final int cycle=CDState.getCycle();
-	if( shuffle ) rperm.reset( Network.size() );
-	for(int j=0; j<Network.size(); ++j)
+	if( shuffle ) rperm.reset( Simulation.network.size() );
+	for(int j=0; j<Simulation.network.size(); ++j)
 	{
 		Node node = null;
 		if( getpair_rand )
-			node = Network.get(CDState.r.nextInt(Network.size()));
+			node = Simulation.network.get(CDState.r.nextInt(Simulation.network.size()));
 		else if( shuffle )
-			node = Network.get(rperm.next());
+			node = Simulation.network.get(rperm.next());
 		else
-			node = Network.get(j);
+			node = Simulation.network.get(j);
 		if( !node.isUp() ) continue; 
 		CDState.setNode(node);
 		CDState.setCycleT(j);

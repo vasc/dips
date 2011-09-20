@@ -101,9 +101,9 @@ public class AverageObserver implements Control {
 
         IncrementalStats is = new IncrementalStats();
 
-        for (int i = 0; i < Network.size(); i++) {
+        for (int i = 0; i < Simulation.network.size(); i++) {
 
-            SingleValue protocol = (SingleValue) Network.get(i)
+            SingleValue protocol = (SingleValue) Simulation.network.get(i)
                     .getProtocol(pid);
             is.add(protocol.getValue());
         }

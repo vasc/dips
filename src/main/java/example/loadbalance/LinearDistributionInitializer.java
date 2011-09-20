@@ -96,13 +96,13 @@ public class LinearDistributionInitializer implements Control {
     * defined by parameters {@link #PAR_MIN} and {@link #PAR_MAX}.
     */
     public boolean execute() {
-        double step = (max - min) / (Network.size() - 1);
+        double step = (max - min) / (Simulation.network.size() - 1);
         //double sum = 0.0;
         double tmp;
-        for (int i = 0; i < Network.size(); ++i) {
+        for (int i = 0; i < Simulation.network.size(); ++i) {
             tmp = i * step + min;
             //sum += tmp;
-            ((SingleValue) Network.get(i).getProtocol(protocolID))
+            ((SingleValue) Simulation.network.get(i).getProtocol(protocolID))
                     .setValue(tmp);
         }
         return false;

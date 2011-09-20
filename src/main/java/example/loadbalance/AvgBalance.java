@@ -82,10 +82,10 @@ public class AvgBalance extends BasicBalance {
      *            the current protocol identifier.
      */
     private static void calculateAVG(int protocolID) {
-        int len = Network.size();
+        int len = Simulation.network.size();
         double sum = 0.0;
         for (int i = 0; i < len; i++) {
-            AvgBalance protocol = (AvgBalance) Network.get(i).getProtocol(
+            AvgBalance protocol = (AvgBalance) Simulation.network.get(i).getProtocol(
                     protocolID);
             double value = protocol.getValue();
             sum += value;

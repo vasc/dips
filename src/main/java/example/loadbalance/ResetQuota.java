@@ -69,8 +69,8 @@ public class ResetQuota implements Control {
 
     // Comment inherited from interface
     public boolean execute() {
-        for (int i = 0; i < Network.size(); ++i) {
-            ((BasicBalance) Network.get(i).getProtocol(protocolID))
+        for (int i = 0; i < Simulation.network.size(); ++i) {
+            ((BasicBalance) Simulation.network.get(i).getProtocol(protocolID))
                     .resetQuota();
         }
 

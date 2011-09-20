@@ -1,13 +1,14 @@
 package dips.communication
+
+/*
 import scala.actors.remote.RemoteActor._
-import scala.actors.remote.{ Node, RemoteActor, TcpService }
 import scala.actors.{ Actor, AbstractActor }
 import scala.Symbol
 import java.net.{InetAddress, UnknownHostException}
-
 import scopt.OptionParser
-
-
+import scala.actors.remote.TcpService
+import scala.actors.remote.RemoteActor
+import scala.actors.remote.Node
 
 class Point2Point extends PostOffice {
   RemoteActor.classLoader = getClass().getClassLoader()
@@ -16,7 +17,6 @@ class Point2Point extends PostOffice {
   var connected = false
   
   val service:Symbol = 'point
-  
   
   val host = {
     try{ InetAddress.getLocalHost().getHostAddress() }
@@ -31,11 +31,11 @@ class Point2Point extends PostOffice {
   register('point, this)
   System.err.println("PostOffice listening on port: " + port)
 
-  def connect(uri: Any) = {
+  def connect(uri:Uri) = {
     if (!connected) {
       uri match {
         case uri: Uri => 
-          this.remote = select(Node(uri.host, uri.port), uri.service)
+          this.remote = select(Node(uri.ip, uri.port), uri.service)
           println(uri)
       }
       this.remote ! Connect(Uri(host, port, service))
@@ -50,7 +50,7 @@ class Point2Point extends PostOffice {
       case Connect(uri) =>
         this.synchronized{
 	        if (!connected) {
-	          this.remote = select(Node(uri.host, uri.port), uri.service)
+	          this.remote = select(Node(uri.ip, uri.port), uri.service)
 	          connected = true
 	          println("Connected")
 	        }
@@ -61,10 +61,7 @@ class Point2Point extends PostOffice {
   }
 }
 
-object run {
-  def main(args: Array[String]) {
-    
-    
+object Point2Point extends App {
     var port = 2457
     var remote_host:String = "localhost"
     var remote_port = -1
@@ -90,5 +87,5 @@ object run {
       //val remote = select(Node("localhost", 2457), 'point)
       //remote ! Connect
     }
-  }
 }
+*/

@@ -87,10 +87,10 @@ public StarNI(String prefix) {
  */
 public void initialize(Node n) {
 	
-	if( Network.size() == 0 ) return;
+	if( Simulation.network.size() == 0 ) return;
 	
-	for(int i=0; (center==null || !center.isUp()) && i<Network.size(); ++i)
-		center=Network.get(i);
+	for(int i=0; (center==null || !center.isUp()) && i<Simulation.network.size(); ++i)
+		center=Simulation.network.get(i);
 	
 	((Linkable)n.getProtocol(pid)).addNeighbor(center);
 	

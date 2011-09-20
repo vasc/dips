@@ -83,7 +83,7 @@ public VectCopy(String prefix)
  */
 public boolean execute() {
 
-	int size = Network.size();
+	int size = Simulation.network.size();
 	for (int i = 0; i < size; i++) {
 		Number ret = source.get(i);
 		if(setter.isInteger()) setter.set(i,ret.longValue());

@@ -20,8 +20,8 @@ package example.hot;
 
 import peersim.config.Configuration;
 import peersim.core.Linkable;
-import peersim.core.Network;
 import peersim.core.Node;
+import peersim.core.Simulation;
 import peersim.dynamics.WireGraph;
 import peersim.graph.Graph;
 
@@ -82,9 +82,9 @@ public class WireInetTopology extends WireGraph {
      */
     public void wire(Graph g) {
         /** Contains the distance in hops from the root node for each node. */
-        int[] hops = new int[Network.size()];
+        int[] hops = new int[Simulation.network.size()];
         // connect all the nodes other than roots
-        for (int i = 1; i < Network.size(); ++i) {
+        for (int i = 1; i < Simulation.network.size(); ++i) {
             Node n = (Node) g.getNode(i);
 
             // Look for a suitable parent node between those allready part of

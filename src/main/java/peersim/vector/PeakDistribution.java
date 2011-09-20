@@ -114,21 +114,21 @@ public PeakDistribution(String prefix)
  */
 public boolean execute()
 {
-	int pn = (peaks < 1 ? (int) (peaks*Network.size()) : (int) peaks);
+	int pn = (peaks < 1 ? (int) (peaks*Simulation.network.size()) : (int) peaks);
 	
 	if( setter.isInteger() )
 	{
 		long v = value.longValue()/pn;
 		long lv = lvalue.longValue();
 		for (int i=0; i < pn; i++) setter.set(i, v);
-		for (int i=pn; i < Network.size(); i++) setter.set(i,lv);
+		for (int i=pn; i < Simulation.network.size(); i++) setter.set(i,lv);
 	}
 	else
 	{
 		double v = value.doubleValue()/pn;
 		double lv = lvalue.doubleValue();
 		for (int i=0; i < pn; i++) setter.set(i, v);
-		for (int i=pn; i < Network.size(); i++) setter.set(i,lv);
+		for (int i=pn; i < Simulation.network.size(); i++) setter.set(i,lv);
 	}
 
 	return false;

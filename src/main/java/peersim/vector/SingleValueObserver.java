@@ -106,9 +106,9 @@ public boolean execute()
 	IncrementalStats stats = new IncrementalStats();
 	
 	/* Compute max, min, average */
-	for (int i = 0; i < Network.size(); i++)
+	for (int i = 0; i < Simulation.network.size(); i++)
 	{
-		SingleValue v = (SingleValue)Network.get(i).getProtocol(pid);
+		SingleValue v = (SingleValue)Simulation.network.get(i).getProtocol(pid);
 		stats.add( v.getValue() );
 	}
 

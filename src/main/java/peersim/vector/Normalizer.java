@@ -91,7 +91,7 @@ public Normalizer(String prefix)
 public boolean execute() {
 	
 	double sum = 0.0;
-	for (int i = 0; i < Network.size(); ++i)
+	for (int i = 0; i < Simulation.network.size(); ++i)
 	{
 		sum += getter.getDouble(i);
 	}
@@ -101,7 +101,7 @@ public boolean execute() {
 		RuntimeException("Attempted to normalize all zero vector.");
 	}
 	double factor = l1 / sum;
-	for (int i = 0; i < Network.size(); ++i)
+	for (int i = 0; i < Simulation.network.size(); ++i)
 	{
 		double val = getter.getDouble(i)*factor;
 		setter.set(i,val);

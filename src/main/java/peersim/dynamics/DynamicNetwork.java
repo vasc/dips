@@ -123,11 +123,11 @@ protected final NodeInitializer[] inits;
 protected void add(int n)
 {
 	for (int i = 0; i < n; ++i) {
-		Node newnode = (Node) Network.prototype.clone();
+		Node newnode = (Node) Simulation.network.prototype.clone();
 		for (int j = 0; j < inits.length; ++j) {
 			inits[j].initialize(newnode);
 		}
-		Network.add(newnode);
+		Simulation.network.add(newnode);
 	}
 }
 
@@ -142,7 +142,7 @@ protected void add(int n)
 protected void remove(int n)
 {
 	for (int i = 0; i < n; ++i) {
-		Network.remove(CommonState.r.nextInt(Network.size()));
+		Simulation.network.remove(CommonState.r.nextInt(Simulation.network.size()));
 	}
 }
 
@@ -184,22 +184,22 @@ public final boolean execute()
 	if (add == 0)
 		return false;
 	if (!substitute) {
-		if ((maxsize <= Network.size() && add > 0)
-				|| (minsize >= Network.size() && add < 0))
+		if ((maxsize <= Simulation.network.size() && add > 0)
+				|| (minsize >= Simulation.network.size() && add < 0))
 			return false;
 	}
 	int toadd = 0;
 	int toremove = 0;
 	if (add > 0) {
-		toadd = (int) Math.round(add < 1 ? add * Network.size() : add);
-		if (!substitute && toadd > maxsize - Network.size())
-			toadd = maxsize - Network.size();
+		toadd = (int) Math.round(add < 1 ? add * Simulation.network.size() : add);
+		if (!substitute && toadd > maxsize - Simulation.network.size())
+			toadd = maxsize - Simulation.network.size();
 		if (substitute)
 			toremove = toadd;
 	} else if (add < 0) {
-		toremove = (int) Math.round(add > -1 ? -add * Network.size() : -add);
-		if (!substitute && toremove > Network.size() - minsize)
-			toremove = Network.size() - minsize;
+		toremove = (int) Math.round(add > -1 ? -add * Simulation.network.size() : -add);
+		if (!substitute && toremove > Simulation.network.size() - minsize)
+			toremove = Simulation.network.size() - minsize;
 		if (substitute)
 			toadd = toremove;
 	}

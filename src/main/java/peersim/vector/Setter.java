@@ -93,7 +93,7 @@ private void init() {
 	pid = Configuration.getPid(prefix + "." + protocol);
 	methodName = Configuration.getString(prefix+"."+methodn,"setValue");
 	// Search the method
-	Class<? extends Protocol> clazz = Network.prototype.getProtocol(pid).getClass();
+	Class<? extends Protocol> clazz = Simulation.network.prototype.getProtocol(pid).getClass();
 	try {
 		method = GetterSetterFinder.getSetterMethod(clazz, methodName);
 	} catch (NoSuchMethodException e) {
@@ -205,7 +205,7 @@ public void set(Node n, double val) {
 * by {@link #pid}.
 * @param val the value to set.
 */
-public void set(int i, long val) { set(Network.get(i),val); }
+public void set(int i, long val) { set(Simulation.network.get(i),val); }
 
 // --------------------------------------------------------------------------
 
@@ -216,7 +216,7 @@ public void set(int i, long val) { set(Network.get(i),val); }
 * by {@link #pid}.
 * @param val the value to set.
 */
-public void set(int i, double val) { set(Network.get(i),val); }
+public void set(int i, double val) { set(Simulation.network.get(i),val); }
 
 }
 

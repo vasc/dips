@@ -121,10 +121,10 @@ private int nextNodeId()
 {
 	if (trace) {
 		if (traced == null) {
-			int nn = (n < 0 ? Network.size() : n);
+			int nn = (n < 0 ? Simulation.network.size() : n);
 			traced = new Node[nn];
 			for (int j = 0; j < nn; ++j)
-				traced[j] = Network.get(j);
+				traced[j] = Simulation.network.get(j);
 		}
 		return traced[nextnode++].getIndex();
 	} else
@@ -163,7 +163,7 @@ public boolean execute()
 		rp.reset(g.size());
 	else
 		nextnode = 0;
-	final int nn = (n < 0 ? Network.size() : n);
+	final int nn = (n < 0 ? Simulation.network.size() : n);
 	if (method.equals("stats")) {
 		IncrementalStats stats = new IncrementalStats();
 		for (int i = 0; i < nn; ++i)

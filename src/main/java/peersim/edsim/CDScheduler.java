@@ -99,7 +99,7 @@ static {
 	sch = new Scheduler[names.length];
 	for(int i=0; i<names.length; ++i)
 	{
-		if( Network.prototype.getProtocol(i) instanceof CDProtocol )
+		if( Simulation.network.prototype.getProtocol(i) instanceof CDProtocol )
 			// with no default values for step to avoid
 			// "overscheduling" due to lack of step option.
 			sch[i] = new Scheduler(names[i],false);
@@ -119,7 +119,7 @@ public CDScheduler(String n) {
 	for(int i=0; i<prots.length; ++i)
 	{
 		pid[i] = Configuration.lookupPid(prots[i]);
-		if( !(Network.prototype.getProtocol(pid[i]) instanceof
+		if( !(Simulation.network.prototype.getProtocol(pid[i]) instanceof
 			CDProtocol))
 		{
 			throw new IllegalParameterException(n+"."+PAR_PROTOCOL,
@@ -149,9 +149,9 @@ public CDScheduler(String n) {
 */
 public boolean execute() {
 	
-	for(int i=0; i<Network.size(); ++i)
+	for(int i=0; i<Simulation.network.size(); ++i)
 	{
-		initialize(Network.get(i));
+		initialize(Simulation.network.get(i));
 	}
 	
 	return false;

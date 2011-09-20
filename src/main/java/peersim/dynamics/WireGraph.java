@@ -137,11 +137,11 @@ public final boolean execute() {
 	
 	if( g==null && pack)
 	{
-		int size = Network.size();
+		int size = Simulation.network.size();
 		for (int i = 0; i < size; i++)
 		{
 			Linkable link =
-				(Linkable) Network.get(i).getProtocol(pid);
+				(Linkable) Simulation.network.get(i).getProtocol(pid);
 			link.pack();
 		}
 	}

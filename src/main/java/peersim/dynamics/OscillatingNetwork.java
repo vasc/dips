@@ -145,11 +145,11 @@ public OscillatingNetwork(String prefix)
 protected void add(int n)
 {
 	for (int i = 0; i < n; ++i) {
-		Node newnode = (Node) Network.prototype.clone();
+		Node newnode = (Node) Simulation.network.prototype.clone();
 		for (int j = 0; j < inits.length; ++j) {
 			inits[j].initialize(newnode);
 		}
-		Network.add(newnode);
+		Simulation.network.add(newnode);
 	}
 }
 
@@ -164,7 +164,7 @@ protected void add(int n)
 protected void remove(int n)
 {
 	for (int i = 0; i < n; ++i) {
-		Network.remove(CommonState.r.nextInt(Network.size()));
+		Simulation.network.remove(CommonState.r.nextInt(Simulation.network.size()));
 	}
 }
 
@@ -188,7 +188,7 @@ public boolean execute()
 	int newsize = (maxsize + minsize) / 2 + 
 	  (int) (Math.sin(((double) time) / period * Math.PI) *
 	  amplitude);
-	int diff = newsize - Network.size();
+	int diff = newsize - Simulation.network.size();
 	if (diff < 0)
 		remove(-diff);
 	else

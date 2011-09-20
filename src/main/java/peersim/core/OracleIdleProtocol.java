@@ -54,9 +54,9 @@ public final class OracleIdleProtocol implements Protocol, Linkable {
 	 */
 	public boolean contains(Node n) {
 
-		final int len = Network.size();
+		final int len = Simulation.network.size();
 		for (int i = 0; i < len; i++) {
-			if (Network.node[i] == n)
+			if (Simulation.network.node[i] == n)
 				return true;
 		}
 		return false;
@@ -77,14 +77,14 @@ public final class OracleIdleProtocol implements Protocol, Linkable {
 	 */
 	public Node getNeighbor(int i) {
 
-		return Network.node[i];
+		return Simulation.network.node[i];
 	}
 
 	// --------------------------------------------------------------------
 
 	public int degree() {
 
-		return Network.size();
+		return Simulation.network.size();
 	}
 
 	// --------------------------------------------------------------------

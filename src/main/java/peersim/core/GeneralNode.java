@@ -82,6 +82,16 @@ public class GeneralNode implements Node {
 
 	// -----------------------------------------------------------------
 
+	public Node duplicate(){
+		return (Node)this.clone();
+	}
+	
+	public Node duplicate(long ID){
+		GeneralNode n = (GeneralNode)this.clone();
+		n.ID = ID;
+		return n;
+	}
+	
 	public Object clone() {
 
 		GeneralNode result = null;

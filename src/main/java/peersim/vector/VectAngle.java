@@ -115,7 +115,7 @@ public VectAngle(String prefix)
 public boolean execute() {
 
 	double sqrsum1 = 0, sqrsum2 = 0, prod = 0;
-	for (int i = 0; i < Network.size(); ++i)
+	for (int i = 0; i < Simulation.network.size(); ++i)
 	{
 		double v1= getter1.get(i).doubleValue();
 		double v2= getter2.get(i).doubleValue();

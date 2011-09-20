@@ -107,9 +107,9 @@ public class LBObserver implements Control {
         }
 
         /* Compute max, min, average */
-	final int len = Network.size();
+	final int len = Simulation.network.size();
         for (int i = 0; i < len; i++) {
-            SingleValue prot = (SingleValue) Network.get(i).getProtocol(pid);
+            SingleValue prot = (SingleValue) Simulation.network.get(i).getProtocol(pid);
             double value = prot.getValue();
             stats.add(value);
 

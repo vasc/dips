@@ -1,37 +1,34 @@
 package dips.surge.BoundedDivergence
 
 import scala.collection.mutable.Queue
-import dips.surge.Dht
-import dips.surge.Routable
+
+import dips.communication.dht.DHT
+import dips.communication.dht.Instance
+import dips.communication.Envelope
 import dips.communication.Message
-import dips.surge.Instance
 import peersim.core.CommonState
 
 
-trait RoutableMessage extends Message with Routable{
-  def hash[String] = "".asInstanceOf[String]
-}
-
-class MessageHandler(bounded_limit:Long, dht:Dht) {
-	val message_queue = new Queue[RoutableMessage]
+class MessageHandler(bounded_limit:Long, dht:DHT) {
+	val message_queue = new Queue[Message]
 	
 	val time = CommonState.getTime
 	
 	//TODO: Actual instances in DHT
-	dht.network.foreach { _.asInstanceOf[Instance].last_seen = time }
+	dht.instances.foreach { _.asInstanceOf[Instance].last_seen = time }
 	
-	def add_message( msg:RoutableMessage ) = {
-	  message_queue.enqueue(msg)
+	def add_message( env:Envelope ) = {
+	  message_queue.enqueue(env.msg)
 	  
 	  //Where the message came from
-	  val origin = dht route msg.origin
+	  val origin = dht route env.origin
 	  origin.last_seen = CommonState.getTime
 	}
 	
 	def retrieve_message() = {
 	  val current_time = CommonState.getTime
 	  
-	  val over_limit = dht.network.filter { (i) =>
+	  val over_limit = dht.instances.filter { (i) =>
 	    val diff = current_time - i.asInstanceOf[Instance].last_seen
 	    diff > bounded_limit
 	  }

@@ -98,13 +98,13 @@ public RandNI(String prefix)
  */
 public void initialize(Node n)
 {
-	if (Network.size() == 0) return;
+	if (Simulation.network.size() == 0) return;
 
 	Linkable linkable = (Linkable) n.getProtocol(pid);
 	for (int j = 0; j < k; ++j)
 	{
-		int r = CommonState.r.nextInt(Network.size());
-		linkable.addNeighbor(Network.get(r));
+		int r = CommonState.r.nextInt(Simulation.network.size());
+		linkable.addNeighbor(Simulation.network.get(r));
 	}
 
 	if (pack) linkable.pack();

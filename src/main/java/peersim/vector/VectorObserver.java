@@ -66,7 +66,7 @@ public boolean execute() {
 
 	IncrementalStats stats = new IncrementalStats();
 
-	for (int j = 0; j < Network.size(); j++)
+	for (int j = 0; j < Simulation.network.size(); j++)
 	{
 		Number v = getter.get(j);
 		stats.add( v.doubleValue() );

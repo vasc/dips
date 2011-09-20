@@ -23,6 +23,7 @@ import peersim.core.CommonState;
 import peersim.core.Control;
 import peersim.core.Network;
 import peersim.core.Node;
+import peersim.core.Simulation;
 
 /**
  * <p>
@@ -81,15 +82,15 @@ public class InetInitializer implements Control {
      */
     public boolean execute() {
         // Set the root: the index 0 node by default.
-        Node n = Network.get(0);
+        Node n = Simulation.network.get(0);
         InetCoordinates prot = (InetCoordinates) n
                 .getProtocol(pid);
         prot.setX(0.5);
         prot.setY(0.5);
 
         // Set coordinates x,y
-        for (int i = 1; i < Network.size(); i++) {
-            n = Network.get(i);
+        for (int i = 1; i < Simulation.network.size(); i++) {
+            n = Simulation.network.get(i);
             prot = (InetCoordinates) n.getProtocol(pid);
             prot.setX(CommonState.r.nextDouble());
             prot.setY(CommonState.r.nextDouble());

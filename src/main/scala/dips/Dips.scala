@@ -4,10 +4,15 @@ import peersim.Simulator
 import peersim.config.Configuration
 import scopt.OptionParser
 import java.lang.Runtime
+import dips.util.Logger.log
+import dips.communication.dht.DHT
+import dips.communication.Addressable
+import dips.simulation.DEDSimulator
 
 object Dips extends Simulator {
   val DEDSIM = 2
   var initial_mem = Runtime.getRuntime.totalMemory 
+  var dht:DHT = _
   simName = simName :+ "dips.dedsim.DEDSimulator"
   
   override def getSimID():Int = {
@@ -21,6 +26,7 @@ object Dips extends Simulator {
   
   override def runExperiment(SIMID:Int) = {
     if(SIMID == DEDSIM){
+      DEDSimulator.dht = dht
       DEDSimulator.newExperiment
     }
     else{
@@ -28,23 +34,25 @@ object Dips extends Simulator {
     }
   }
   
-  def main(args: Array[String]): Unit = { 
+  def main(args: Array[String]){ 
     
     
     Simulator.setSimulator(this)
     
-    var port:String = ""
+    var remote_port:Int = 0
     var remote_host:String = ""
-    var newargs = new Array[String](1)
+    var local_port:Int = DHT.DEFAULT_PORT
       
     val parser = new OptionParser("dips"){
-      opt("p", "port", "the remote port", {p => port = p})
+      opt("p", "port", "the remote port", {p => remote_port = p.toInt})
       opt("h", "host", "the remote host", {h => remote_host = h})
-      arg("<configfile>", "configuration file for the simulation", {v => newargs(0) = v})
+      opt("l", "localport", "the local port", {lp => local_port = lp.toInt})
+      //arg("<configfile>", "configuration file for the simulation", {v => newargs(0) = v})
     }
     
     if(!parser.parse(args)){ return }
     
+    /*
     this.parse_configuration(newargs)
     
     if (remote_host != "" && port != "") { 
@@ -53,5 +61,19 @@ object Dips extends Simulator {
     }
     
     this.load_simulation()
+    */
+    log.debug("arguments parsed: " + (remote_host, remote_port, local_port) )
+    
+    dht = new DHT(local_port)
+    
+    if (remote_host != "" && remote_port != 0) { 
+      log.debug("connecting to " + remote_host + ", " + remote_port )
+      dht.connect(new Addressable(){
+        val ip = remote_host
+        val port = remote_port
+      })
+    }
+    
+    new Coordinator(dht)
   }
 }

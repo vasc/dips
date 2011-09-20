@@ -83,11 +83,11 @@ public class PeakDistributionInitializer implements Control {
     * @return always false
     */
     public boolean execute() {
-        for (int i = 0; i < Network.size(); i++) {
-            SingleValue prot = (SingleValue) Network.get(i).getProtocol(pid);
+        for (int i = 0; i < Simulation.network.size(); i++) {
+            SingleValue prot = (SingleValue) Simulation.network.get(i).getProtocol(pid);
             prot.setValue(0);
         }
-        SingleValue prot = (SingleValue) Network.get(0).getProtocol(pid);
+        SingleValue prot = (SingleValue) Simulation.network.get(0).getProtocol(pid);
         prot.setValue(value);
 
         return false;

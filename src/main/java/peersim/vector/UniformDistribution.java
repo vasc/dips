@@ -97,7 +97,7 @@ public boolean execute() {
 	if(setter.isInteger())
 	{
 		long d = max.longValue() - min.longValue();
-		for (int i = 0; i < Network.size(); ++i)
+		for (int i = 0; i < Simulation.network.size(); ++i)
 		{
 			setter.set(i,CommonState.r.nextLong(d)+min.longValue());
 		}
@@ -105,7 +105,7 @@ public boolean execute() {
 	else
 	{
 		double d = max.doubleValue() - min.doubleValue();
-		for (int i = 0; i < Network.size(); ++i)
+		for (int i = 0; i < Simulation.network.size(); ++i)
 		{
 			setter.set(i,CommonState.r.nextDouble()*d+
 			min.doubleValue());

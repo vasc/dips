@@ -50,7 +50,7 @@ public Shuffle(String prefix) {}
 */
 public final boolean execute() {
 
-	Network.shuffle();
+	Simulation.network.shuffle();
 	return false;
 }
 
