@@ -21,7 +21,7 @@ trait PostOffice extends Router{
     while (true) {
       receive {
         case Envelope(msg:Message, _) =>
-          log.debug("Received message: " + msg)
+          //log.debug("Received message: " + msg)
           messages = msg :: messages //}
         case Retrieve =>
           this.reply(messages)
@@ -32,6 +32,7 @@ trait PostOffice extends Router{
           this.exit()
           return
         case Publication(name, msg) =>
+          log.debug("Received publication: " + msg)
           //log.debug("Received publication: " + name + ", " + msg)
           this.deliver_to_subscribers(name, msg, sender)
         case a:Any =>

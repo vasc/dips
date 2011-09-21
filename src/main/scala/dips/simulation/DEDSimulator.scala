@@ -75,7 +75,7 @@ object DEDSimulator {
    * Executes all control objects scheduled and then processes the next message in the queue
    */
   def processNextMessage:Boolean = {
-    if(CommonState.getTime % 1000 == 0){
+    if(CommonState.getTime % 5000 == 0){
       log.debug("Processing message at " + CommonState.getTime)
     }
     if (!( controls filter { _.scheduler.active } forall { !_.control.execute } ) ) return false
@@ -134,13 +134,15 @@ object DEDSimulator {
     Configuration.setProperty(Network.PAR_SIZE, controller.local_size.toString)
   }*/
   
-  def sendMessage(srcId:Long, destId:Long, protocolId:Int, event:AnyRef) = {
-    val message = new Message(srcId, destId, protocolId, event)
+  def sendMessage(destId:Long, srcId:Long, protocolId:Int, event:Any) = {
+    val message = new Message(destId, srcId, protocolId, event)
     
     if(dht local message.destination_node_id){
+      //log.debug("Message " + message + " to local node " + message.destination_node_id + " routed to " + (dht route message.destination_node_id))
       queue enqueue message
     }
     else{
+      //log.debug("Sending message " + message + " to remote node " + message.destination_node_id + " at " + (dht route message.destination_node_id))
       dht send message
     }
   }

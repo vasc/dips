@@ -14,7 +14,7 @@ protocol.lnk SimpleLink
 protocol.inf Infection
 protocol.inf.linkable lnk
 protocol.inf.degree 3
-protocol.inf.limit 1000
+protocol.inf.limit 100
 
 #init.rnd WireKOut
 init.rnd dips.example.SimpleWire
@@ -33,9 +33,12 @@ init.lin.min 0
 # you can change this to select the peak initializer instead
 include.init rnd lin
 
-#control.avgo example.aggregation.AverageObserver
-#control.avgo.protocol avg
-#control.avgo.step 1000
+control.info InfectionObserver
+control.info.protocol inf
+control.info.max 100
+control.info.slots 5
+control.info.step 5000
+
 
 control.bs SimpleBootstrap
 control.bs.protocol inf

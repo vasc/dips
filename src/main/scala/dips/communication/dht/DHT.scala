@@ -62,7 +62,7 @@ object DHT{
 }
 
 class DHT(var local_port:Int) extends PostOffice{
-  Debug.level = 9
+  //Debug.level = 9
   
   if(local_port == 0){ local_port = TcpService.generatePort }
   val local_addr:Uri = new Uri(InetAddress.getLocalHost.getHostAddress, local_port, DHT.DEFAULT_SERVICE)
@@ -122,7 +122,7 @@ class DHT(var local_port:Int) extends PostOffice{
    */
   def broadcast(msg:Any) {
     //TODO: Broadcast
-    log.debug("Sending broadcast and waiting ack")
+    //log.debug("Sending broadcast and waiting ack")
     instances.map(translate(_) ! msg)//.forall(_().asInstanceOf[Boolean])
   }
   
@@ -132,7 +132,7 @@ class DHT(var local_port:Int) extends PostOffice{
   def get_messages() = {
     while(this.messages.size == 0){
       log.debug("Waiting new messages")
-      Thread.sleep(1000)
+      Thread.sleep(10000)
     }
     
     log.debug("Updated message queue with " + this.messages.size + " remote messages")

@@ -20,11 +20,11 @@ class Infection(prefix:String) extends SingleValueHolder(prefix) with DEDProtoco
   val limit = Configuration getInt prefix + ".limit"
   
   def processEvent(node:Long, from:Long, pid:Int, event:Any): Unit = { 
-    event match{
-      case Increase => setValue(getValue + 1)
-    }
-    
     if(getValue < limit){
+    	event match{
+    	  case Increase => setValue(getValue + 1)
+    	}
+    
     	send_message(node, pid) 
     }
   }
@@ -34,7 +34,7 @@ class Infection(prefix:String) extends SingleValueHolder(prefix) with DEDProtoco
     
     for(i <- 0 until degree){
         val neighbor = linkable.getNeighbor(CommonState.r.nextInt(linkable.degree))
-    	DEDSimulator.sendMessage(node, neighbor, pid, Increase)
+    	DEDSimulator.sendMessage(neighbor, node, pid, Increase)
     }
   }
   
