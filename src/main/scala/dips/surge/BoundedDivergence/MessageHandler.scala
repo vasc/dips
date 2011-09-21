@@ -4,11 +4,10 @@ import scala.collection.mutable.Queue
 
 import dips.communication.dht.DHT
 import dips.communication.dht.Instance
-import dips.communication.Envelope
 import dips.communication.Message
 import peersim.core.CommonState
 
-
+/*
 class MessageHandler(bounded_limit:Long, dht:DHT) {
 	val message_queue = new Queue[Message]
 	
@@ -17,7 +16,7 @@ class MessageHandler(bounded_limit:Long, dht:DHT) {
 	//TODO: Actual instances in DHT
 	dht.instances.foreach { _.asInstanceOf[Instance].last_seen = time }
 	
-	def add_message( env:Envelope ) = {
+	def add_message( env:Envelope[Message] ) = {
 	  message_queue.enqueue(env.msg)
 	  
 	  //Where the message came from
@@ -40,4 +39,4 @@ class MessageHandler(bounded_limit:Long, dht:DHT) {
 	  message_queue.dequeue()
 	}
 }
-
+*/

@@ -3,15 +3,17 @@ import scala.actors.AbstractActor
 import scala.collection.mutable.HashMap
 import dips.util.Logger.log
 import scala.actors.OutputChannel
+import scala.collection.mutable.Buffer
+import scala.collection.mutable.ListBuffer
 
 case class Publication(name:Symbol, msg:Any)
 case class Subscription(name:Symbol, msg:Any, sender:OutputChannel[Any])
 
 trait PostOffice extends Router{
   val local_addr:Uri
-  var messages = List[Message]()
+  var messages = ListBuffer[Message]()
   
-  def post_message(msg:Message) = this ! Envelope(msg, local_addr)
+  //def post_message(msg:Message) = this ! msg
   def retrieve_messages = this !! Retrieve
   
   def subscribe(name:Symbol, actor:AbstractActor)
@@ -20,12 +22,13 @@ trait PostOffice extends Router{
   def act() {
     while (true) {
       receive {
-        case Envelope(msg:Message, _) =>
-          //log.debug("Received message: " + msg)
-          messages = msg :: messages //}
+        case msg:Message =>
+          messages += msg
+        case lm:Buffer[Message] =>
+          messages ++= lm
         case Retrieve =>
           this.reply(messages)
-          messages = List[Message]()
+          messages = new ListBuffer[Message]()
         case r:Routing =>
           this.routing_event(r)
         case Exit =>

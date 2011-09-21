@@ -16,6 +16,12 @@ object Routable{
       def hash = sha1(BigInt(l).toByteArray)
     }
   }
+  
+  /*
+  implicit def message2routable(msg:Message):Routable = {
+    msg.destination_node_id
+  }
+  */
 }
 
 trait Routable extends Ordered[Routable]{

@@ -13,7 +13,6 @@ import scala.collection.mutable.HashSet
 import dips.communication.Addressable
 import dips.communication.Anounce
 import dips.communication.Connect
-import dips.communication.Envelope
 import dips.communication.Message
 import dips.communication.PostOffice
 import dips.communication.Retrieve
@@ -21,39 +20,11 @@ import dips.communication.Routable
 import dips.communication.Routing
 import dips.communication.Subscription
 import dips.communication.Uri
-import dips.surge.MessageBundle
 import dips.util.Logger.log
 import dips.NotImplementedException
 import scala.actors.Debug
+import scala.collection.mutable.ListBuffer
 
-class Instance(uri:Uri) extends Addressable{
-  val port = uri.port
-  val ip = uri.ip
-  val service = uri.service
-  
-  val actor:AbstractActor = RemoteActor.select(Node(ip, port), service)
-  var last_seen = 0L
-  var mb:MessageBundle = _
-  def get_messages:List[Envelope] = {
-    throw new NotImplementedException()
-  }
-  /*def send(msg:Message){
-    throw new NotImplementedException()
-  }*/
-  def flush_mb(){
-    throw new NotImplementedException()
-  }
-  
-  override lazy val hash = uri.hash
-  
-  override def toString() = uri.toString
-}
-
-object Instance{
-  implicit def instance2actor(i:Instance) = i.actor
-  implicit def instance2uri(i:Instance) = new Uri(i.ip, i.port, i.service)
-  implicit def uri2instance(uri:Uri) = new Instance(uri)
-}
 
 object DHT{
   RemoteActor.classLoader = getClass().getClassLoader()
@@ -76,12 +47,7 @@ class DHT(var local_port:Int) extends PostOffice{
 
   def this(){ this(DHT.DEFAULT_PORT) }
   
-  /*
-  def on_new_connection(new_addr:Addressable) {
-    //TODO: create instance from addressable
-    instances += new_addr:Instance
-  }
-  */
+
   
   /**
    * Chord like routing behavior
@@ -92,19 +58,21 @@ class DHT(var local_port:Int) extends PostOffice{
     //val result = (n getOrElse instances.first)
     
     instances.toIndexedSeq((r.hash.abs % instances.size).toInt)
-    //log.debug(r + " #" + r.hash % 1000000 + " routed to " + result + " #" + result.hash % 1000000)
-    //result
   }
   
   def local(r:Routable) = {
     val instance = route(r)
-    val result = instance.hash == local_addr.hash
-    //log.debug(instance + " #" + instance.hash % 1000000 + " is equal to " + local_addr + " #" + local_addr.hash % 1000000 + ": " + result)
-    result
+    instance.hash == local_addr.hash
+  }
+  
+  def send(r:Routable){
+    //log.debug("Sending value " + msg + " to " + (this route msg))
+    (this route r) ! r
   }
   
   def send(msg:Message) {
-    send_to(this route msg.destination_node_id, Envelope(msg, local_addr))
+    //log.debug("Sending message " + msg + " to " + (this route msg.destination_node_id))
+    (this route msg.destination_node_id) ! msg
   }
   
   /**
@@ -113,8 +81,7 @@ class DHT(var local_port:Int) extends PostOffice{
    */
   def send_to(i:Instance, msg:Any) {
     //log.debug("Sending message " + msg)
-    //TODO: Create envelope on send
-    translate(i) ! msg
+    i ! msg
   }
   
   /**
@@ -136,7 +103,7 @@ class DHT(var local_port:Int) extends PostOffice{
     }
     
     log.debug("Updated message queue with " + this.messages.size + " remote messages")
-    (this !? Retrieve).asInstanceOf[List[Message]]
+    (this !? Retrieve).asInstanceOf[ListBuffer[Message]]
   }
   
   /**

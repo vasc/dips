@@ -1,20 +1,30 @@
-package dips.surge
+package dips.communication.dht
+
 import dips.communication.Message
 import scala.collection.mutable.Buffer
-import dips.communication.dht.DHT
+import scala.collection.mutable.ListBuffer
 
 class MessageBundle(val size:Int) {
-	var messages:Buffer[Message] = _
+	var messages:Buffer[Message] = new ListBuffer()
 	
 	def add_message(msg:Message) = {
 	  messages += msg
-	  messages.size >= size
+	  if(messages.size >= size){
+	    Some(flush())
+	  }
+	  else{
+	    None
+	  }
 	}
 	
-	def clear() = messages.clear()
+	def flush() = {
+	  val result = messages
+	  messages = new ListBuffer()
+	  result
+	}
 }
 
-object MessageBundler{
+/*object MessageBundler{
   var dht:DHT = _
   def initiate(dht:DHT, size:Int){
     this.dht = dht
@@ -23,10 +33,8 @@ object MessageBundler{
     }
   }
   
-  def on_new_message(msg:Message){
+  def on_new_message(msg:Message) = {
     val i = dht route msg.destination_node_id
-    if( i.mb add_message msg ){
-      i.flush_mb()
-    }
+    i.mb add_message msg 
   }
-}
+}*/

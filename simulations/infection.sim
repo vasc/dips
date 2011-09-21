@@ -1,6 +1,7 @@
 # PEERSIM Infection Example
 
 distributed
+distributed.bundle.size 2000
 #distributed.size 1000000
 
 random.seed 1234567890

@@ -13,10 +13,10 @@ case object Exit extends Communication
 case object Retrieve extends Communication
 case object Ack extends Communication
 
-case class Envelope(msg:Message, origin:Uri) extends Communication
+case class Envelope[T](msg:T, origin:Uri) extends Communication
 
 object Envelope{
-  implicit def envelope2routable(env:Envelope) = env.msg
+  implicit def envelope2routable(env:Envelope[Routable]) = env.msg
 }
 
 
