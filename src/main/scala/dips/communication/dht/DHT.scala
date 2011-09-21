@@ -96,15 +96,15 @@ class DHT(var local_port:Int) extends PostOffice{
   /**
    * Take message from message queue
    */
-  def get_messages() = {
-    while(this.messages.size == 0){
+  /*def get_messages() = {
+    /*while(this.messages.size == 0){
       log.debug("Waiting new messages")
       Thread.sleep(10000)
-    }
+    }*/
     
     log.debug("Updated message queue with " + this.messages.size + " remote messages")
     (this !? Retrieve).asInstanceOf[ListBuffer[Message]]
-  }
+  }*/
   
   /**
    * @deprecated

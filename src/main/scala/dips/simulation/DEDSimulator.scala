@@ -15,27 +15,13 @@ import peersim.core.Scheduler
 import peersim.core.Simulation
 import dips.util.sha1
 import scala.collection.mutable.Queue
+import dips.core.NetworkControl
 
 
 object DEDSimulator {
   val PAR_DIST = "distributed"
   var dht:DHT = _
   var controls = new LinkedList[ScheduledControl]
-  var queue:Queue[Message] = _
-  //val controller = Configuration.getInstance(PAR_DIST+".controller").asInstanceOf[DistributionController]
-  /*val dht = {  
-	  if(Configuration.contains(PAR_DIST+".connection.host")){
-	    val host = Configuration.getString(PAR_DIST+".connection.host")
-	    val port = Configuration.getInt(PAR_DIST+".connection.port")
-	    new DHT((host, port))
-	  }
-	  else{ new DHT }
-  }*/
-	  
-  //def full_network_size:Int = { controller.size }
-  //private var local_network_size:Int = _
-  //private var local_min:Int = _
-  
   
   def isConfigurationDistributed():Boolean = {
 	Configuration contains PAR_DIST
@@ -47,8 +33,6 @@ object DEDSimulator {
   }
   
   def newExperiment:Unit = {
-    //configureDistributedExperiment
-    queue = new Queue[Message]()
     
     log.debug("Starting new simulation")
     
@@ -69,6 +53,19 @@ object DEDSimulator {
     println("Distributed simulation finished.")
   }
   
+  def runNetworkControllers() = {
+    while(! dht.control_messages.isEmpty ){
+      val cm = dht.control_messages.dequeue()
+      val control = controls.find( _.name == cm.name ).asInstanceOf[NetworkControl]
+      control receive_message cm
+    }
+    false
+  }
+  
+  def runScheduledControlers() = {
+    ( controls filter { _.scheduler.active } exists { _.control.execute } ) 
+  }
+  
   /**
    * Main simulation cycle
    * 
@@ -78,32 +75,27 @@ object DEDSimulator {
     if(CommonState.getTime % 5000 == 0){
       log.debug("Processing message at " + CommonState.getTime)
     }
-    if (!( controls filter { _.scheduler.active } forall { !_.control.execute } ) ) return false
     
-    if(queue.isEmpty){
-      queue ++= dht.get_messages
+    if ( runNetworkControllers() ) return false
+    
+    if ( runScheduledControlers() ) return false
+    
+    if(dht.messages.isEmpty){
+      log.debug("Waiting for messages...")
+      dht.messages.synchronized{
+        dht.messages.wait()
+      }
     }
     
-    queue.dequeue match{
-      case msg:Message =>
-        CommonState.setTime(CommonState.getTime + 1)
-	    DistributedSimulation.network.get(msg.destination_node_id).getProtocol(msg.pid).asInstanceOf[DEDProtocol]
+    val msg = dht.messages.dequeue
+    CommonState.setTime(CommonState.getTime + 1)
+    DistributedSimulation.network.get(msg.destination_node_id).getProtocol(msg.pid).asInstanceOf[DEDProtocol]
 		    .processEvent(
 		        msg.destination_node_id,
 		        msg.origin_node_id,
 		        msg.pid,
 		        msg.msg)
-		true
-      /*case None =>
-        if(!dht.finished){
-	        println("Event queue is empty, awaiting external events.")
-	        Thread.sleep(2000)
-	        true
-        }
-        else{
-          false
-        }*/
-    }
+	true
   }
   
   private def runInitializers() = {
@@ -129,17 +121,12 @@ object DEDSimulator {
     }
   }
   
-  /*private def configureDistributedExperiment = {
-    controller init Configuration.getInt("distributed.size")
-    Configuration.setProperty(Network.PAR_SIZE, controller.local_size.toString)
-  }*/
-  
   def sendMessage(destId:Long, srcId:Long, protocolId:Int, event:Any) = {
     val message = new Message(destId, srcId, protocolId, event)
     
     if(dht local message.destination_node_id){
       //log.debug("Message " + message + " to local node " + message.destination_node_id + " routed to " + (dht route message.destination_node_id))
-      queue enqueue message
+      dht.messages enqueue message
     }
     else{
       //log.debug("Sending message " + message + " to remote node " + message.destination_node_id + " at " + (dht route message.destination_node_id))

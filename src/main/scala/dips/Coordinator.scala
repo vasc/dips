@@ -13,6 +13,7 @@ import scopt.OptionParser
 import scala.actors.AbstractActor
 import dips.communication.Ack
 import scala.actors.UncaughtException
+import dips.simulation.DistributedSimulation
 
 
 //TODO: Coordinator
@@ -66,6 +67,7 @@ class Coordinator(val dht:DHT) extends Actor{
           
         case Subscription(name, SimulationDefinition(config), publisher) => 
           log.debug("message: SimulationDefinition")
+          DistributedSimulation.isCoordinator = true
           dht.broadcast(Publication('coordinate, StartSimulation(config)))
           //this start_simulation config
           

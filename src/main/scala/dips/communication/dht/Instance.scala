@@ -20,6 +20,7 @@ class Instance(uri:Uri) extends Addressable{
   val port = uri.port
   val ip = uri.ip
   val service = uri.service
+  var sent_messages_count = 0
   
   val actor:AbstractActor = RemoteActor.select(Node(ip, port), service)
   var last_seen = 0L
@@ -36,7 +37,9 @@ class Instance(uri:Uri) extends Addressable{
   def !(msg:Message){
     //log.debug("Saving message in Bundle of " + this)
     mb add_message msg match{
-      case lm:Some[Buffer[Message]] => actor ! lm.get
+      case lm:Some[Buffer[Message]] => 
+        actor ! lm.get
+        sent_messages_count += lm.size
       case None => Unit
     }
   }

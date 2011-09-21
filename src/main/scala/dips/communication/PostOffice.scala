@@ -5,13 +5,16 @@ import dips.util.Logger.log
 import scala.actors.OutputChannel
 import scala.collection.mutable.Buffer
 import scala.collection.mutable.ListBuffer
+import dips.core.ControlMessage
+import scala.collection.mutable.SynchronizedQueue
 
 case class Publication(name:Symbol, msg:Any)
 case class Subscription(name:Symbol, msg:Any, sender:OutputChannel[Any])
 
 trait PostOffice extends Router{
   val local_addr:Uri
-  var messages = ListBuffer[Message]()
+  val control_messages = new SynchronizedQueue[ControlMessage]()
+  var messages = new SynchronizedQueue[Message]()
   
   //def post_message(msg:Message) = this ! msg
   def retrieve_messages = this !! Retrieve
@@ -23,12 +26,22 @@ trait PostOffice extends Router{
     while (true) {
       receive {
         case msg:Message =>
-          messages += msg
+          messages.synchronized{
+            messages += msg
+            messages.notify()
+          }
         case lm:Buffer[Message] =>
           messages ++= lm
-        case Retrieve =>
+          messages.synchronized{
+            messages.notify()
+          }
+        
+        case msg:ControlMessage =>
+          control_messages enqueue msg
+        /*case Retrieve =>
           this.reply(messages)
-          messages = new ListBuffer[Message]()
+          messages = new AwaitableQueue[Message]()
+        */
         case r:Routing =>
           this.routing_event(r)
         case Exit =>
