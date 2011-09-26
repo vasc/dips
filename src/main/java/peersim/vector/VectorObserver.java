@@ -32,6 +32,10 @@ import peersim.util.*;
 public class VectorObserver extends VectControl {
 
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /** The name of this observer in the configuration */
 private final String prefix;
 

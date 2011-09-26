@@ -37,6 +37,11 @@ public class KingParser implements Control
 // ---------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The file containing the King measurements.
  * @config
  */

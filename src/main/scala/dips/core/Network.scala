@@ -10,13 +10,13 @@ import dips.util.Logger.log
 import dips.simulation.DistributedSimulation
 
 
-
-
 class DistributedNetwork(val dht:DHT) extends Network {
   //TODO: network becomes fragile after a remove
   
   protected var node_map:HashMap[Long, Node] = _
   protected var network_size = 0L
+  
+  def getNodeMap = node_map
   
   override def add(node:Node) = {
     if(dht local node.getID){
@@ -38,18 +38,17 @@ class DistributedNetwork(val dht:DHT) extends Network {
     log.debug("--- Creating prototype")
     prototype = createPrototypeNode()
     
-    log.debug("--- Generating nodes")
-    node_map = new HashMap()
-    for(val i:Long <- 0L until network_size if dht local i){
-      //log.debug("---- node: " + i)
-      val node = prototype.duplicate(i)
-      //log.debug(i)
-      node.setIndex(node_map.size)
-      node_map(i) = node
+    if(DistributedSimulation.simulation.status == 'init){
+      log.debug("--- Generating nodes")
+      for(val i:Long <- 0L until network_size if dht local i){
+        //log.debug("---- node: " + i)
+        val node = prototype.duplicate(i)
+        //log.debug(i)
+        node.setIndex(node_map.size)
+        node_map(i) = node
+      }
+      log.debug("--- Number of nodes created in this instance: " + node_map.size)
     }
-    //yield (i -> clone_node(prototype))
-    log.debug("--- Number of nodes created in this instance: " + node_map.size)
-    
     /*for(val i  <- 0 until list_pair.size){
       list_pair(i)._2.setIndex(i)
     }

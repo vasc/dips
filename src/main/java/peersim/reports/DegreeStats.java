@@ -33,6 +33,11 @@ public class DegreeStats extends GraphObserver
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The number of nodes to be used for sampling the degree. 
  * Defaults to full size of the graph.
  * @config

@@ -40,7 +40,12 @@ import peersim.core.Simulation;
  * @author Gian Paolo Jesi
  */
 public class InetInitializer implements Control {
-    // ------------------------------------------------------------------------
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// ------------------------------------------------------------------------
     // Parameters
     // ------------------------------------------------------------------------
     /**

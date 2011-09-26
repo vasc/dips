@@ -36,6 +36,11 @@ public class UniformDistribution extends VectControl implements NodeInitializer
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The upper bound of the uniform random variable, exclusive.
  * @config
  */

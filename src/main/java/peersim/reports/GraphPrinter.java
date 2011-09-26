@@ -35,6 +35,11 @@ public class GraphPrinter extends GraphObserver {
 // ====================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
 * This is the prefix of the filename where the graph is saved.
 * The extension is ".graph" and after the prefix the basename contains
 * a numeric index that is incremented at each saving point.

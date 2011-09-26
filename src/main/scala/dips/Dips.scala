@@ -53,16 +53,6 @@ object Dips extends Simulator {
     
     if(!parser.parse(args)){ return }
     
-    /*
-    this.parse_configuration(newargs)
-    
-    if (remote_host != "" && port != "") { 
-      Configuration.setProperty("distributed.connection.host", remote_host)
-      Configuration.setProperty("distributed.connection.port", port)
-    }
-    
-    this.load_simulation()
-    */
     log.debug("arguments parsed: " + (remote_host, remote_port, local_port) )
     
     dht = new DHT(local_port)
@@ -76,6 +66,6 @@ object Dips extends Simulator {
       })
     }
     
-    new Coordinator(dht)
+    DistributedSimulation setCoordinator new Coordinator(dht)
   }
 }

@@ -36,6 +36,11 @@ public class PeakDistribution extends VectControl
 // Parameters
 // --------------------------------------------------------------------------
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** 
  * The sum of values in the system, to be equally distributed between peak 
  * nodes.

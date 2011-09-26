@@ -38,6 +38,11 @@ public class SingleValueObserver implements Control {
 //Parameters
 //--------------------------------------------------------------------------
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** 
  *  The parameter used to determine the accuracy
  *  (standard deviation) before stopping the simulation. If not 

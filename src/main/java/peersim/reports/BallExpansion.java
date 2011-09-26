@@ -34,6 +34,11 @@ public class BallExpansion extends GraphObserver
 // ====================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * This parameter defines the maximal distance we care about.
  * In other words, two nodes are further away, they will not be taken
  * into account when calculating statistics.

@@ -15,7 +15,7 @@ import peersim.config.Configuration
 import dips.util.Logger.log
 
 
-class Instance(uri:Uri) extends Addressable{
+class Instance(val uri:Uri) extends Addressable{
   
   val port = uri.port
   val ip = uri.ip
@@ -38,8 +38,9 @@ class Instance(uri:Uri) extends Addressable{
     //log.debug("Saving message in Bundle of " + this)
     mb add_message msg match{
       case lm:Some[Buffer[Message]] => 
-        actor ! lm.get
-        sent_messages_count += lm.size
+        val msg_buffer = lm.get
+        actor ! msg_buffer
+        sent_messages_count += msg_buffer.size
       case None => Unit
     }
   }

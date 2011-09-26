@@ -33,6 +33,11 @@ public class Clustering extends GraphObserver
 // ====================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The number of nodes to collect info about. Defaults to the size of the graph.
  * @config
  */

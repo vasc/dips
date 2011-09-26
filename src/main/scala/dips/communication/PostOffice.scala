@@ -7,16 +7,19 @@ import scala.collection.mutable.Buffer
 import scala.collection.mutable.ListBuffer
 import dips.core.ControlMessage
 import scala.collection.mutable.SynchronizedQueue
+import dips.simulation.DistributedSimulation
+import dips.simulation.Migration
 
 case class Publication(name:Symbol, msg:Any)
 case class Subscription(name:Symbol, msg:Any, sender:OutputChannel[Any])
+case class Connected(uri:Uri)
 
 trait PostOffice extends Router{
   val local_addr:Uri
-  val control_messages = new SynchronizedQueue[ControlMessage]()
+  val control_messages = new SynchronizedQueue[(ControlMessage, OutputChannel[Any])]()
   var messages = new SynchronizedQueue[Message]()
+  var received_messages_count = 0
   
-  //def post_message(msg:Message) = this ! msg
   def retrieve_messages = this !! Retrieve
   
   def subscribe(name:Symbol, actor:AbstractActor)
@@ -24,20 +27,29 @@ trait PostOffice extends Router{
  
   def act() {
     while (true) {
+      this.synchronized{
+      
       receive {
         case msg:Message =>
           messages.synchronized{
             messages += msg
+            received_messages_count += 1
             messages.notify()
           }
         case lm:Buffer[Message] =>
-          messages ++= lm
+          
           messages.synchronized{
+            messages ++= lm
+            received_messages_count += lm.size
             messages.notify()
           }
-        
+        case m:Migration =>
+          DistributedSimulation.migrator(m)        
         case msg:ControlMessage =>
-          control_messages enqueue msg
+          control_messages enqueue ((msg, sender))
+          DistributedSimulation.simulation.synchronized{
+            DistributedSimulation.simulation.notify()
+          }
         /*case Retrieve =>
           this.reply(messages)
           messages = new AwaitableQueue[Message]()
@@ -54,6 +66,7 @@ trait PostOffice extends Router{
         case a:Any =>
           log.debug("Unrecognized message: " + a)
       }
+    }
     }
   }
 }

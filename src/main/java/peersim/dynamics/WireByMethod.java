@@ -72,6 +72,11 @@ public class WireByMethod extends WireGraph {
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The prefix for the configuration properties that describe parameters.
  * @config
  */

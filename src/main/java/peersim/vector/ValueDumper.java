@@ -45,6 +45,11 @@ public class ValueDumper extends VectControl {
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * This is the base name of the file where the values are saved. The full name
  * will be baseName+cycleid+".vec".
  * @config

@@ -35,6 +35,11 @@ public class DynamicNetwork implements Control
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * Config parameter which gives the prefix of node initializers. An arbitrary
  * number of node initializers can be specified (Along with their parameters).
  * These will be applied

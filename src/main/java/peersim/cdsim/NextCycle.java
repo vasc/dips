@@ -34,6 +34,11 @@ public class NextCycle extends FullNextCycle {
 
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
 * Gives the list of protocols (whitespace separated) that need to be
 * iterated over.
 * @config

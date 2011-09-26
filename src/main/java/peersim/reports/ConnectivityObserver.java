@@ -35,6 +35,11 @@ public class ConnectivityObserver extends GraphObserver
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The parameter used to request cluster size statistics instead of the usual
  * list of clusters. Not set by default.
  * @config

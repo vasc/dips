@@ -36,6 +36,11 @@ public class UniformRouterAssignment implements Control
 //Parameters
 //---------------------------------------------------------------------
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** 
  * Parameter name used to configure the {@link RouterInfo} protocol
  * that should be initialized.

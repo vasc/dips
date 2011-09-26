@@ -40,6 +40,11 @@ public class RandRemoval extends GraphObserver
 // ===================== fields =======================================
 // ====================================================================
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 // XXX remove side effect
 /**
  * This parameter defines the number of runs of the iterative removal procedure

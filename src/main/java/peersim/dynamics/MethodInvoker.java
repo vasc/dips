@@ -44,6 +44,11 @@ public class MethodInvoker implements Control, NodeInitializer {
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The protocol to operate on.
  * If not defined, the given method will be invoked on all protocols that
  * define it. In all cases, at least one protocol has to define it.

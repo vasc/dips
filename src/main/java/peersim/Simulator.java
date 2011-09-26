@@ -165,8 +165,6 @@ public class Simulator {
 	public void load_simulation() {
 		long time = System.currentTimeMillis();
 
-		
-
 		int exps = Configuration.getInt(PAR_EXPS, 1);
 
 		final int SIMID = getSimID();

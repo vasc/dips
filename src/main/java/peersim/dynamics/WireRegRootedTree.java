@@ -37,6 +37,11 @@ public class WireRegRootedTree extends WireGraph {
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The parameter of the tree wiring method.
  * It is passed to {@link GraphFactory#wireRegRootedTree}.
  * @config

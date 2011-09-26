@@ -33,6 +33,11 @@ public class WireStar extends WireGraph {
 // ===================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * Standard constructor that reads the configuration parameters.
  * Invoked by the simulation engine.
  * @param prefix the configuration prefix for this class

@@ -45,6 +45,11 @@ public class WireFromFile extends WireGraph {
 // ==================================================================
 
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** 
 *  The filename to load links from.
 *  @config

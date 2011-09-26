@@ -44,6 +44,13 @@ public class CDScheduler implements Control, NodeInitializer {
 // ====================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
+/**
 * Parameter that is used to define the class that is used to schedule
 * the next cycle. Its type is (or extends) {@link NextCycleEvent}.
 * Defaults to {@link NextCycleEvent}.

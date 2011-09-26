@@ -35,6 +35,11 @@ public class LinearDistribution extends VectControl
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * Upper end of the interval..
  * @config
  */

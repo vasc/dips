@@ -37,6 +37,11 @@ public class PeakDistributionInitializer implements Control {
     // ------------------------------------------------------------------------
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The load at the peak node.
      * 
      * @config

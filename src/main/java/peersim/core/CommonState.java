@@ -127,10 +127,9 @@ public static final String PAR_SEED = "random.seed";
 * Assumes that the configuration is already
 * loaded.
 */
+public static long seed;
 static {
-	
-	long seed =
-		Configuration.getLong(PAR_SEED,System.currentTimeMillis());
+	seed = Configuration.getLong(PAR_SEED,System.currentTimeMillis());
 	initializeRandom(seed);
 }
 

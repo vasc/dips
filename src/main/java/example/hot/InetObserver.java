@@ -40,6 +40,11 @@ public class InetObserver extends GraphObserver {
     // ------------------------------------------------------------------------
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The filename base to print out the topology relations.
      * 
      * @config

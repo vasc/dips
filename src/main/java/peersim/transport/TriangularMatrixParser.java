@@ -47,6 +47,11 @@ public class TriangularMatrixParser implements Control
 // ---------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * This configuration parameter identifies the filename of the file
  * containing the measurements. First, the file is used as a pathname 
  * in the local file system. If no file can be identified in this way, 

@@ -37,6 +37,12 @@ public class Normalizer extends VectControl
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+/**
  * The L1 norm (sum of absolute values) to normalize to. After the operation the
  * L1 norm will be the value given here. Defaults to 1.
  * @config

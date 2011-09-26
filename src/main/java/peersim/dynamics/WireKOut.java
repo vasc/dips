@@ -35,6 +35,11 @@ public class WireKOut extends WireGraph {
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The number of outgoing edges to generate from each node.
  * Passed to {@link GraphFactory#wireKOut}.
  * No loop edges are generated.

@@ -42,6 +42,12 @@ public class VectCopy extends VectControl implements  NodeInitializer {
 //--------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+/**
  * The identifier of the protocol to be copied.
  * The vector values are copied from this vector.
  * @config

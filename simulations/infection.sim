@@ -1,6 +1,9 @@
 # PEERSIM Infection Example
 
+simulation.name infection
+
 distributed
+
 distributed.bundle.size 2000
 #distributed.size 1000000
 
@@ -31,8 +34,13 @@ init.lin.protocol inf
 init.lin.max 0
 init.lin.min 0
 
+init.bs SimpleBootstrap
+init.bs.protocol inf
+init.bs.message_count 20
+#control.bs.at 0
+
 # you can change this to select the peak initializer instead
-include.init rnd lin
+include.init rnd lin bs
 
 control.info InfectionObserver
 control.info.protocol inf
@@ -40,11 +48,13 @@ control.info.max 100
 control.info.slots 5
 control.info.step 5000
 
+control.checkpointcoordinator CheckpointCoordinatorControl
+control.checkpointcoordinator.at 5000
+#control.checkpointcoordinator.step 5000
 
-control.bs SimpleBootstrap
-control.bs.protocol inf
-control.bs.message_count 20
-control.bs.at 0
+control.checkpoint CheckpointControl
+
+
 
 #control.mo MemoryObserver
 #control.mo.step 100

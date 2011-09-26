@@ -37,6 +37,11 @@ public class GraphStats extends GraphObserver {
 // ===================== fields =======================================
 // ====================================================================
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** 
 * The number of nodes to use for
 * sampling average path length.

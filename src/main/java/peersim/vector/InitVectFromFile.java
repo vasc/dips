@@ -44,6 +44,11 @@ public class InitVectFromFile extends VectControl
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The filename to load links from.
  * @config
  */

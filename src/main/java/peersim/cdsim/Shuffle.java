@@ -34,6 +34,12 @@ public class Shuffle implements Control {
 // ==================== initialization ==============================
 // ==================================================================
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 /** Does nothing. */
 public Shuffle(String prefix) {}
 

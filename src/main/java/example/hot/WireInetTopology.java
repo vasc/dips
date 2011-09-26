@@ -32,7 +32,12 @@ import peersim.graph.Graph;
  * @author Gian Paolo Jesi
  */
 public class WireInetTopology extends WireGraph {
-    // ------------------------------------------------------------------------
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// ------------------------------------------------------------------------
     // Parameters
     // ------------------------------------------------------------------------
     /**

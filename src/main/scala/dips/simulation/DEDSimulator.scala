@@ -6,6 +6,7 @@ import dips.communication.Addressable
 import dips.communication.Message
 import dips.core.DEDProtocol
 import dips.core.DistributedNetwork
+import dips.core.NetworkControl
 import dips.core.ScheduledControl
 import dips.util.Logger.log
 import peersim.config.Configuration
@@ -13,10 +14,8 @@ import peersim.core.CommonState
 import peersim.core.Control
 import peersim.core.Scheduler
 import peersim.core.Simulation
-import dips.util.sha1
-import scala.collection.mutable.Queue
-import dips.core.NetworkControl
-
+import DistributedSimulation.simulation
+import java.util.NoSuchElementException
 
 object DEDSimulator {
   val PAR_DIST = "distributed"
@@ -34,7 +33,7 @@ object DEDSimulator {
   
   def newExperiment:Unit = {
     
-    log.debug("Starting new simulation")
+    log.debug("Starting new experiment")
     
     log.debug("Creating network")    
     Simulation.network = new DistributedNetwork(dht)
@@ -49,15 +48,21 @@ object DEDSimulator {
     log.debug("Loading controls")
     loadControls()
     
+    simulation.status = 'running
+    
+    DistributedSimulation.migrator.bootstrap()
+    
     while(processNextMessage){}
     println("Distributed simulation finished.")
   }
   
   def runNetworkControllers() = {
-    while(! dht.control_messages.isEmpty ){
-      val cm = dht.control_messages.dequeue()
-      val control = controls.find( _.name == cm.name ).asInstanceOf[NetworkControl]
-      control receive_message cm
+    
+    while(!dht.control_messages.isEmpty ){
+      val (cm, sender) = dht.control_messages.dequeue()
+	  log debug controls.map { _.name } 
+      val control = controls.find( _.name == cm.name ).get.control.asInstanceOf[NetworkControl]
+      control receive_message (cm, sender)
     }
     false
   }
@@ -76,8 +81,17 @@ object DEDSimulator {
       log.debug("Processing message at " + CommonState.getTime)
     }
     
-    if ( runNetworkControllers() ) return false
-    
+    //Code to be executed during simulation paused
+    simulation.synchronized{
+	  do{
+	    if(simulation.paused && dht.control_messages.isEmpty)
+	      simulation.wait()
+	      
+	    if ( runNetworkControllers() ) return false
+	      
+	  } while( simulation.paused )
+	}
+      
     if ( runScheduledControlers() ) return false
     
     if(dht.messages.isEmpty){
@@ -87,25 +101,39 @@ object DEDSimulator {
       }
     }
     
-    val msg = dht.messages.dequeue
-    CommonState.setTime(CommonState.getTime + 1)
-    DistributedSimulation.network.get(msg.destination_node_id).getProtocol(msg.pid).asInstanceOf[DEDProtocol]
-		    .processEvent(
-		        msg.destination_node_id,
-		        msg.origin_node_id,
-		        msg.pid,
-		        msg.msg)
+    simulation.synchronized{
+	  val msg = dht.messages.dequeue
+	  CommonState.setTime(CommonState.getTime + 1)
+	  try{
+	    val node = DistributedSimulation.network.get(msg.destination_node_id)
+	    node.getProtocol(msg.pid).asInstanceOf[DEDProtocol]
+		  .processEvent(
+		    msg.destination_node_id,
+			msg.origin_node_id,
+			msg.pid,
+			msg.msg)
+	  }
+	  catch{
+	  	case e:NoSuchElementException =>
+	  	  dht send msg
+	  	  DistributedSimulation.network.getNodeMap.size
+	  }
+	    
+
+	}
 	true
   }
   
   private def runInitializers() = {
-    val inits = Configuration.getInstanceArray("init");
-    val names = Configuration.getNames("init");
+    if(simulation.status == 'init){
+      val inits = Configuration.getInstanceArray("init");
+      val names = Configuration.getNames("init");
     
-    inits.zip(names) foreach { 
-      case(init:Control, name) =>
-        System.err.println("- Running initializer " + name + ": " + init.getClass)
-        init.execute
+      inits.zip(names) foreach { 
+        case(init:Control, name) =>
+          System.err.println("- Running initializer " + name + ": " + init.getClass)
+          init.execute
+      }
     }
   }
   
@@ -123,15 +151,6 @@ object DEDSimulator {
   
   def sendMessage(destId:Long, srcId:Long, protocolId:Int, event:Any) = {
     val message = new Message(destId, srcId, protocolId, event)
-    
-    if(dht local message.destination_node_id){
-      //log.debug("Message " + message + " to local node " + message.destination_node_id + " routed to " + (dht route message.destination_node_id))
-      dht.messages enqueue message
-    }
-    else{
-      //log.debug("Sending message " + message + " to remote node " + message.destination_node_id + " at " + (dht route message.destination_node_id))
-      dht send message
-    }
+    dht send message
   }
-  
 }

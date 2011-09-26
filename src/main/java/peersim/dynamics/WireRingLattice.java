@@ -35,6 +35,11 @@ public class WireRingLattice extends WireGraph {
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The "lattice parameter" of the graph. The out-degree of the graph is equal to
  * 2k. See {@link GraphFactory#wireRingLattice} (to which this parameter is
  * passed) for further details.

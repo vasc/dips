@@ -37,6 +37,11 @@ public class AverageObserver implements Control {
     // /////////////////////////////////////////////////////////////////////
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8741826235328320147L;
+
+	/**
      * Config parameter that determines the accuracy for standard deviation
      * before stopping the simulation. If not defined, a negative value is used
      * which makes sure the observer does not stop the simulation

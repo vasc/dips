@@ -21,4 +21,4 @@ while getopts ":c:h:p:" opt; do
 done
 
 CONFIG_FILE=$@
-java -classpath lib/*:target/scala-2.9.0.final/dips_2.9.0-1.0-alpha.jar dips.Coordinator $HOST $PORT $CONFIG_FILE
+java -classpath lib/*:target/scala-2.9.1.final/dips_2.9.1-1.0-alpha.jar dips.Coordinator $HOST $PORT $CONFIG_FILE

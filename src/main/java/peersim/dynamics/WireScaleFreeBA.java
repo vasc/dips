@@ -41,6 +41,12 @@ public class WireScaleFreeBA extends WireGraph {
 // =======================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+/**
  * The number of edges added to each new node (apart from those forming the 
  * initial network).
  * Passed to {@link GraphFactory#wireScaleFreeBA}.

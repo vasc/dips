@@ -18,12 +18,14 @@
 
 package peersim.core;
 
+import java.io.Serializable;
+
 /**
  * Generic interface for classes that are responsible for observing or modifying
  * the ongoing simulation. It is designed to allow maximal flexibility therefore
  * poses virtually no restrictions on the implementation.
  */
-public interface Control
+public interface Control extends Serializable
 {
 
 /**

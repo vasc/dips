@@ -30,6 +30,11 @@ import peersim.core.*;
 public class MemoryObserver implements Control
 {
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 /** The runtime object to obtain memory info */
 private final static Runtime r = Runtime.getRuntime(); 
 

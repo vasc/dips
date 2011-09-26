@@ -36,6 +36,11 @@ public class WireWS extends WireGraph {
 // ==================================================================
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The beta parameter of a Watts-Strogatz graph represents the probability for a
  * node to be re-wired.
  * Passed to {@link GraphFactory#wireWS}.

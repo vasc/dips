@@ -42,6 +42,11 @@ public class VectAngle implements Control
 // --------------------------------------------------------------------------
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
  * The first protocol to be observed.
  * @config
  */

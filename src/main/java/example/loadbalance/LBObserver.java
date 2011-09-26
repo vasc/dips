@@ -36,6 +36,11 @@ public class LBObserver implements Control {
     // ------------------------------------------------------------------------
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The protocol to operate on.
      * 
      * @config

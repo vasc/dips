@@ -24,10 +24,12 @@ import dips.util.Logger.log
 import dips.NotImplementedException
 import scala.actors.Debug
 import scala.collection.mutable.ListBuffer
+import dips.communication.Publication
+import dips.communication.Connected
 
 
 object DHT{
-  RemoteActor.classLoader = getClass().getClassLoader()
+  RemoteActor.classLoader = classOf[java.io.ObjectInputStream].getClassLoader() //getClass().getClassLoader()
   val DEFAULT_PORT = 7653
   val DEFAULT_SERVICE = 'dht 
 }
@@ -72,7 +74,16 @@ class DHT(var local_port:Int) extends PostOffice{
   
   def send(msg:Message) {
     //log.debug("Sending message " + msg + " to " + (this route msg.destination_node_id))
-    (this route msg.destination_node_id) ! msg
+    val destination = this route msg.destination_node_id
+    
+    if(destination.hash == local_addr.hash){
+      messages enqueue msg
+    }
+    else{
+      destination ! msg
+    }
+    
+    
   }
   
   /**
@@ -88,7 +99,6 @@ class DHT(var local_port:Int) extends PostOffice{
    * Send message to all instances
    */
   def broadcast(msg:Any) {
-    //TODO: Broadcast
     //log.debug("Sending broadcast and waiting ack")
     instances.map(translate(_) ! msg)//.forall(_().asInstanceOf[Boolean])
   }
@@ -139,7 +149,7 @@ class DHT(var local_port:Int) extends PostOffice{
         	  instances += i
         	  log.debug("Instances updated: (" + instances.size + ") with " + i)
           }
-        }
+        } 
     }
   }
 
@@ -162,12 +172,19 @@ class DHT(var local_port:Int) extends PostOffice{
     event match{
       case Connect(uri:Uri) => 
         val instance = new Instance(uri)
-        instances += instance
+        
+        if(!(instances contains instance)){
+          instances += instance
+          this ! Publication('coordinate, Connected(uri))
+        }
         reply(this.uriSet)
       case Anounce(uri:Uri) =>
-        val i = new Instance(uri)
-        instances += i
-        log.debug("Instances updated: (" + instances.size + ") with " + i)
+        val instance = new Instance(uri)
+        if(!(instances contains instance)){
+          instances += instance
+          this ! Publication('coordinate, Connected(uri))
+          log.debug("Instances updated: (" + instances.size + ") with " + instance)
+        }
     }
   }
   

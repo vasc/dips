@@ -36,6 +36,11 @@ public class LinearDistributionInitializer implements Control {
     // ------------------------------------------------------------------------
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The upper bound of the values.
      * 
      * @config

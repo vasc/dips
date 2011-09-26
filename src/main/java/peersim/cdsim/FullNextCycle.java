@@ -35,6 +35,11 @@ public class FullNextCycle implements Control {
 
 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
 * The type of the getPair function. This parameter is of historic interest and
 * was needed in a publication we wrote. You don't need to care about this.
 * But if you wanna know: if set to "rand", then in a cycle the simulator

@@ -1,4 +1,4 @@
-package dips.control
+package dips.control.checkpoint
 
 import dips.core.ControlMessage
 import dips.core.NetworkControl
@@ -8,20 +8,18 @@ import dips.communication.dht.MessageBundle
 import dips.communication.Uri
 import peersim.core.Node
 import dips.core.ScheduledControl
+import dips.simulation.DistributedSimulation
+import scala.actors.OutputChannel
+import dips.util.Logger.log
+import peersim.core.Control
 
 case class Checkpoint(
-    val incoming:Queue[Message],
+    val incoming:List[Message],
     val outgoing:List[Message],
-    val nodes:Map[Int, Node],
-    val controls:List[ScheduledControl],
-    val time:Long
+    val nodes:List[Node],
+    val controls:List[Control],
+    val time:Long,
+    val name:String,
+    val seed:Long
 )
 
-class CheckpointControl extends NetworkControl {
-  def execute() = { false }
-  def receive_message(cm:ControlMessage) = { false }
-  
-  def checkpoint() = {
-    
-  }
-}
