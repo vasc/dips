@@ -15,7 +15,7 @@ These libraries should be saved to the lib folder or otherwise be available in t
 
 **Dips** depends on Java 6 and [Scala 2.9.1](http://www.scala-lang.org/downloads).
   
-**[sbt](https://github.com/harrah/xsbt)** is the recommend buid tool recommended.
+**[sbt](https://github.com/harrah/xsbt)** is the recommend buid tool.
 
 The prefered way to compile is using **sbt**, once **sbt** is installed simply run:
 
