@@ -10,6 +10,8 @@ import dips.communication.Addressable
 import dips.simulation.DEDSimulator
 import dips.simulation.DistributedSimulation
 
+import com.redis._
+
 object Dips extends Simulator {
   val DEDSIM = 2
   var initial_mem = Runtime.getRuntime.totalMemory 

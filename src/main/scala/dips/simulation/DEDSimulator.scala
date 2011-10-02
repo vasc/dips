@@ -1,6 +1,8 @@
 package dips.simulation
 
+import java.util.NoSuchElementException
 import scala.collection.mutable.LinkedList
+import DistributedSimulation.simulation
 import dips.communication.dht.DHT
 import dips.communication.Addressable
 import dips.communication.Message
@@ -14,8 +16,7 @@ import peersim.core.CommonState
 import peersim.core.Control
 import peersim.core.Scheduler
 import peersim.core.Simulation
-import DistributedSimulation.simulation
-import java.util.NoSuchElementException
+import dips.stats.Registry
 
 object DEDSimulator {
   val PAR_DIST = "distributed"
@@ -127,12 +128,20 @@ object DEDSimulator {
   private def runInitializers() = {
     if(simulation.status == 'init){
       val inits = Configuration.getInstanceArray("init");
-      val names = Configuration.getNames("init");
+      val init_names = Configuration.getNames("init");
     
-      inits.zip(names) foreach { 
+      inits.zip(init_names) foreach { 
         case(init:Control, name) =>
           System.err.println("- Running initializer " + name + ": " + init.getClass)
           init.execute
+      }
+      
+      val tests = Configuration.getInstanceArray("test");
+      val test_names = Configuration.getNames("test");
+    
+      inits.zip(test_names) foreach { 
+        case(test:Control, name) =>
+          Registry.register(name, test)
       }
     }
   }

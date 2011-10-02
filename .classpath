@@ -4,6 +4,8 @@
 	<classpathentry kind="src" path="src/main/scala"/>
 	<classpathentry kind="lib" path="lib/djep-1.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/redisclient_2.9.1-2.4.0.jar" sourcepath="/home/vasco/bin/scala-redis/src"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jep-2.3.0.jar"/>
