@@ -9,7 +9,6 @@ class EventsPerSecond(prefix:String) extends Stats(prefix) {
   clear()
   
   override def execute():Boolean = {
-    if(last_time == 0){ return false }
     val current_time = System.nanoTime
     val events = CommonState.getTime
     val averageEventProssecingDuration = (current_time - initial_time) / (CommonState.getTime+1)
