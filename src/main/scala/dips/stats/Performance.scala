@@ -13,9 +13,14 @@ class Performance(prefix:String) extends Stats(prefix) with Sub {
 	  var local_count = 0
 	  
 	  def apply() = { (delay_remote+delay_local)/(remote_count+local_count) }
-	  def remote = { delay_remote/remote_count }
-	  def local = { delay_local/local_count }	  
-	  
+	  def remote = { 
+	    if(remote_count == 0) 0
+	    else delay_remote/remote_count
+	  }
+	  def local = { 
+	    if(local_count == 0) 0
+	    else delay_local/local_count
+	  }
 	  def add_delay(d:Long, local:Boolean){
 	    if(local){ delay_local += d; local_count += 1 }
 	    else { delay_remote += d; remote_count += 1 }
@@ -32,6 +37,10 @@ class Performance(prefix:String) extends Stats(prefix) with Sub {
 	  save("processed.events", processed_events)
 	  save("idle.time", DistributedSimulation.idle_time)
 	  save("average.delay", average_delay())
+	  
+	  save("processed.events.remote", average_delay.remote_count)
+	  save("processed.events.local", average_delay.local_count)
+	  
 	  save("average.delay.remote", average_delay.remote)
 	  save("average.delay.local", average_delay.local)
 	  
