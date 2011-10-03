@@ -2,7 +2,7 @@
 
 CONF_FILE=""
 COUNT=1
-AMI=ami-36003242
+AMI=ami-40053734
 
 while getopts ":a:c:n:" opt; do
   case $opt in
@@ -37,7 +37,8 @@ do
 done
 
 FIRST=1
-for instance in `echo "$PUB_DNS" | grep ec2 | awk '{print $1}'`
+export SIMULATION_INSTANCES=`echo "$PUB_DNS" | grep ec2 | awk '{print $1}'`
+for instance in $SIMULATION_INSTANCES
 do
 	echo "running instance"
 	PRIV_DNS=`echo "$PUB_DNS" | grep "$instance" | awk '{print $2}'`
@@ -45,12 +46,20 @@ do
 	then 
 		COORDINATOR_PRIV=$PRIV_DNS
 		COORDINATOR_PUB=$instance 
-		gnome-terminal -e "ssh ubuntu@$instance bash -c \"cd dips; java -classpath dips/lib/*:dips/target/scala-2.9.1.final/dips_2.9.1-1.0-alpha.jar dips.Dips\"" -t Coordinator
+		gnome-terminal -e "ssh -t ubuntu@$instance bash -c \"./dips-launch\"" -t Coordinator
 		FIRST=0
+		sleep 2s
 	else
 		echo "Connecting at: $COORDINATOR_PRIV"
-		gnome-terminal -e "ssh ubuntu@$instance source \"cd dips; java -classpath dips/lib/*:dips/target/scala-2.9.1.final/dips_2.9.1-1.0-alpha.jar dips.Dips -h $COORDINATOR_PRIV -p 7653 -l 0\""
+		gnome-terminal -e "ssh -t ubuntu@$instance source \"./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0\""
 	fi
 done
 
-ssh ubuntu@$COORDINATOR_PUB source "cd dips; ./dips-configure.sh tests/infection_single_instance_100000.sim"
+echo "Press ENTER when ready"
+read null
+
+cd ..
+./dips-configure.sh -h $COORDINATOR_PUB tests/infection_10000_performance.sim
+
+
+echo "$SIMULATION_INSTANCES"

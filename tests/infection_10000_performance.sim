@@ -3,7 +3,7 @@
 simulation.name infection
 
 distributed
-distributed.bundle.size 2000
+distributed.bundle.size 1
 
 random.seed 1234567890
 
@@ -41,7 +41,7 @@ control.info InfectionObserver
 control.info.protocol inf
 control.info.max 100
 control.info.slots 5
-control.info.step 5000
+control.info.step 25000
 
 control.stats Performance
 control.stats.name performance

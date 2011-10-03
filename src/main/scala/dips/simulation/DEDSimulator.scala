@@ -105,7 +105,7 @@ object DEDSimulator {
     
     if(dht.messages.isEmpty){
       DistributedSimulation.start_idle()
-      log.debug("Waiting for messages...")
+      //log.debug("Waiting for messages...")
       dht.messages.synchronized{
         dht.messages.wait()
       }
