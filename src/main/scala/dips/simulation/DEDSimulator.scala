@@ -17,11 +17,13 @@ import peersim.core.Control
 import peersim.core.Scheduler
 import peersim.core.Simulation
 import dips.stats.Registry
+import dips.stats.Sub
 
 object DEDSimulator {
   val PAR_DIST = "distributed"
   var dht:DHT = _
   var controls = new LinkedList[ScheduledControl]
+  var sub:Sub = _
   
   def isConfigurationDistributed():Boolean = {
 	Configuration contains PAR_DIST
@@ -68,6 +70,12 @@ object DEDSimulator {
     false
   }
   
+  def pub(key:Symbol, value:Any){
+    if(sub != null){
+      sub.receive(key, value)
+    }
+  }
+  
   def runScheduledControlers() = {
     ( controls filter { _.scheduler.active } exists { _.control.execute } ) 
   }
@@ -96,15 +104,18 @@ object DEDSimulator {
     if ( runScheduledControlers() ) return false
     
     if(dht.messages.isEmpty){
+      DistributedSimulation.start_idle()
       log.debug("Waiting for messages...")
       dht.messages.synchronized{
         dht.messages.wait()
       }
+      DistributedSimulation.end_idle()
     }
     
     simulation.synchronized{
 	  val msg = dht.messages.dequeue
 	  CommonState.setTime(CommonState.getTime + 1)
+	  pub('delay, (System.nanoTime-msg.creationTime ,msg.local))
 	  try{
 	    val node = DistributedSimulation.network.get(msg.destination_node_id)
 	    node.getProtocol(msg.pid).asInstanceOf[DEDProtocol]
@@ -129,6 +140,7 @@ object DEDSimulator {
     if(simulation.status == 'init){
       val inits = Configuration.getInstanceArray("init");
       val init_names = Configuration.getNames("init");
+      val sub = Configuration.getString(PAR_DIST+ ".sub", "")
     
       inits.zip(init_names) foreach { 
         case(init:Control, name) =>
@@ -138,10 +150,11 @@ object DEDSimulator {
       
       val tests = Configuration.getInstanceArray("test");
       val test_names = Configuration.getNames("test");
-    
+      
       inits.zip(test_names) foreach { 
         case(test:Control, name) =>
           Registry.register(name, test)
+          if(name == "test."+ sub) this.sub = test.asInstanceOf[Sub]
       }
     }
   }
@@ -149,11 +162,15 @@ object DEDSimulator {
   private def loadControls() = {
     val controls = Configuration.getInstanceArray("control");
     val names = Configuration.getNames("control");
+    val sub = Configuration.getString(PAR_DIST+ ".sub", "")
     
     this.controls ++= controls.zip(names) map { 
       case(control:Control, name) =>
         System.err.println("- Loading control " + name + ": " + control.getClass)
         val shed = new Scheduler(name)
+        if(name == "control."+sub){
+        	this.sub = control.asInstanceOf[Sub]
+        }
         new ScheduledControl(control, name, shed)
     }
   }

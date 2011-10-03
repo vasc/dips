@@ -5,7 +5,6 @@ simulation.version 1
 simulation.id test
 
 distributed
-
 distributed.bundle.size 2000
 
 random.seed 1234567890
@@ -46,8 +45,10 @@ control.info.max 100
 control.info.slots 5
 control.info.step 5000
 
-control.stats EventsPerSecond
-control.stats.step 1
+control.stats Performance
+control.stats.at 500000
+
+distributed.sub stats
 
 #control.checkpointcoordinator CheckpointCoordinatorControl
 #control.checkpointcoordinator.at 5000

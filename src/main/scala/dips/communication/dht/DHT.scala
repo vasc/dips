@@ -80,10 +80,9 @@ class DHT(var local_port:Int) extends PostOffice{
       messages enqueue msg
     }
     else{
+      msg.local = false
       destination ! msg
     }
-    
-    
   }
   
   /**

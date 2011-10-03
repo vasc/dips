@@ -1,0 +1,18 @@
+\begin{tabular}{|r*{8}|}
+Number of Instances	& 
+\multicolumn{2}{|c|}{Processed Events} & 
+\multicolumn{3}{|c|}{Average Message Delay} & 
+\multicolumn{2}{|c|}{Idle Time}  \\
+
+{% for s in simulations %}
+
+\hline
+            {{ s.icount }} & {{ s.eps.total }}  & {{ s.eps.pi }} & 
+                           & {{ s.amd.global }} & {{ s.amd.local }} & {{ s.amd.remote }}
+                           & {{ s.it.total }} & {{ s.it.pi }}  \\
+
+{% endfor %}
+
+\hline
+
+\end{tabular}

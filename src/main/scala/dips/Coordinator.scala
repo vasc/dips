@@ -168,6 +168,7 @@ class Coordinator(val dht:DHT) extends Actor{
         	reason match{
         	  case UncaughtException(actor, message, sender, thread, cause) =>
         	    cause.printStackTrace()
+        	  case 'normal => None
         	}
           
           log.debug("message: Simulation has ended back to coordinator(" + this + "), reason: " + reason)

@@ -81,6 +81,9 @@ case class Message(
     val destination_node_id:Long,
     val origin_node_id:Long,
     val pid:Int,
-    val msg:Any){}
+    val msg:Any){
+  val creationTime = System.nanoTime()
+  var local = true
+}
 
 

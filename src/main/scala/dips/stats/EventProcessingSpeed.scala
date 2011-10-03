@@ -3,7 +3,8 @@ package dips.stats
 import peersim.core.CommonState
 import dips.util.Logger
 
-class EventsPerSecond(prefix:String) extends Stats(prefix) {
+class EventsProcessingSpeed(prefix:String) extends Stats(prefix)
+ {
   val initial_time = 0L
   var last_time = initial_time
   clear()

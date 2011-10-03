@@ -3,6 +3,10 @@ package dips.stats
 import peersim.config.Configuration
 import peersim.core.Control
 
+trait Sub{
+  def receive(key:Symbol, value:Any)
+}
+
 class Stats(val prefix:String) extends Control {
 
   lazy val testname =  {
@@ -34,6 +38,10 @@ class Stats(val prefix:String) extends Control {
         i
       case None => -1
     }
+  }
+  
+  def save(key:Namespace, value:Any){
+    Registry.redis.set(Registry.id+testname+key, value)
   }
   
   def execute():Boolean = false

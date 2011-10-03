@@ -22,6 +22,13 @@ object DistributedSimulation {
   private var _migrator:Migrator = _
   def migrator = _migrator
   
+  private var _idle_time = 0L
+  private var _start_idle = 0L
+  def idle_time = _idle_time
+  
+  def start_idle() { _start_idle = System.nanoTime }
+  def end_idle() { _idle_time += System.nanoTime - _start_idle }
+  
   def new_simulation(cu:Uri, config:String){
     _simulation = new SimulationSignal(false, 'init)
     _migrator = new Migrator(dht, dht.messages)
