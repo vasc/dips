@@ -1,8 +1,6 @@
 # PEERSIM Infection Example
 
 simulation.name infection
-simulation.version 1
-simulation.id test
 
 distributed
 distributed.bundle.size 2000
@@ -46,6 +44,7 @@ control.info.slots 5
 control.info.step 5000
 
 control.stats Performance
+control.stats.name performance
 control.stats.at 500000
 
 distributed.sub stats

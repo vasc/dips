@@ -16,9 +16,14 @@ class Namespace(val str:String){
 
 object Registry {
   lazy val simname = Configuration.getString("simulation.name")
-  lazy val simid = Configuration.getString("simulation.id")
-  lazy val simversion = Configuration.getString("simulation.version")
-  lazy val id:Namespace = simname + ":" + simversion + ":" + simid
+  lazy val simid = Configuration.getString("simulation.id", "")
+  lazy val simversion = Configuration.getString("simulation.version", "")
+  lazy val id:Namespace = {
+    var r = simname
+    if(simversion != "") r += simversion
+    if(simid != "") r += simid
+    r
+  }
   
   lazy val redis = {
     val r = new RedisClient("localhost", 6379)
