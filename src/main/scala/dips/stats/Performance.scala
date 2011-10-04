@@ -53,8 +53,7 @@ class Performance(prefix:String) extends Stats(prefix) with Sub {
 	  
 	  save("routing.method", "round.robin")
 	  
-	  //Stop the simulation
-	  true
+	  false
 	}
 	
 	def receive(key:Symbol, value:Any){
