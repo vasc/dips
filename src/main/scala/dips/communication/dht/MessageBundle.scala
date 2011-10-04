@@ -6,6 +6,7 @@ import scala.collection.mutable.ListBuffer
 
 class MessageBundle(val size:Int) {
 	var messages:Buffer[Message] = new ListBuffer()
+	def count = messages.size
 	
 	def add_message(msg:Message) = {
 	  messages += msg

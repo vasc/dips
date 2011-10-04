@@ -26,6 +26,8 @@ import scala.actors.Debug
 import scala.collection.mutable.ListBuffer
 import dips.communication.Publication
 import dips.communication.Connected
+import dips.simulation.{DistributedSimulation => ds}
+import dips.communication.RequestMessages
 
 
 object DHT{
@@ -46,7 +48,10 @@ class DHT(var local_port:Int) extends PostOffice{
   
   val subscribers = new HashMap[Symbol, HashSet[AbstractActor]]
   var instances = TreeSet[Instance](local_addr) ( new Ordering[Instance] { def compare(x:Instance, y:Instance):Int = x compare y } )
+  
+  var indexed_instances = instances.toIndexedSeq
 
+  
   def this(){ this(DHT.DEFAULT_PORT) }
   
 
@@ -59,7 +64,8 @@ class DHT(var local_port:Int) extends PostOffice{
     //val n = instances find (r.hash < _.hash )
     //val result = (n getOrElse instances.first)
     
-    instances.toIndexedSeq((r.hash.abs % instances.size).toInt)
+    //instances.toIndexedSeq((r.hash.abs % instances.size).toInt)
+    indexed_instances( (r.hash.abs % instances.size).toInt )
   }
   
   def local(r:Routable) = {
@@ -102,6 +108,12 @@ class DHT(var local_port:Int) extends PostOffice{
     instances.map(translate(_) ! msg)//.forall(_().asInstanceOf[Boolean])
   }
   
+  def request_messages(){
+    instances.withFilter(_.hash != local_addr.hash).foreach{
+      _.actor ! RequestMessages(local_addr)
+    }
+  }
+  
   /**
    * Take message from message queue
    */
@@ -136,16 +148,21 @@ class DHT(var local_port:Int) extends PostOffice{
   def connect(uri: Uri) { 
     log.debug("connecting to network: " + uri + "with local_addr: " + local_addr)
     val instance = new Instance(uri)
-    val info = instance !? Connect(local_addr)
+    val initial_time = ds.networkTimeMilis
+    val info = instance !? Connect(local_addr, initial_time)
     info match{
-      case s:HashSet[Uri] =>
-        log.debug("set response: " + s)
+      case Tuple2(s:HashSet[Uri], delay:Long) =>
+        val clockDelay = delay + (ds.networkTimeMilis-initial_time)/2
+        ds setClockDelay clockDelay
+        log.debug("Clock delay set to " + clockDelay + " ms")
+        log.debug("Set response: " + s)
         s map { new Instance(_) } foreach { i =>
           log.debug("Instance: " + i)
           if(!instances.contains(i)){
               log.debug("Sending Anounce")
         	  i ! Anounce(local_addr)
         	  instances += i
+        	  indexed_instances = instances.toIndexedSeq
         	  log.debug("Instances updated: (" + instances.size + ") with " + i)
           }
         } 
@@ -169,21 +186,26 @@ class DHT(var local_port:Int) extends PostOffice{
     log.debug("routing event: " + event)
     
     event match{
-      case Connect(uri:Uri) => 
+      case Connect(uri:Uri, instance_time) => 
         val instance = new Instance(uri)
         
         if(!(instances contains instance)){
           instances += instance
+          indexed_instances = instances.toIndexedSeq
           this ! Publication('coordinate, Connected(uri))
         }
-        reply(this.uriSet)
+        reply(this.uriSet, ds.networkTimeMilis - instance_time)
       case Anounce(uri:Uri) =>
         val instance = new Instance(uri)
         if(!(instances contains instance)){
           instances += instance
+          indexed_instances = instances.toIndexedSeq
           this ! Publication('coordinate, Connected(uri))
           log.debug("Instances updated: (" + instances.size + ") with " + instance)
         }
+      case RequestMessages(uri:Uri) =>
+        val i = instances.find(_.hash == uri.hash).get
+        i.flush()
     }
   }
   

@@ -3,6 +3,7 @@ package dips.communication
 import java.net.InetAddress
 import dips.util.sha1
 import dips.util.Logger.log
+import dips.simulation.DistributedSimulation
 
 object Routable{
   /*implicit def bigInt2routable(i:BigInt) = {
@@ -82,7 +83,7 @@ case class Message(
     val origin_node_id:Long,
     val pid:Int,
     val msg:Any){
-  val creationTime = System.nanoTime()
+  val creationTime = DistributedSimulation.networkTimeMilis
   var local = true
 }
 

@@ -7,9 +7,10 @@ import scala.actors.OutputChannel
 trait Routing
 
 
-case class Connect(uri:Uri) extends Routing
+case class Connect(uri:Uri, local_time:Long) extends Routing
 case object Disconnect extends Routing
 case class Anounce(uri:Uri) extends Routing
+case class RequestMessages(uri:Uri) extends Routing
 
 trait Router extends Actor{
   def connect(uri:Uri)

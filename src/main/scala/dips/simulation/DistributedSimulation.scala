@@ -47,6 +47,10 @@ object DistributedSimulation {
   private var synchronized = false
   def isSynchronized = synchronized
   
+  private var clockDelay = 0L
+  def setClockDelay(delay:Long) { clockDelay = delay }
+  def networkTimeMilis = { System.currentTimeMillis + clockDelay }
+  
   def requestSynchronizedState() = {
     coordinator.coordinator_start_sync()
   }

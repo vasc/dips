@@ -1,7 +1,9 @@
 package dips.simulation
 
 import java.util.NoSuchElementException
+
 import scala.collection.mutable.LinkedList
+
 import DistributedSimulation.simulation
 import dips.communication.dht.DHT
 import dips.communication.Addressable
@@ -10,14 +12,14 @@ import dips.core.DEDProtocol
 import dips.core.DistributedNetwork
 import dips.core.NetworkControl
 import dips.core.ScheduledControl
+import dips.stats.Registry
+import dips.stats.Sub
 import dips.util.Logger.log
 import peersim.config.Configuration
 import peersim.core.CommonState
 import peersim.core.Control
 import peersim.core.Scheduler
 import peersim.core.Simulation
-import dips.stats.Registry
-import dips.stats.Sub
 
 object DEDSimulator {
   val PAR_DIST = "distributed"
@@ -104,9 +106,11 @@ object DEDSimulator {
     if ( runScheduledControlers() ) return false
     
     if(dht.messages.isEmpty){
+      
       DistributedSimulation.start_idle()
       //log.debug("Waiting for messages...")
       dht.messages.synchronized{
+        dht.request_messages()
         dht.messages.wait()
       }
       DistributedSimulation.end_idle()
@@ -115,7 +119,7 @@ object DEDSimulator {
     simulation.synchronized{
 	  val msg = dht.messages.dequeue
 	  CommonState.setTime(CommonState.getTime + 1)
-	  pub('delay, (System.nanoTime-msg.creationTime ,msg.local))
+	  pub('delay, (DistributedSimulation.networkTimeMilis-msg.creationTime ,msg.local))
 	  try{
 	    val node = DistributedSimulation.network.get(msg.destination_node_id)
 	    node.getProtocol(msg.pid).asInstanceOf[DEDProtocol]

@@ -3,7 +3,7 @@
 simulation.name infection
 
 distributed
-distributed.bundle.size 1
+distributed.bundle.size 2000
 
 random.seed 1234567890
 

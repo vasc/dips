@@ -39,9 +39,19 @@ class Instance(val uri:Uri) extends Addressable{
     mb add_message msg match{
       case lm:Some[Buffer[Message]] => 
         val msg_buffer = lm.get
-        actor ! msg_buffer
-        sent_messages_count += msg_buffer.size
+        send(msg_buffer)
       case None => Unit
+    }
+  }
+  
+  def send(msg_buffer:Buffer[Message]){
+    actor ! msg_buffer
+    sent_messages_count += msg_buffer.size
+  }
+  
+  def flush(){
+    if(mb.count > 0){
+      send(mb.flush())
     }
   }
   
