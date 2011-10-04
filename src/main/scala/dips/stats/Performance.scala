@@ -13,7 +13,10 @@ class Performance(prefix:String) extends Stats(prefix) with Sub {
 	  var remote_count = 0
 	  var local_count = 0
 	  
-	  def apply() = { (delay_remote+delay_local)/(remote_count+local_count) }
+	  def apply() = { 
+	    if(remote_count == 0 && local_count == 0) 0
+	    else (delay_remote+delay_local)/(remote_count+local_count) 
+	  }
 	  def remote = { 
 	    if(remote_count == 0) 0
 	    else delay_remote/remote_count

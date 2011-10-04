@@ -59,13 +59,13 @@ do
 	else
 		echo "Connecting at: $COORDINATOR_PRIV"
 		#gnome-terminal -e "ssh -t ubuntu@$instance source \"./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0\""
-		ssh -t ubuntu@$instance source "./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0; exit" >>/tmp/dipstest &
+		ssh -t ubuntu@$instance bash -c "./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0; exit" &>>ec2.output &
 
 	fi
 done
 
-RUNNING=`ps aux | grep ubuntu@ec2`
-echo "$RUNNING"
+#RUNNING=`ps aux | grep ubuntu@ec2`
+#echo "$RUNNING"
 
 #echo "Press ENTER when ready"
 #read null
@@ -75,14 +75,14 @@ OUT=0
 while [ $OUT -lt $COUNT ]
 do
 	OUT=`grep "running Coordinator act method" ec2.output | wc -l`
-	echo "###$OUT"
+	echo "Number of instances ready: $OUT"
 	sleep 3s
 done
 
 echo "Sending Configuration"
 
 cd ..
-./dips-configure.sh -h $COORDINATOR_PUB tests/infection_40000_performance.sim >/dev/null
+./dips-configure.sh -h $COORDINATOR_PUB "./tests/$CONF_FILE" >/dev/null
 
 RUNNING_COUNT=$COUNT
 
@@ -95,5 +95,8 @@ done
 
 echo "Simulation done"
 
+cd ./tests
 
-read null
+echo "$SIMULATION_INSTANCES" | python ./scripts/performance.py
+
+echo "Simulation data saved"
