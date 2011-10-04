@@ -3,7 +3,7 @@ import peersim.core.CommonState
 import dips.simulation.DistributedSimulation
 
 class Performance(prefix:String) extends Stats(prefix) with Sub {
-	val initial_time = System.currentTimeMillis
+	val initial_time = DistributedSimulation.networkTimeMilis
     
 	val average_delay = new AnyRef{
 	  var delay_local = 0L
@@ -28,7 +28,7 @@ class Performance(prefix:String) extends Stats(prefix) with Sub {
 	}
 	
 	override def execute() ={
-	  val final_time = System.currentTimeMillis
+	  val final_time = DistributedSimulation.networkTimeMilis
 	  val elapsed_time = final_time - initial_time
 	  val processed_events = CommonState.getTime
 	  
