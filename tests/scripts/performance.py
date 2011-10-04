@@ -27,11 +27,11 @@ def main():
 	]
 
 	while True:
-		host = sys.stdin.readline()
+		host = sys.stdin.readline().strip('\n')
 		if not host: break
 
 		simulation = {}
-		r = redis.Redis(host=host.strip('\n'), port=6379, db=0)
+		r = redis.Redis(host=host, port=6379, db=0)
 		
 		for key in keys:
 			simulation[key] = r.get(prefix+key)

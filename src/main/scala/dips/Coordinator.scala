@@ -165,13 +165,13 @@ class Coordinator(val dht:DHT) extends Actor{
           }       
           
         case Exit(simulation, reason) =>
+            log.debug("message: Simulation has ended back to coordinator(" + this + "), reason: " + reason)
         	reason match{
         	  case UncaughtException(actor, message, sender, thread, cause) =>
         	    cause.printStackTrace()
-        	  case 'normal => None
+        	    System.exit(-1)
+        	  case 'normal => System.exit(0)
         	}
-          
-          log.debug("message: Simulation has ended back to coordinator(" + this + "), reason: " + reason)
           
         case a:Any =>
           log.debug(a)
@@ -211,8 +211,8 @@ object Coordinator extends App{
     	  case msg:Any => log.debug("response: " + msg)
     	}
     	*/
-    	Thread.sleep(10000)
-    	exit()
+    	Thread.sleep(3000)
+    	System.exit(0)
     }
   }
 }

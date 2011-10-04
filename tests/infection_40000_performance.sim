@@ -1,0 +1,63 @@
+# PEERSIM Infection Example
+
+simulation.name infection
+
+distributed
+distributed.bundle.size 2000
+
+random.seed 1234567890
+
+network.size 40000
+
+protocol.lnk SimpleLink
+
+protocol.inf Infection
+protocol.inf.linkable lnk
+protocol.inf.degree 3
+protocol.inf.limit 100
+
+#init.rnd WireKOut
+init.rnd dips.example.SimpleWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+#init.peak example.aggregation.PeakDistributionInitializer
+#init.peak.value 5
+#init.peak.protocol inf
+
+init.lin ConstantDistributionSingleValue
+init.lin.protocol inf
+init.lin.value 0
+
+init.bs SimpleBootstrap
+init.bs.protocol inf
+init.bs.message_count 20
+
+# you can change this to select the peak initializer instead
+include.init rnd lin bs
+
+control.info InfectionObserver
+control.info.protocol inf
+control.info.max 100
+control.info.slots 5
+control.info.step 25000
+
+control.stats Performance
+control.stats.name performance
+control.stats.at 500000
+
+distributed.sub stats
+
+#control.checkpointcoordinator CheckpointCoordinatorControl
+#control.checkpointcoordinator.at 5000
+#control.checkpointcoordinator.step 5000
+
+#control.checkpoint CheckpointControl
+
+#control.mo MemoryObserver
+#control.mo.step 100
+
+#control.s Stop
+#control.s.at 20000
+
+

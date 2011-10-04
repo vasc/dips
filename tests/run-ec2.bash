@@ -37,7 +37,12 @@ do
 done
 
 FIRST=1
-export SIMULATION_INSTANCES=`echo "$PUB_DNS" | grep ec2 | awk '{print $1}'`
+SIMULATION_INSTANCES=`echo "$PUB_DNS" | grep ec2 | awk '{print $1}'`
+
+SIMULATION_INSTANCES=`echo "$SIMULATION_INSTANCES" | head -n $COUNT`
+
+echo "$SIMULATION_INSTANCES" >scripts/latest_simulations
+
 for instance in $SIMULATION_INSTANCES
 do
 	echo "running instance"
@@ -46,20 +51,27 @@ do
 	then 
 		COORDINATOR_PRIV=$PRIV_DNS
 		COORDINATOR_PUB=$instance 
-		gnome-terminal -e "ssh -t ubuntu@$instance bash -c \"./dips-launch\"" -t Coordinator
+		#gnome-terminal -e "ssh -t ubuntu@$instance bash -c \"./dips-launch\"" -t Coordinator
+		ssh -t ubuntu@$instance bash -c "./dips-launch" & #>>/tmp/dipstest &
 		FIRST=0
 		sleep 2s
 	else
 		echo "Connecting at: $COORDINATOR_PRIV"
-		gnome-terminal -e "ssh -t ubuntu@$instance source \"./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0\""
+		#gnome-terminal -e "ssh -t ubuntu@$instance source \"./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0\""
+		ssh -t ubuntu@$instance source "./dips-launch -h $COORDINATOR_PRIV -p 7653 -l 0; exit" >>/tmp/dipstest &
+
 	fi
 done
+
+RUNNING=`ps aux | grep ubuntu@ec2`
+echo "$RUNNING"
 
 echo "Press ENTER when ready"
 read null
 
+
+
 cd ..
-./dips-configure.sh -h $COORDINATOR_PUB tests/infection_10000_performance.sim
+./dips-configure.sh -h $COORDINATOR_PUB tests/infection_40000_performance.sim
 
-
-echo "$SIMULATION_INSTANCES"
+read null
