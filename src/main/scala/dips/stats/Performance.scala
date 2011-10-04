@@ -1,6 +1,7 @@
 package dips.stats
 import peersim.core.CommonState
 import dips.simulation.DistributedSimulation
+import peersim.config.Configuration
 
 class Performance(prefix:String) extends Stats(prefix) with Sub {
 	val initial_time = DistributedSimulation.networkTimeMilis
@@ -43,6 +44,11 @@ class Performance(prefix:String) extends Stats(prefix) with Sub {
 	  
 	  save("average.delay.remote", average_delay.remote)
 	  save("average.delay.local", average_delay.local)
+	  
+	  save("nodes.count", DistributedSimulation.network.size)
+	  save("bundle.size", Configuration.getString("distributed.bundle.size"))
+	  
+	  save("routing.method", "round.robin")
 	  
 	  //Stop the simulation
 	  true

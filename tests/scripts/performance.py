@@ -1,6 +1,10 @@
+#/usr/bin/python
+
 import sys
 import simplejson
 import redis
+import os.path
+import yaml
 
 def sum_key(i, l):
 	values = [l(x) for x in i]
@@ -23,7 +27,10 @@ def main():
 			'idle.time',
 			'average.delay',
 			'average.delay.remote',
-			'average.delay.local'
+			'average.delay.local',
+			'nodes.count',
+			'bundle.size',
+			'routing.method'
 	]
 
 	while True:
@@ -41,6 +48,7 @@ def main():
 		
 		simulations.append(simulation)
 
+	
 	results['processed.events.total'] = sum_key(simulations, lambda x: int(x['processed.events']))
 	results['duration.total'] = max(long(x['final.time']) for x in simulations) - min(long(x['initial.time']) for x in simulations)
 	results['processed.events.per.second.total'] = results['processed.events.total'] / (results['duration.total']/1000.0)
@@ -50,9 +58,41 @@ def main():
 	results['average.delay.remote'] = avg(simulations, lambda x: float(x['average.delay.remote']))
 	results['idle.time.total'] = sum_key(simulations, lambda x: long(x['idle.time']))
 	results['idle.time.per.instance'] = avg(simulations, lambda x: long(x['idle.time']))
+	
+	results['network.size'] = sum_key(simulations, lambda x: int(x['nodes.count']))
+	results['routing.method'] = simulations[0]['routing.method']
+	results['bundle.size'] = simulations[0]['bundle.size']
+	results['test.type'] = 'performance'
+	results['simulation.name'] = 'infection'
+	results['instance.count'] = len(simulations)
 
-	print simplejson.dumps(simulations)
-	print simplejson.dumps(results)
+	results['instances'] = simulations
+
+	filename = (results['test.type'] + '.' +
+				results['simulation.name'] + '.' +
+				str(results['network.size']) + '.nodes.' +
+				results['bundle.size'] + '.bundle.' +
+				results['routing.method'] + '.' +
+				str(results['instance.count']) + '.instances.' +
+				'json')
+
+	if os.path.exists(filename):
+		with open(filename) as f:
+			experiences = simplejson.loads(f.read())
+	else:
+		experiences = []
+
+	experiences.append(results)
+
+	with open(filename, 'w') as f:
+		f.write(simplejson.dumps(experiences))
+
+	with open(filename[:-4]+'yaml', 'w') as f:
+		f.write(yaml.dump(experiences))
+
+	
+	#print simplejson.dumps(simulations)
+	#print simplejson.dumps(results)
 
 
 if __name__ == '__main__':

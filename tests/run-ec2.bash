@@ -52,7 +52,8 @@ do
 		COORDINATOR_PRIV=$PRIV_DNS
 		COORDINATOR_PUB=$instance 
 		#gnome-terminal -e "ssh -t ubuntu@$instance bash -c \"./dips-launch\"" -t Coordinator
-		ssh -t ubuntu@$instance bash -c "./dips-launch" & #>>/tmp/dipstest &
+		cat /dev/null >ec2.output
+		ssh -t ubuntu@$instance bash -c "./dips-launch" &>>ec2.output &
 		FIRST=0
 		sleep 2s
 	else
@@ -66,12 +67,33 @@ done
 RUNNING=`ps aux | grep ubuntu@ec2`
 echo "$RUNNING"
 
-echo "Press ENTER when ready"
-read null
+#echo "Press ENTER when ready"
+#read null
 
+OUT=0
 
+while [ $OUT -lt $COUNT ]
+do
+	OUT=`grep "running Coordinator act method" ec2.output | wc -l`
+	echo "###$OUT"
+	sleep 3s
+done
+
+echo "Sending Configuration"
 
 cd ..
-./dips-configure.sh -h $COORDINATOR_PUB tests/infection_40000_performance.sim
+./dips-configure.sh -h $COORDINATOR_PUB tests/infection_40000_performance.sim >/dev/null
+
+RUNNING_COUNT=$COUNT
+
+while [ $RUNNING_COUNT -gt "0" ]
+do
+	RUNNING_COUNT=`ps aux | grep -v grep | grep "bash -c ./dips-launch" | wc -l`
+	echo "Still running: $RUNNING_COUNT" 
+	sleep 3s
+done
+
+echo "Simulation done"
+
 
 read null

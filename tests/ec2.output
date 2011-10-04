@@ -1,0 +1,355 @@
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+Initialing
+Updating repository
+Already up-to-date.
+Compiling dips
+[0m[[0minfo[0m] [0mSet current project to default-4d2ac1 (in build file:/home/ubuntu/dips/)[0m
+[0m[[32msuccess[0m] [0mTotal time: 3 s, completed Oct 4, 2011 9:44:31 AM[0m
+Launching DIPS
+0 [main] DEBUG root  - arguments parsed: (,0,7653)
+133 [main] DEBUG root  - Listenning on local_port: 7653
+455 [main] DEBUG root  - running Coordinator
+473 [ForkJoinPool-1-worker-3] DEBUG root  - running Coordinator act method
+7114 [ForkJoinPool-1-worker-2] DEBUG root  - Received publication: SimulationDefinition(# PEERSIM Infection Example
+
+simulation.name infection
+
+distributed
+distributed.bundle.size 2000
+
+random.seed 1234567890
+
+network.size 40000
+
+protocol.lnk SimpleLink
+
+protocol.inf Infection
+protocol.inf.linkable lnk
+protocol.inf.degree 3
+protocol.inf.limit 100
+
+#init.rnd WireKOut
+init.rnd dips.example.SimpleWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+#init.peak example.aggregation.PeakDistributionInitializer
+#init.peak.value 5
+#init.peak.protocol inf
+
+init.lin ConstantDistributionSingleValue
+init.lin.protocol inf
+init.lin.value 0
+
+init.bs SimpleBootstrap
+init.bs.protocol inf
+init.bs.message_count 20
+
+# you can change this to select the peak initializer instead
+include.init rnd lin bs
+
+control.info InfectionObserver
+control.info.protocol inf
+control.info.max 100
+control.info.slots 5
+control.info.step 25000
+
+control.stats Performance
+control.stats.name performance
+control.stats.at 500000
+
+distributed.sub stats
+
+#control.checkpointcoordinator CheckpointCoordinatorControl
+#control.checkpointcoordinator.at 5000
+#control.checkpointcoordinator.step 5000
+
+#control.checkpoint CheckpointControl
+
+#control.mo MemoryObserver
+#control.mo.step 100
+
+#control.s Stop
+#control.s.at 20000
+
+
+)
+7162 [ForkJoinPool-1-worker-2] DEBUG root  - Received publication: StartSimulation(10.48.211.165:7653:'dht,# PEERSIM Infection Example
+
+simulation.name infection
+
+distributed
+distributed.bundle.size 2000
+
+random.seed 1234567890
+
+network.size 40000
+
+protocol.lnk SimpleLink
+
+protocol.inf Infection
+protocol.inf.linkable lnk
+protocol.inf.degree 3
+protocol.inf.limit 100
+
+#init.rnd WireKOut
+init.rnd dips.example.SimpleWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+#init.peak example.aggregation.PeakDistributionInitializer
+#init.peak.value 5
+#init.peak.protocol inf
+
+init.lin ConstantDistributionSingleValue
+init.lin.protocol inf
+init.lin.value 0
+
+init.bs SimpleBootstrap
+init.bs.protocol inf
+init.bs.message_count 20
+
+# you can change this to select the peak initializer instead
+include.init rnd lin bs
+
+control.info InfectionObserver
+control.info.protocol inf
+control.info.max 100
+control.info.slots 5
+control.info.step 25000
+
+control.stats Performance
+control.stats.name performance
+control.stats.at 500000
+
+distributed.sub stats
+
+#control.checkpointcoordinator CheckpointCoordinatorControl
+#control.checkpointcoordinator.at 5000
+#control.checkpointcoordinator.step 5000
+
+#control.checkpoint CheckpointControl
+
+#control.mo MemoryObserver
+#control.mo.step 100
+
+#control.s Stop
+#control.s.at 20000
+
+
+)
+7162 [ForkJoinPool-1-worker-3] DEBUG root  - Starting Simulation
+Simulator: loading configuration
+ConfigProperties: Property '# PEERSIM Infection Example
+
+simulation.name infection
+
+distributed
+distributed.bundle.size 2000
+
+random.seed 1234567890
+
+network.size 40000
+
+protocol.lnk SimpleLink
+
+protocol.inf Infection
+protocol.inf.linkable lnk
+protocol.inf.degree 3
+protocol.inf.limit 100
+
+#init.rnd WireKOut
+init.rnd dips.example.SimpleWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+#init.peak example.aggregation.PeakDistributionInitializer
+#init.peak.value 5
+#init.peak.protocol inf
+
+init.lin ConstantDistributionSingleValue
+init.lin.protocol inf
+init.lin.value 0
+
+init.bs SimpleBootstrap
+init.bs.protocol inf
+init.bs.message_count 20
+
+# you can change this to select the peak initializer instead
+include.init rnd lin bs
+
+control.info InfectionObserver
+control.info.protocol inf
+control.info.max 100
+control.info.slots 5
+control.info.step 25000
+
+control.stats Performance
+control.stats.name performance
+control.stats.at 500000
+
+distributed.sub stats
+
+#control.checkpointcoordinator CheckpointCoordinatorControl
+#control.checkpointcoordinator.at 5000
+#control.checkpointcoordinator.step 5000
+
+#control.checkpoint CheckpointControl
+
+#control.mo MemoryObserver
+#control.mo.step 100
+
+#control.s Stop
+#control.s.at 20000
+
+
+' set.
+Simulator: starting experiment 0 invoking dips.dedsim.DEDSimulator
+
+
+
+7270 [ForkJoinPool-1-worker-1] DEBUG root  - Starting new experiment
+7271 [ForkJoinPool-1-worker-1] DEBUG root  - Creating network
+Random seed: 1234567890
+7272 [ForkJoinPool-1-worker-1] DEBUG root  - Reseting network
+7272 [ForkJoinPool-1-worker-1] DEBUG root  - --- Starting network reset
+7288 [ForkJoinPool-1-worker-1] DEBUG root  - --- Network size: 40000
+7288 [ForkJoinPool-1-worker-1] DEBUG root  - --- Creating prototype
+Network: no node defined, using GeneralNode
+7535 [ForkJoinPool-1-worker-1] DEBUG root  - --- Generating nodes
+8236 [ForkJoinPool-1-worker-1] DEBUG root  - --- Number of nodes created in this instance: 40000
+8237 [ForkJoinPool-1-worker-1] DEBUG root  - Running initializers
+- Running initializer init.rnd: class dips.example.SimpleWire
+- Running initializer init.lin: class dips.example.infection.ConstantDistributionSingleValue
+- Running initializer init.bs: class dips.example.SimpleBootstrap
+9111 [ForkJoinPool-1-worker-1] DEBUG root  - Loading controls
+- Loading control control.info: class dips.example.infection.InfectionObserver
+- Loading control control.stats: class dips.stats.Performance
+9134 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 0
+9160 [ForkJoinPool-1-worker-2] DEBUG root  - Received migration
+9245 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+9826 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 5000
+9983 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 10000
+10158 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 15000
+10303 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 20000
+10498 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 25000
+10504 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+10665 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 30000
+10813 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 35000
+10985 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 40000
+11136 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 45000
+11528 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 50000
+11534 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+11711 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 55000
+11838 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 60000
+11997 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 65000
+12156 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 70000
+12318 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 75000
+12335 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+12477 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 80000
+12631 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 85000
+12787 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 90000
+12922 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 95000
+13078 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 100000
+13085 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+13243 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 105000
+13403 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 110000
+13534 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 115000
+13698 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 120000
+13844 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 125000
+13876 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+14331 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 130000
+14453 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 135000
+14636 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 140000
+14773 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 145000
+14901 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 150000
+14917 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+15083 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 155000
+15219 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 160000
+15375 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 165000
+15504 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 170000
+15691 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 175000
+15709 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+15825 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 180000
+16000 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 185000
+16137 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 190000
+16296 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 195000
+16425 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 200000
+16454 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+16627 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 205000
+16770 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 210000
+16920 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 215000
+17051 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 220000
+17216 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 225000
+17240 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 100.00%%, 0.01%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+17371 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 230000
+17534 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 235000
+17663 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 240000
+17841 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 245000
+17977 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 250000
+17983 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 99.98%%, 0.03%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+18614 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 255000
+18773 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 260000
+18896 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 265000
+19110 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 270000
+19223 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 275000
+19229 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 99.94%%, 0.07%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+19375 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 280000
+19577 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 285000
+19710 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 290000
+19837 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 295000
+19977 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 300000
+19984 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 99.82%%, 0.18%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+20168 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 305000
+20293 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 310000
+20420 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 315000
+20613 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 320000
+20741 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 325000
+20770 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 99.65%%, 0.36%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+20883 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 330000
+21080 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 335000
+21213 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 340000
+21342 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 345000
+21555 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 350000
+21580 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 99.32%%, 0.68%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+21713 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 355000
+21840 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 360000
+22032 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 365000
+22163 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 370000
+22288 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 375000
+22295 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 98.80%%, 1.20%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+22495 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 380000
+22614 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 385000
+22743 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 390000
+22948 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 395000
+23057 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 400000
+23086 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 98.08%%, 1.93%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+23216 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 405000
+23417 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 410000
+23548 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 415000
+23665 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 420000
+23874 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 425000
+23898 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 97.10%%, 2.90%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+24029 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 430000
+24158 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 435000
+24954 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 440000
+25081 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 445000
+25212 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 450000
+25237 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 95.84%%, 4.16%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+25368 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 455000
+25539 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 460000
+25741 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 465000
+25871 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 470000
+26001 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 475000
+26030 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 94.20%%, 5.80%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+26157 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 480000
+26373 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 485000
+26500 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 490000
+26628 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 495000
+26781 [ForkJoinPool-1-worker-1] DEBUG root  - Processing message at 500000
+26792 [ForkJoinPool-1-worker-1] INFO root  - Infection propagation: 92.13%%, 7.87%%, 0.00%%, 0.00%%, 0.00%%, 0.00% dead
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Distributed simulation finished.
+26917 [ForkJoinPool-1-worker-3] DEBUG root  - message: Simulation has ended back to coordinator(dips.Coordinator@17ee8b8), reason: 'normal
