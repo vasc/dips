@@ -1,0 +1,44 @@
+- average.delay.global: 5653.0
+  average.delay.local: 5653.0
+  average.delay.remote: 0.0
+  bundle.size: 100
+  duration.total: 23370
+  idle.time.per.instance: 0.0
+  idle.time.total: 0
+  infection.degree: '3'
+  instance.count: 1
+  instances:
+  - {average.delay: '5653', average.delay.local: '5653', average.delay.remote: '0',
+    bundle.size: '100', duration: 23370, events.per.second: 4278.990158322636, final.time: '1317807901974',
+    idle.time: '0', infection.degree: '3', initial.time: '1317807878604', nodes.count: '1000000',
+    processed.events: '100000', processed.events.local: '100000', processed.events.remote: '0',
+    routing.method: round.robin}
+  network.size: 1000000
+  processed.events.per.second.per.instance: 4278.990158322636
+  processed.events.per.second.total: 4278.990158322636
+  processed.events.total: 100000
+  routing.method: round.robin
+  simulation.name: infection
+  test.type: performance
+- average.delay.global: 5615.0
+  average.delay.local: 5615.0
+  average.delay.remote: 0.0
+  bundle.size: 100
+  duration.total: !!python/long '23262'
+  idle.time.per.instance: 0.0
+  idle.time.total: !!python/long '0'
+  infection.degree: '3'
+  instance.count: 1
+  instances:
+  - {average.delay: '5615', average.delay.local: '5615', average.delay.remote: '0',
+    bundle.size: '100', duration: !!python/long '23262', events.per.second: 4298.85650416989,
+    final.time: '1317822145483', idle.time: '0', infection.degree: '3', initial.time: '1317822122221',
+    nodes.count: '1000000', processed.events: '100000', processed.events.local: '100000',
+    processed.events.remote: '0', routing.method: round.robin}
+  network.size: 1000000
+  processed.events.per.second.per.instance: 4298.85650416989
+  processed.events.per.second.total: 4298.85650416989
+  processed.events.total: 100000
+  routing.method: round.robin
+  simulation.name: infection
+  test.type: performance

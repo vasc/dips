@@ -1,0 +1,62 @@
+#!/bin/bash
+
+COUNT=$1
+AMI=ami-40053734
+
+
+
+PUB_DNS=`ec2-describe-instances | grep INSTANCE | awk '{print $4,$5}'`
+PUB_DNS_COUNT=`echo "$PUB_DNS" | grep ec2 | wc -l`
+
+SIMULATION_INSTANCES=`echo "$PUB_DNS" | grep ec2 | awk '{print $1}'`
+
+spoken=""
+
+for instance in $SIMULATION_INSTANCES
+do
+	spoken="$spoken:$instance"
+	if [[ ! -e /tmp/$instance.lock ]]
+	then
+		PRIV_DNS=`echo "$PUB_DNS" | grep "$instance" | awk '{print $2}'`
+
+		echo "$instance:$PRIV_DNS"
+		COUNT=`expr $COUNT - 1`
+	fi
+
+	if [ $COUNT -eq 0 ]
+	then
+		exit
+	fi
+done
+
+echo "Running $COUNT new instances..."
+ec2-run-instances $AMI  -k default-vaio -t m1.small -n $COUNT
+
+RUNNING_INSTANCE_COUNT=0
+
+while [ $RUNNING_INSTANCE_COUNT -lt $(($PUB_DNS_COUNT + $COUNT)) ]
+do
+	RUNNING_INSTANCE=`ec2-describe-instances | grep INSTANCE | awk '{print $4,$5}'`
+	RUNNING_INSTANCE_COUNT=`echo "$PUB_DNS" | grep ec2 | wc -l`
+done
+
+SIMULATION_INSTANCES=`echo "$PUB_DNS" | grep ec2 | awk '{print $1}'`
+
+for instance in $SIMULATION_INSTANCES
+do
+	is_spoken=`echo $spoken | grep $instance`
+	if [ $is_spoken ]
+	then
+		continue
+	fi
+
+	ssh -t ubuntu@$instance bash -c
+	echo $instance
+	COUNT=`expr $COUNT - 1`
+	
+	if [ $COUNT -eq 0 ]
+	then
+		exit
+	fi
+done
+

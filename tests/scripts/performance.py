@@ -30,7 +30,8 @@ def main():
 			'average.delay.local',
 			'nodes.count',
 			'bundle.size',
-			'routing.method'
+			'routing.method',
+			'infection.degree'
 	]
 
 	while True:
@@ -61,19 +62,23 @@ def main():
 	
 	results['network.size'] = sum_key(simulations, lambda x: int(x['nodes.count']))
 	results['routing.method'] = simulations[0]['routing.method']
-	results['bundle.size'] = simulations[0]['bundle.size']
+	results['bundle.size'] = int(simulations[0]['bundle.size'])
 	results['test.type'] = 'performance'
 	results['simulation.name'] = 'infection'
 	results['instance.count'] = len(simulations)
+	results['infection.degree'] = simulations[0]['infection.degree']
 
 	results['instances'] = simulations
 
-	filename = (results['test.type'] + '.' +
+	filename = ('results/' +
+				results['test.type'] + '.' +
 				results['simulation.name'] + '.' +
-				str(results['network.size']) + '.nodes.' +
-				results['bundle.size'] + '.bundle.' +
+				results['infection.degree'] + '.' + 'degree' +
+				("%07d" % results['network.size']) + '.nodes.' +
+				("%06d" % (results['processed.events.total']/results['instance.count'])) + '.events' +
+				("%05d" % results['bundle.size']) + '.bundle.' +
 				results['routing.method'] + '.' +
-				str(results['instance.count']) + '.instances.' +
+				("%s" % results['instance.count']) + '.instances.' +
 				'json')
 
 	if os.path.exists(filename):

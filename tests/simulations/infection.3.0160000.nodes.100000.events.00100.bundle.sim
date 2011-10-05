@@ -30,18 +30,21 @@ init.bs.message_count 20
 
 include.init rnd lin bs
 
+control.stats Performance
+control.stats.name performance
+control.stats.step 25000
+
 control.info InfectionObserver
 control.info.protocol inf
 control.info.max 100
 control.info.slots 5
 control.info.step 5000
+control.info.degree 3
 
-control.stats Performance
-control.stats.name performance
-control.stats.step 25000
+
 
 distributed.sub stats
 
 control.s Stop
-control.s.at 100000
+control.s.at 100001
 
