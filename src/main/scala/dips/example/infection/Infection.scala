@@ -4,16 +4,12 @@ import dips.core.DEDProtocol
 import dips.core.Linkable
 import dips.example.Bootstrapable
 import dips.simulation.DEDSimulator
+import dips.simulation.DistributedSimulation
 import peersim.config.Configuration
 import peersim.config.FastConfig
 import peersim.core.CommonState
 import peersim.core.Simulation
 import peersim.vector.SingleValueHolder
-import dips.core.DistributedNetwork
-import dips.util.Logger.log
-import dips.simulation.DistributedSimulation
-import dips.stats.Registry
-import dips.stats.Stats
 
 case object Increase
 
@@ -21,7 +17,7 @@ class Infection(prefix:String) extends SingleValueHolder(prefix) with DEDProtoco
   val degree = Configuration getInt prefix + ".degree"
   val limit = Configuration getInt prefix + ".limit"
   
-  Registry.get[Stats]("performance").save("infection.degree", degree)
+  
   
   def processEvent(node:Long, from:Long, pid:Int, event:Any): Unit = { 
     if(getValue < limit){

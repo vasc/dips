@@ -31,14 +31,14 @@ object Registry {
     r
   }
   
-  def controls = new HashMap[String, Control]()
+  val controls = new HashMap[String, Control]()
   
   def register(name:String, writter:Control){
     controls(name) = writter
   }
   
-  def get[T](name:String):T = {
-    controls.get(name).asInstanceOf[T]
+  def get[T](name:String):Option[T] = {
+    controls.get(name).asInstanceOf[Option[T]]
   }
 
 }

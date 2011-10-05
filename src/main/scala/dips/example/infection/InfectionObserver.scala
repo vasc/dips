@@ -5,6 +5,8 @@ import dips.util.Logger.log
 import peersim.config.Configuration
 import peersim.vector.SingleValue
 import scala.collection.mutable.StringBuilder
+import dips.stats.Registry
+import dips.stats.Stats
 
 class InfectionObserver(val prefix:String) extends DistributedControl{
   private val PAR_PROT = "protocol";
@@ -14,7 +16,15 @@ class InfectionObserver(val prefix:String) extends DistributedControl{
   val max = Configuration.getInt(prefix + "." + PAR_MAX);
   val slots = Configuration.getInt(prefix + "." + PAR_SLOTS);
   
+  var saved = false
+  
+  
   def execute() = {
+    if(!saved){
+      Registry.get[Stats]("performance").get.save("infection.degree", Configuration.getInt(prefix + ".degree"))
+      saved = true
+    }
+    
     val values = Array.fill(slots+1){0}
     val net_size = DistributedSimulation.network.size
     

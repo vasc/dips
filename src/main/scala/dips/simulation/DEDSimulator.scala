@@ -42,14 +42,14 @@ object DEDSimulator {
     
     log.debug("Creating network")    
     Simulation.network = new DistributedNetwork(dht)
-    
+        
     log.debug("Reseting network")
     Simulation.network.reset()
     CommonState.setTime(0)
     
     log.debug("Running initializers")
     runInitializers()
-    
+
     log.debug("Loading controls")
     loadControls()
     

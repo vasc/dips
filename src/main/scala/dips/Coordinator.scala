@@ -169,7 +169,7 @@ class Coordinator(val dht:DHT) extends Actor{
         	reason match{
         	  case UncaughtException(actor, message, sender, thread, cause) =>
         	    cause.printStackTrace()
-        	    System.exit(-1)
+        	    //System.exit(-1)
         	  case 'normal => System.exit(0)
         	}
           
