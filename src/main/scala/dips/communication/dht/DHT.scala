@@ -183,7 +183,7 @@ class DHT(var local_port:Int) extends PostOffice{
    * Internal method, handles routing events in the network
    */
   protected def routing_event(event: Routing): Unit = { 
-    log.debug("routing event: " + event)
+    //log.debug("routing event: " + event)
     
     event match{
       case Connect(uri:Uri, instance_time) => 
