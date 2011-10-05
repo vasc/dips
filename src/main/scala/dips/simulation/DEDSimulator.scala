@@ -105,13 +105,13 @@ object DEDSimulator {
       
     if ( runScheduledControlers() ) return false
     
-    if(dht.messages.isEmpty){
+    while(dht.messages.isEmpty){
       
       DistributedSimulation.start_idle()
       //log.debug("Waiting for messages...")
       dht.messages.synchronized{
         dht.request_messages()
-        dht.messages.wait()
+        dht.messages.wait(3000)
       }
       DistributedSimulation.end_idle()
     }
