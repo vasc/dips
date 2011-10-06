@@ -2,22 +2,23 @@
   average.delay.local: 19130.0
   average.delay.remote: 28859.0
   bundle.size: 1
-  duration.total: !!python/long '53095'
+  duration.total: 53095
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '19121', average.delay.local: '18803', average.delay.remote: '30052',
-    bundle.size: '1', duration: !!python/long '50666', events.per.second: 3947.4203607942213,
-    final.time: '1317821493179', idle.time: '0', infection.degree: '8', initial.time: '1317821442513',
-    nodes.count: '124682', processed.events: '200000', processed.events.local: '194357',
-    processed.events.remote: '5643', routing.method: round.robin}
+    bundle.size: '1', duration: 50666, events.per.second: 3947.4203607942213, final.time: '1317821493179',
+    idle.time: '0', infection.degree: '8', initial.time: '1317821442513', nodes.count: '124682',
+    processed.events: '200000', processed.events.local: '194357', processed.events.remote: '5643',
+    routing.method: round.robin}
   - {average.delay: '19970', average.delay.local: '19457', average.delay.remote: '27666',
-    bundle.size: '1', duration: !!python/long '52126', events.per.second: 3836.856846871043,
-    final.time: '1317821495608', idle.time: '0', infection.degree: '8', initial.time: '1317821443482',
-    nodes.count: '125318', processed.events: '200000', processed.events.local: '187490',
-    processed.events.remote: '12510', routing.method: round.robin}
+    bundle.size: '1', duration: 52126, events.per.second: 3836.856846871043, final.time: '1317821495608',
+    idle.time: '0', infection.degree: '8', initial.time: '1317821443482', nodes.count: '125318',
+    processed.events: '200000', processed.events.local: '187490', processed.events.remote: '12510',
+    routing.method: round.robin}
   network.size: 250000
   processed.events.per.second.per.instance: 3892.1386038326323
   processed.events.per.second.total: 7533.666070251436

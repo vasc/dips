@@ -2,22 +2,23 @@
   average.delay.local: 4026.5
   average.delay.remote: 4225.0
   bundle.size: 1000
-  duration.total: !!python/long '14400'
+  duration.total: 14400
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '3622', average.delay.local: '3548', average.delay.remote: '3713',
-    bundle.size: '1000', duration: !!python/long '13250', events.per.second: 7547.169811320755,
-    final.time: '1317833416954', idle.time: '0', infection.degree: '3', initial.time: '1317833403704',
-    nodes.count: '79753', processed.events: '100000', processed.events.local: '55000',
-    processed.events.remote: '45000', routing.method: round.robin}
+    bundle.size: '1000', duration: 13250, events.per.second: 7547.169811320755, final.time: '1317833416954',
+    idle.time: '0', infection.degree: '3', initial.time: '1317833403704', nodes.count: '79753',
+    processed.events: '100000', processed.events.local: '55000', processed.events.remote: '45000',
+    routing.method: round.robin}
   - {average.delay: '4630', average.delay.local: '4505', average.delay.remote: '4737',
-    bundle.size: '1000', duration: !!python/long '13870', events.per.second: 7209.805335255948,
-    final.time: '1317833418104', idle.time: '0', infection.degree: '3', initial.time: '1317833404234',
-    nodes.count: '80247', processed.events: '100000', processed.events.local: '46000',
-    processed.events.remote: '54000', routing.method: round.robin}
+    bundle.size: '1000', duration: 13870, events.per.second: 7209.805335255948, final.time: '1317833418104',
+    idle.time: '0', infection.degree: '3', initial.time: '1317833404234', nodes.count: '80247',
+    processed.events: '100000', processed.events.local: '46000', processed.events.remote: '54000',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 7378.487573288352
   processed.events.per.second.total: 13888.888888888889

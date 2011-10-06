@@ -2,22 +2,23 @@
   average.delay.local: 3741.5
   average.delay.remote: 3802.5
   bundle.size: 1000
-  duration.total: !!python/long '13282'
+  duration.total: 13282
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '3304', average.delay.local: '3327', average.delay.remote: '3276',
-    bundle.size: '1000', duration: !!python/long '12238', events.per.second: 8171.269815329302,
-    final.time: '1317822992367', idle.time: '0', infection.degree: '3', initial.time: '1317822980129',
-    nodes.count: '40034', processed.events: '100000', processed.events.local: '54580',
-    processed.events.remote: '45420', routing.method: round.robin}
+    bundle.size: '1000', duration: 12238, events.per.second: 8171.269815329302, final.time: '1317822992367',
+    idle.time: '0', infection.degree: '3', initial.time: '1317822980129', nodes.count: '40034',
+    processed.events: '100000', processed.events.local: '54580', processed.events.remote: '45420',
+    routing.method: round.robin}
   - {average.delay: '4248', average.delay.local: '4156', average.delay.remote: '4329',
-    bundle.size: '1000', duration: !!python/long '12845', events.per.second: 7785.130400934216,
-    final.time: '1317822993411', idle.time: '0', infection.degree: '3', initial.time: '1317822980566',
-    nodes.count: '39966', processed.events: '100000', processed.events.local: '46763',
-    processed.events.remote: '53237', routing.method: round.robin}
+    bundle.size: '1000', duration: 12845, events.per.second: 7785.130400934216, final.time: '1317822993411',
+    idle.time: '0', infection.degree: '3', initial.time: '1317822980566', nodes.count: '39966',
+    processed.events: '100000', processed.events.local: '46763', processed.events.remote: '53237',
+    routing.method: round.robin}
   network.size: 80000
   processed.events.per.second.per.instance: 7978.200108131759
   processed.events.per.second.total: 15057.97319680771

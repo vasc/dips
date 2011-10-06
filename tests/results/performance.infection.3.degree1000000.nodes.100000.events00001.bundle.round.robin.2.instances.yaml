@@ -2,22 +2,23 @@
   average.delay.local: 4708.0
   average.delay.remote: 11395.0
   bundle.size: 1
-  duration.total: !!python/long '30228'
+  duration.total: 30228
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '5447', average.delay.local: '4819', average.delay.remote: '10631',
-    bundle.size: '1', duration: !!python/long '30228', events.per.second: 3308.191081116845,
-    final.time: '1317823346460', idle.time: '0', infection.degree: '3', initial.time: '1317823316232',
-    nodes.count: '499406', processed.events: '100000', processed.events.local: '89201',
-    processed.events.remote: '10799', routing.method: round.robin}
+    bundle.size: '1', duration: 30228, events.per.second: 3308.191081116845, final.time: '1317823346460',
+    idle.time: '0', infection.degree: '3', initial.time: '1317823316232', nodes.count: '499406',
+    processed.events: '100000', processed.events.local: '89201', processed.events.remote: '10799',
+    routing.method: round.robin}
   - {average.delay: '5324', average.delay.local: '4597', average.delay.remote: '12159',
-    bundle.size: '1', duration: !!python/long '29353', events.per.second: 3406.8067999863724,
-    final.time: '1317823345898', idle.time: '0', infection.degree: '3', initial.time: '1317823316545',
-    nodes.count: '500594', processed.events: '100000', processed.events.local: '90385',
-    processed.events.remote: '9615', routing.method: round.robin}
+    bundle.size: '1', duration: 29353, events.per.second: 3406.8067999863724, final.time: '1317823345898',
+    idle.time: '0', infection.degree: '3', initial.time: '1317823316545', nodes.count: '500594',
+    processed.events: '100000', processed.events.local: '90385', processed.events.remote: '9615',
+    routing.method: round.robin}
   network.size: 1000000
   processed.events.per.second.per.instance: 3357.498940551609
   processed.events.per.second.total: 6616.38216223369

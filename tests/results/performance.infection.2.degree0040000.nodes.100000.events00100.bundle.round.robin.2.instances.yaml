@@ -2,22 +2,23 @@
   average.delay.local: 1555.5
   average.delay.remote: 1653.5
   bundle.size: 100
-  duration.total: !!python/long '7169'
+  duration.total: 7169
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '2'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '1760', average.delay.local: '2066', average.delay.remote: '1509',
-    bundle.size: '100', duration: !!python/long '7147', events.per.second: 13991.884706870014,
-    final.time: '1317821912010', idle.time: '0', infection.degree: '2', initial.time: '1317821904863',
-    nodes.count: '19969', processed.events: '100000', processed.events.local: '45112',
-    processed.events.remote: '54888', routing.method: round.robin}
+    bundle.size: '100', duration: 7147, events.per.second: 13991.884706870014, final.time: '1317821912010',
+    idle.time: '0', infection.degree: '2', initial.time: '1317821904863', nodes.count: '19969',
+    processed.events: '100000', processed.events.local: '45112', processed.events.remote: '54888',
+    routing.method: round.robin}
   - {average.delay: '1384', average.delay.local: '1045', average.delay.remote: '1798',
-    bundle.size: '100', duration: !!python/long '6858', events.per.second: 14581.51064450277,
-    final.time: '1317821911699', idle.time: '0', infection.degree: '2', initial.time: '1317821904841',
-    nodes.count: '20031', processed.events: '100000', processed.events.local: '54993',
-    processed.events.remote: '45007', routing.method: round.robin}
+    bundle.size: '100', duration: 6858, events.per.second: 14581.51064450277, final.time: '1317821911699',
+    idle.time: '0', infection.degree: '2', initial.time: '1317821904841', nodes.count: '20031',
+    processed.events: '100000', processed.events.local: '54993', processed.events.remote: '45007',
+    routing.method: round.robin}
   network.size: 40000
   processed.events.per.second.per.instance: 14286.697675686391
   processed.events.per.second.total: 27897.89370902497

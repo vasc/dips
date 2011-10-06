@@ -2,22 +2,23 @@
   average.delay.local: 1114.5
   average.delay.remote: 15315.0
   bundle.size: 1
-  duration.total: !!python/long '76380'
+  duration.total: 76380
   idle.time.per.instance: 11212810569.5
   idle.time.total: 22425621139
   infection.degree: '2'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '2006', average.delay.local: '1001', average.delay.remote: '14086',
-    bundle.size: '1', duration: !!python/long '76380', events.per.second: 1309.2432573972244,
-    final.time: '1317819886349', idle.time: '22425621139', infection.degree: '2',
-    initial.time: '1317819809969', nodes.count: '999567', processed.events: '100000',
-    processed.events.local: '92320', processed.events.remote: '7680', routing.method: round.robin}
+    bundle.size: '1', duration: 76380, events.per.second: 1309.2432573972244, final.time: '1317819886349',
+    idle.time: '22425621139', infection.degree: '2', initial.time: '1317819809969',
+    nodes.count: '999567', processed.events: '100000', processed.events.local: '92320',
+    processed.events.remote: '7680', routing.method: round.robin}
   - {average.delay: '2799', average.delay.local: '1228', average.delay.remote: '16544',
-    bundle.size: '1', duration: !!python/long '66537', events.per.second: 1127.192389196988,
-    final.time: '1317819882791', idle.time: '0', infection.degree: '2', initial.time: '1317819816254',
-    nodes.count: '1000433', processed.events: '75000', processed.events.local: '67308',
-    processed.events.remote: '7692', routing.method: round.robin}
+    bundle.size: '1', duration: 66537, events.per.second: 1127.192389196988, final.time: '1317819882791',
+    idle.time: '0', infection.degree: '2', initial.time: '1317819816254', nodes.count: '1000433',
+    processed.events: '75000', processed.events.local: '67308', processed.events.remote: '7692',
+    routing.method: round.robin}
   network.size: 2000000
   processed.events.per.second.per.instance: 1218.2178232971062
   processed.events.per.second.total: 2291.175700445143

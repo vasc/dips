@@ -2,22 +2,23 @@
   average.delay.local: 22586.5
   average.delay.remote: 22953.0
   bundle.size: 1000
-  duration.total: !!python/long '53494'
+  duration.total: 53494
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '22555', average.delay.local: '22859', average.delay.remote: '22257',
-    bundle.size: '1000', duration: !!python/long '52691', events.per.second: 3795.714638173502,
-    final.time: '1317822369275', idle.time: '0', infection.degree: '8', initial.time: '1317822316584',
-    nodes.count: '19969', processed.events: '200000', processed.events.local: '99000',
-    processed.events.remote: '101000', routing.method: round.robin}
+    bundle.size: '1000', duration: 52691, events.per.second: 3795.714638173502, final.time: '1317822369275',
+    idle.time: '0', infection.degree: '8', initial.time: '1317822316584', nodes.count: '19969',
+    processed.events: '200000', processed.events.local: '99000', processed.events.remote: '101000',
+    routing.method: round.robin}
   - {average.delay: '22968', average.delay.local: '22314', average.delay.remote: '23649',
-    bundle.size: '1000', duration: !!python/long '53285', events.per.second: 3753.401520127616,
-    final.time: '1317822370078', idle.time: '0', infection.degree: '8', initial.time: '1317822316793',
-    nodes.count: '20031', processed.events: '200000', processed.events.local: '102000',
-    processed.events.remote: '98000', routing.method: round.robin}
+    bundle.size: '1000', duration: 53285, events.per.second: 3753.401520127616, final.time: '1317822370078',
+    idle.time: '0', infection.degree: '8', initial.time: '1317822316793', nodes.count: '20031',
+    processed.events: '200000', processed.events.local: '102000', processed.events.remote: '98000',
+    routing.method: round.robin}
   network.size: 40000
   processed.events.per.second.per.instance: 3774.558079150559
   processed.events.per.second.total: 7477.474109245897

@@ -2,22 +2,23 @@
   average.delay.local: 15613.5
   average.delay.remote: 16731.5
   bundle.size: 100
-  duration.total: !!python/long '38811'
+  duration.total: 38811
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '16476', average.delay.local: '17519', average.delay.remote: '15672',
-    bundle.size: '100', duration: !!python/long '38641', events.per.second: 5175.849486296938,
-    final.time: '1317822658480', idle.time: '0', infection.degree: '8', initial.time: '1317822619839',
-    nodes.count: '124682', processed.events: '200000', processed.events.local: '87100',
-    processed.events.remote: '112900', routing.method: round.robin}
+    bundle.size: '100', duration: 38641, events.per.second: 5175.849486296938, final.time: '1317822658480',
+    idle.time: '0', infection.degree: '8', initial.time: '1317822619839', nodes.count: '124682',
+    processed.events: '200000', processed.events.local: '87100', processed.events.remote: '112900',
+    routing.method: round.robin}
   - {average.delay: '15461', average.delay.local: '13708', average.delay.remote: '17791',
-    bundle.size: '100', duration: !!python/long '38049', events.per.second: 5256.379931141423,
-    final.time: '1317822657718', idle.time: '0', infection.degree: '8', initial.time: '1317822619669',
-    nodes.count: '125318', processed.events: '200000', processed.events.local: '114100',
-    processed.events.remote: '85900', routing.method: round.robin}
+    bundle.size: '100', duration: 38049, events.per.second: 5256.379931141423, final.time: '1317822657718',
+    idle.time: '0', infection.degree: '8', initial.time: '1317822619669', nodes.count: '125318',
+    processed.events: '200000', processed.events.local: '114100', processed.events.remote: '85900',
+    routing.method: round.robin}
   network.size: 250000
   processed.events.per.second.per.instance: 5216.11470871918
   processed.events.per.second.total: 10306.356445337662

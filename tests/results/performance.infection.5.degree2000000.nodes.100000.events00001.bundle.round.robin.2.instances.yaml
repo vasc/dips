@@ -7,6 +7,7 @@
   idle.time.total: 0
   infection.degree: '5'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '11477', average.delay.local: '8792', average.delay.remote: '37080',
     bundle.size: '1', duration: 75029, events.per.second: 1332.8179770488746, final.time: '1317808472506',
@@ -29,22 +30,23 @@
   average.delay.local: 11354.5
   average.delay.remote: 25329.0
   bundle.size: 1
-  duration.total: !!python/long '89152'
+  duration.total: 89152
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '5'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '16227', average.delay.local: '13035', average.delay.remote: '34085',
-    bundle.size: '1', duration: !!python/long '85231', events.per.second: 1173.28202179958,
-    final.time: '1317833271050', idle.time: '0', infection.degree: '5', initial.time: '1317833185819',
-    nodes.count: '999567', processed.events: '100000', processed.events.local: '84840',
-    processed.events.remote: '15160', routing.method: round.robin}
+    bundle.size: '1', duration: 85231, events.per.second: 1173.28202179958, final.time: '1317833271050',
+    idle.time: '0', infection.degree: '5', initial.time: '1317833185819', nodes.count: '999567',
+    processed.events: '100000', processed.events.local: '84840', processed.events.remote: '15160',
+    routing.method: round.robin}
   - {average.delay: '9680', average.delay.local: '9674', average.delay.remote: '16573',
-    bundle.size: '1', duration: !!python/long '75073', events.per.second: 1332.0368174976359,
-    final.time: '1317833256971', idle.time: '0', infection.degree: '5', initial.time: '1317833181898',
-    nodes.count: '1000433', processed.events: '100000', processed.events.local: '99916',
-    processed.events.remote: '84', routing.method: round.robin}
+    bundle.size: '1', duration: 75073, events.per.second: 1332.0368174976359, final.time: '1317833256971',
+    idle.time: '0', infection.degree: '5', initial.time: '1317833181898', nodes.count: '1000433',
+    processed.events: '100000', processed.events.local: '99916', processed.events.remote: '84',
+    routing.method: round.robin}
   network.size: 2000000
   processed.events.per.second.per.instance: 1252.659419648608
   processed.events.per.second.total: 2243.359655419957

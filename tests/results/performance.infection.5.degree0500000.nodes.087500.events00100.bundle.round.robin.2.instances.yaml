@@ -2,22 +2,23 @@
   average.delay.local: 5901.0
   average.delay.remote: 7297.5
   bundle.size: 100
-  duration.total: !!python/long '18691'
+  duration.total: 18691
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '5'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '4330', average.delay.local: '3485', average.delay.remote: '7175',
-    bundle.size: '100', duration: !!python/long '16396', events.per.second: 6099.048548426445,
-    final.time: '1317827091360', idle.time: '0', infection.degree: '5', initial.time: '1317827074964',
-    nodes.count: '249756', processed.events: '100000', processed.events.local: '77100',
-    processed.events.remote: '22900', routing.method: round.robin}
+    bundle.size: '100', duration: 16396, events.per.second: 6099.048548426445, final.time: '1317827091360',
+    idle.time: '0', infection.degree: '5', initial.time: '1317827074964', nodes.count: '249756',
+    processed.events: '100000', processed.events.local: '77100', processed.events.remote: '22900',
+    routing.method: round.robin}
   - {average.delay: '7627', average.delay.local: '8317', average.delay.remote: '7420',
-    bundle.size: '100', duration: !!python/long '18053', events.per.second: 4154.434166066581,
-    final.time: '1317827093655', idle.time: '0', infection.degree: '5', initial.time: '1317827075602',
-    nodes.count: '250244', processed.events: '75000', processed.events.local: '9900',
-    processed.events.remote: '76858', routing.method: round.robin}
+    bundle.size: '100', duration: 18053, events.per.second: 4154.434166066581, final.time: '1317827093655',
+    idle.time: '0', infection.degree: '5', initial.time: '1317827075602', nodes.count: '250244',
+    processed.events: '75000', processed.events.local: '9900', processed.events.remote: '76858',
+    routing.method: round.robin}
   network.size: 500000
   processed.events.per.second.per.instance: 5126.741357246514
   processed.events.per.second.total: 9362.794928040234

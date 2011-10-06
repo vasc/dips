@@ -7,6 +7,7 @@
   idle.time.total: 0
   infection.degree: '2'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '2581', average.delay.local: '2825', average.delay.remote: '2338',
     bundle.size: '100', duration: 16160, events.per.second: 6188.118811881188, final.time: '1317807089670',
@@ -29,20 +30,21 @@
   average.delay.local: 3001.0
   average.delay.remote: 3167.5
   bundle.size: 100
-  duration.total: !!python/long '19839'
+  duration.total: 19839
   idle.time.per.instance: 1673818996.0
   idle.time.total: 3347637992
   infection.degree: '2'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '4486', average.delay.local: '5187', average.delay.remote: '4138',
-    bundle.size: '100', duration: !!python/long '18946', events.per.second: 5278.158978148422,
-    final.time: '1317831874201', idle.time: '0', infection.degree: '2', initial.time: '1317831855255',
-    nodes.count: '499406', processed.events: '100000', processed.events.local: '33200',
-    processed.events.remote: '66800', routing.method: round.robin}
+    bundle.size: '100', duration: 18946, events.per.second: 5278.158978148422, final.time: '1317831874201',
+    idle.time: '0', infection.degree: '2', initial.time: '1317831855255', nodes.count: '499406',
+    processed.events: '100000', processed.events.local: '33200', processed.events.remote: '66800',
+    routing.method: round.robin}
   - {average.delay: '1259', average.delay.local: '815', average.delay.remote: '2197',
-    bundle.size: '100', duration: !!python/long '17076', events.per.second: 5856.172405715624,
-    final.time: '1317831871438', idle.time: '3347637992', infection.degree: '2', initial.time: '1317831854362',
+    bundle.size: '100', duration: 17076, events.per.second: 5856.172405715624, final.time: '1317831871438',
+    idle.time: '3347637992', infection.degree: '2', initial.time: '1317831854362',
     nodes.count: '500594', processed.events: '100000', processed.events.local: '67885',
     processed.events.remote: '32115', routing.method: round.robin}
   network.size: 1000000

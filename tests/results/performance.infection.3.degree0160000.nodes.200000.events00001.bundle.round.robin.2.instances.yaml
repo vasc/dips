@@ -2,22 +2,23 @@
   average.delay.local: 4553.5
   average.delay.remote: 12719.0
   bundle.size: 1
-  duration.total: !!python/long '26979'
+  duration.total: 26979
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '5434', average.delay.local: '4889', average.delay.remote: '12937',
-    bundle.size: '1', duration: !!python/long '26979', events.per.second: 7413.173208792024,
-    final.time: '1317821967292', idle.time: '0', infection.degree: '3', initial.time: '1317821940313',
-    nodes.count: '80247', processed.events: '200000', processed.events.local: '186469',
-    processed.events.remote: '13531', routing.method: round.robin}
+    bundle.size: '1', duration: 26979, events.per.second: 7413.173208792024, final.time: '1317821967292',
+    idle.time: '0', infection.degree: '3', initial.time: '1317821940313', nodes.count: '80247',
+    processed.events: '200000', processed.events.local: '186469', processed.events.remote: '13531',
+    routing.method: round.robin}
   - {average.delay: '4618', average.delay.local: '4218', average.delay.remote: '12501',
-    bundle.size: '1', duration: !!python/long '25462', events.per.second: 7854.842510407667,
-    final.time: '1317821966002', idle.time: '0', infection.degree: '3', initial.time: '1317821940540',
-    nodes.count: '79753', processed.events: '200000', processed.events.local: '190335',
-    processed.events.remote: '9665', routing.method: round.robin}
+    bundle.size: '1', duration: 25462, events.per.second: 7854.842510407667, final.time: '1317821966002',
+    idle.time: '0', infection.degree: '3', initial.time: '1317821940540', nodes.count: '79753',
+    processed.events: '200000', processed.events.local: '190335', processed.events.remote: '9665',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 7634.007859599846
   processed.events.per.second.total: 14826.346417584047

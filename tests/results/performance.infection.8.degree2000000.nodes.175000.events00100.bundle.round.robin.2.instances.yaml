@@ -2,22 +2,23 @@
   average.delay.local: 40100.0
   average.delay.remote: 54371.0
   bundle.size: 100
-  duration.total: !!python/long '160923'
+  duration.total: 160923
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '52052', average.delay.local: '41707', average.delay.remote: '67125',
-    bundle.size: '100', duration: !!python/long '160923', events.per.second: 1242.8304220030698,
-    final.time: '1317813424653', idle.time: '0', infection.degree: '8', initial.time: '1317813263730',
-    nodes.count: '999567', processed.events: '200000', processed.events.local: '118600',
-    processed.events.remote: '81400', routing.method: round.robin}
+    bundle.size: '100', duration: 160923, events.per.second: 1242.8304220030698, final.time: '1317813424653',
+    idle.time: '0', infection.degree: '8', initial.time: '1317813263730', nodes.count: '999567',
+    processed.events: '200000', processed.events.local: '118600', processed.events.remote: '81400',
+    routing.method: round.robin}
   - {average.delay: '39949', average.delay.local: '38493', average.delay.remote: '41617',
-    bundle.size: '100', duration: !!python/long '137956', events.per.second: 1087.3031981211402,
-    final.time: '1317813405766', idle.time: '0', infection.degree: '8', initial.time: '1317813267810',
-    nodes.count: '1000433', processed.events: '150000', processed.events.local: '80104',
-    processed.events.remote: '69896', routing.method: round.robin}
+    bundle.size: '100', duration: 137956, events.per.second: 1087.3031981211402, final.time: '1317813405766',
+    idle.time: '0', infection.degree: '8', initial.time: '1317813267810', nodes.count: '1000433',
+    processed.events: '150000', processed.events.local: '80104', processed.events.remote: '69896',
+    routing.method: round.robin}
   network.size: 2000000
   processed.events.per.second.per.instance: 1165.066810062105
   processed.events.per.second.total: 2174.953238505372

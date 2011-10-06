@@ -2,22 +2,23 @@
   average.delay.local: 7842.0
   average.delay.remote: 9296.5
   bundle.size: 100
-  duration.total: !!python/long '19240'
+  duration.total: 19240
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '7092', average.delay.local: '5939', average.delay.remote: '10684',
-    bundle.size: '100', duration: !!python/long '19240', events.per.second: 5197.505197505198,
-    final.time: '1317831961496', idle.time: '0', infection.degree: '8', initial.time: '1317831942256',
-    nodes.count: '79753', processed.events: '100000', processed.events.local: '75700',
-    processed.events.remote: '24300', routing.method: round.robin}
+    bundle.size: '100', duration: 19240, events.per.second: 5197.505197505198, final.time: '1317831961496',
+    idle.time: '0', infection.degree: '8', initial.time: '1317831942256', nodes.count: '79753',
+    processed.events: '100000', processed.events.local: '75700', processed.events.remote: '24300',
+    routing.method: round.robin}
   - {average.delay: '8220', average.delay.local: '9745', average.delay.remote: '7909',
-    bundle.size: '100', duration: !!python/long '17431', events.per.second: 4302.679134874648,
-    final.time: '1317831960464', idle.time: '0', infection.degree: '8', initial.time: '1317831943033',
-    nodes.count: '80247', processed.events: '75000', processed.events.local: '12700',
-    processed.events.remote: '62300', routing.method: round.robin}
+    bundle.size: '100', duration: 17431, events.per.second: 4302.679134874648, final.time: '1317831960464',
+    idle.time: '0', infection.degree: '8', initial.time: '1317831943033', nodes.count: '80247',
+    processed.events: '75000', processed.events.local: '12700', processed.events.remote: '62300',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 4750.092166189923
   processed.events.per.second.total: 9095.634095634096

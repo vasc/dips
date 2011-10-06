@@ -2,22 +2,23 @@
   average.delay.local: 2921.0
   average.delay.remote: 3035.0
   bundle.size: 100
-  duration.total: !!python/long '10869'
+  duration.total: 10869
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '2541', average.delay.local: '2448', average.delay.remote: '2650',
-    bundle.size: '100', duration: !!python/long '9993', events.per.second: 10007.004903432402,
-    final.time: '1317826546858', idle.time: '0', infection.degree: '3', initial.time: '1317826536865',
-    nodes.count: '79753', processed.events: '100000', processed.events.local: '54202',
-    processed.events.remote: '45798', routing.method: round.robin}
+    bundle.size: '100', duration: 9993, events.per.second: 10007.004903432402, final.time: '1317826546858',
+    idle.time: '0', infection.degree: '3', initial.time: '1317826536865', nodes.count: '79753',
+    processed.events: '100000', processed.events.local: '54202', processed.events.remote: '45798',
+    routing.method: round.robin}
   - {average.delay: '3408', average.delay.local: '3394', average.delay.remote: '3420',
-    bundle.size: '100', duration: !!python/long '10392', events.per.second: 9622.78675904542,
-    final.time: '1317826547734', idle.time: '0', infection.degree: '3', initial.time: '1317826537342',
-    nodes.count: '80247', processed.events: '100000', processed.events.local: '46300',
-    processed.events.remote: '53700', routing.method: round.robin}
+    bundle.size: '100', duration: 10392, events.per.second: 9622.78675904542, final.time: '1317826547734',
+    idle.time: '0', infection.degree: '3', initial.time: '1317826537342', nodes.count: '80247',
+    processed.events: '100000', processed.events.local: '46300', processed.events.remote: '53700',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 9814.895831238911
   processed.events.per.second.total: 18400.95684975619

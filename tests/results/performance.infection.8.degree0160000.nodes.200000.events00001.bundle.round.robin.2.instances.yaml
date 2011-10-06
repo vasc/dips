@@ -2,22 +2,23 @@
   average.delay.local: 18773.5
   average.delay.remote: 25216.0
   bundle.size: 1
-  duration.total: !!python/long '51481'
+  duration.total: 51481
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '19229', average.delay.local: '18925', average.delay.remote: '25689',
-    bundle.size: '1', duration: !!python/long '50942', events.per.second: 3926.033528326332,
-    final.time: '1317825118982', idle.time: '0', infection.degree: '8', initial.time: '1317825068040',
-    nodes.count: '80247', processed.events: '200000', processed.events.local: '191000',
-    processed.events.remote: '9000', routing.method: round.robin}
+    bundle.size: '1', duration: 50942, events.per.second: 3926.033528326332, final.time: '1317825118982',
+    idle.time: '0', infection.degree: '8', initial.time: '1317825068040', nodes.count: '80247',
+    processed.events: '200000', processed.events.local: '191000', processed.events.remote: '9000',
+    routing.method: round.robin}
   - {average.delay: '18855', average.delay.local: '18622', average.delay.remote: '24743',
-    bundle.size: '1', duration: !!python/long '51028', events.per.second: 3919.4167907815317,
-    final.time: '1317825119521', idle.time: '0', infection.degree: '8', initial.time: '1317825068493',
-    nodes.count: '79753', processed.events: '200000', processed.events.local: '192395',
-    processed.events.remote: '7605', routing.method: round.robin}
+    bundle.size: '1', duration: 51028, events.per.second: 3919.4167907815317, final.time: '1317825119521',
+    idle.time: '0', infection.degree: '8', initial.time: '1317825068493', nodes.count: '79753',
+    processed.events: '200000', processed.events.local: '192395', processed.events.remote: '7605',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 3922.725159553932
   processed.events.per.second.total: 7769.856840387715

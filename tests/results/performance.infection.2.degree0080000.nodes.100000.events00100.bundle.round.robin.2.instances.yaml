@@ -2,22 +2,23 @@
   average.delay.local: 1544.0
   average.delay.remote: 1747.0
   bundle.size: 100
-  duration.total: !!python/long '7430'
+  duration.total: 7430
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '2'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '1753', average.delay.local: '1909', average.delay.remote: '1623',
-    bundle.size: '100', duration: !!python/long '7344', events.per.second: 13616.557734204793,
-    final.time: '1317825151871', idle.time: '0', infection.degree: '2', initial.time: '1317825144527',
-    nodes.count: '40034', processed.events: '100000', processed.events.local: '45335',
-    processed.events.remote: '54665', routing.method: round.robin}
+    bundle.size: '100', duration: 7344, events.per.second: 13616.557734204793, final.time: '1317825151871',
+    idle.time: '0', infection.degree: '2', initial.time: '1317825144527', nodes.count: '40034',
+    processed.events: '100000', processed.events.local: '45335', processed.events.remote: '54665',
+    routing.method: round.robin}
   - {average.delay: '1489', average.delay.local: '1179', average.delay.remote: '1871',
-    bundle.size: '100', duration: !!python/long '7395', events.per.second: 13522.65043948614,
-    final.time: '1317825151836', idle.time: '0', infection.degree: '2', initial.time: '1317825144441',
-    nodes.count: '39966', processed.events: '100000', processed.events.local: '55200',
-    processed.events.remote: '44800', routing.method: round.robin}
+    bundle.size: '100', duration: 7395, events.per.second: 13522.65043948614, final.time: '1317825151836',
+    idle.time: '0', infection.degree: '2', initial.time: '1317825144441', nodes.count: '39966',
+    processed.events: '100000', processed.events.local: '55200', processed.events.remote: '44800',
+    routing.method: round.robin}
   network.size: 80000
   processed.events.per.second.per.instance: 13569.604086845466
   processed.events.per.second.total: 26917.900403768508

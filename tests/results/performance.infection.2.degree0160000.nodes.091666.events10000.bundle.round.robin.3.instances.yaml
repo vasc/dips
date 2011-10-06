@@ -2,24 +2,25 @@
   average.delay.local: 8633.666666666666
   average.delay.remote: 13476.666666666666
   bundle.size: 10000
-  duration.total: !!python/long '48239'
+  duration.total: 48239
   idle.time.per.instance: 476065064.6666667
-  idle.time.total: !!python/long '1428195194'
+  idle.time.total: 1428195194
   infection.degree: '2'
   instance.count: 3
+  instance.type: m1.small
   instances:
   - {average.delay: '10177', average.delay.local: '7755', average.delay.remote: '11956',
-    bundle.size: '10000', duration: !!python/long '46227', events.per.second: 2163.23793454042,
-    final.time: '1317839172355', idle.time: '523480975', infection.degree: '2', initial.time: '1317839126128',
+    bundle.size: '10000', duration: 46227, events.per.second: 2163.23793454042, final.time: '1317839172355',
+    idle.time: '523480975', infection.degree: '2', initial.time: '1317839126128',
     nodes.count: '53333', processed.events: '100000', processed.events.local: '42351',
     processed.events.remote: '57649', routing.method: round.robin}
   - {average.delay: '11267', average.delay.local: '7545', average.delay.remote: '13705',
-    bundle.size: '10000', duration: !!python/long '48004', events.per.second: 2083.1597366886094,
+    bundle.size: '10000', duration: 48004, events.per.second: 2083.1597366886094,
     final.time: '1317839174367', idle.time: '803795423', infection.degree: '2', initial.time: '1317839126363',
     nodes.count: '53111', processed.events: '100000', processed.events.local: '39577',
     processed.events.remote: '60423', routing.method: round.robin}
   - {average.delay: '13335', average.delay.local: '10601', average.delay.remote: '14769',
-    bundle.size: '10000', duration: !!python/long '43158', events.per.second: 1737.8006395106354,
+    bundle.size: '10000', duration: 43158, events.per.second: 1737.8006395106354,
     final.time: '1317839170578', idle.time: '100918796', infection.degree: '2', initial.time: '1317839127420',
     nodes.count: '53556', processed.events: '75000', processed.events.local: '25815',
     processed.events.remote: '49185', routing.method: round.robin}

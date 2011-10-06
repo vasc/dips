@@ -2,22 +2,23 @@
   average.delay.local: 23492.0
   average.delay.remote: 23776.5
   bundle.size: 1000
-  duration.total: !!python/long '56403'
+  duration.total: 56403
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '23543', average.delay.local: '23006', average.delay.remote: '24101',
-    bundle.size: '1000', duration: !!python/long '56403', events.per.second: 3545.9106785100084,
-    final.time: '1317816002169', idle.time: '0', infection.degree: '8', initial.time: '1317815945766',
-    nodes.count: '124682', processed.events: '200000', processed.events.local: '102000',
-    processed.events.remote: '98000', routing.method: round.robin}
+    bundle.size: '1000', duration: 56403, events.per.second: 3545.9106785100084, final.time: '1317816002169',
+    idle.time: '0', infection.degree: '8', initial.time: '1317815945766', nodes.count: '124682',
+    processed.events: '200000', processed.events.local: '102000', processed.events.remote: '98000',
+    routing.method: round.robin}
   - {average.delay: '23712', average.delay.local: '23978', average.delay.remote: '23452',
-    bundle.size: '1000', duration: !!python/long '55420', events.per.second: 3608.8054853843378,
-    final.time: '1317816001620', idle.time: '0', infection.degree: '8', initial.time: '1317815946200',
-    nodes.count: '125318', processed.events: '200000', processed.events.local: '98889',
-    processed.events.remote: '101111', routing.method: round.robin}
+    bundle.size: '1000', duration: 55420, events.per.second: 3608.8054853843378, final.time: '1317816001620',
+    idle.time: '0', infection.degree: '8', initial.time: '1317815946200', nodes.count: '125318',
+    processed.events: '200000', processed.events.local: '98889', processed.events.remote: '101111',
+    routing.method: round.robin}
   network.size: 250000
   processed.events.per.second.per.instance: 3577.358081947173
   processed.events.per.second.total: 7091.821357020017

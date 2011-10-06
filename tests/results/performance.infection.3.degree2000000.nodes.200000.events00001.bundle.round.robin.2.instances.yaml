@@ -2,22 +2,23 @@
   average.delay.local: 12399.5
   average.delay.remote: 28974.5
   bundle.size: 1
-  duration.total: !!python/long '101718'
+  duration.total: 101718
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '13489', average.delay.local: '12982', average.delay.remote: '30096',
-    bundle.size: '1', duration: !!python/long '101718', events.per.second: 1966.2203346507008,
-    final.time: '1317812891761', idle.time: '0', infection.degree: '3', initial.time: '1317812790043',
-    nodes.count: '999567', processed.events: '200000', processed.events.local: '194073',
-    processed.events.remote: '5927', routing.method: round.robin}
+    bundle.size: '1', duration: 101718, events.per.second: 1966.2203346507008, final.time: '1317812891761',
+    idle.time: '0', infection.degree: '3', initial.time: '1317812790043', nodes.count: '999567',
+    processed.events: '200000', processed.events.local: '194073', processed.events.remote: '5927',
+    routing.method: round.robin}
   - {average.delay: '12655', average.delay.local: '11817', average.delay.remote: '27853',
-    bundle.size: '1', duration: !!python/long '94870', events.per.second: 2108.1479919890376,
-    final.time: '1317812886499', idle.time: '0', infection.degree: '3', initial.time: '1317812791629',
-    nodes.count: '1000433', processed.events: '200000', processed.events.local: '189549',
-    processed.events.remote: '10451', routing.method: round.robin}
+    bundle.size: '1', duration: 94870, events.per.second: 2108.1479919890376, final.time: '1317812886499',
+    idle.time: '0', infection.degree: '3', initial.time: '1317812791629', nodes.count: '1000433',
+    processed.events: '200000', processed.events.local: '189549', processed.events.remote: '10451',
+    routing.method: round.robin}
   network.size: 2000000
   processed.events.per.second.per.instance: 2037.1841633198692
   processed.events.per.second.total: 3932.4406693014016

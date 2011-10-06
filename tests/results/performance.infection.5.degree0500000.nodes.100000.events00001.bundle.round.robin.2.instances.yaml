@@ -2,22 +2,23 @@
   average.delay.local: 6714.0
   average.delay.remote: 11255.5
   bundle.size: 1
-  duration.total: !!python/long '26110'
+  duration.total: 26110
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '5'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '6791', average.delay.local: '6535', average.delay.remote: '10824',
-    bundle.size: '1', duration: !!python/long '25116', events.per.second: 3981.5257206561555,
-    final.time: '1317828733961', idle.time: '0', infection.degree: '5', initial.time: '1317828708845',
-    nodes.count: '249756', processed.events: '100000', processed.events.local: '94011',
-    processed.events.remote: '5989', routing.method: round.robin}
+    bundle.size: '1', duration: 25116, events.per.second: 3981.5257206561555, final.time: '1317828733961',
+    idle.time: '0', infection.degree: '5', initial.time: '1317828708845', nodes.count: '249756',
+    processed.events: '100000', processed.events.local: '94011', processed.events.remote: '5989',
+    routing.method: round.robin}
   - {average.delay: '7126', average.delay.local: '6893', average.delay.remote: '11687',
-    bundle.size: '1', duration: !!python/long '25843', events.per.second: 3869.519792593739,
-    final.time: '1317828734955', idle.time: '0', infection.degree: '5', initial.time: '1317828709112',
-    nodes.count: '250244', processed.events: '100000', processed.events.local: '95141',
-    processed.events.remote: '4859', routing.method: round.robin}
+    bundle.size: '1', duration: 25843, events.per.second: 3869.519792593739, final.time: '1317828734955',
+    idle.time: '0', infection.degree: '5', initial.time: '1317828709112', nodes.count: '250244',
+    processed.events: '100000', processed.events.local: '95141', processed.events.remote: '4859',
+    routing.method: round.robin}
   network.size: 500000
   processed.events.per.second.per.instance: 3925.5227566249473
   processed.events.per.second.total: 7659.900421294524

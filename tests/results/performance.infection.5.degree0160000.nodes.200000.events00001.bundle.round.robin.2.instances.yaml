@@ -2,22 +2,23 @@
   average.delay.local: 10284.0
   average.delay.remote: 16937.5
   bundle.size: 1
-  duration.total: !!python/long '36692'
+  duration.total: 36692
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '5'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '10716', average.delay.local: '10467', average.delay.remote: '17330',
-    bundle.size: '1', duration: !!python/long '36563', events.per.second: 5470.0106665207995,
-    final.time: '1317813818561', idle.time: '0', infection.degree: '5', initial.time: '1317813781998',
-    nodes.count: '79753', processed.events: '200000', processed.events.local: '192746',
-    processed.events.remote: '7254', routing.method: round.robin}
+    bundle.size: '1', duration: 36563, events.per.second: 5470.0106665207995, final.time: '1317813818561',
+    idle.time: '0', infection.degree: '5', initial.time: '1317813781998', nodes.count: '79753',
+    processed.events: '200000', processed.events.local: '192746', processed.events.remote: '7254',
+    routing.method: round.robin}
   - {average.delay: '10377', average.delay.local: '10101', average.delay.remote: '16545',
-    bundle.size: '1', duration: !!python/long '36155', events.per.second: 5531.738348776103,
-    final.time: '1317813818690', idle.time: '0', infection.degree: '5', initial.time: '1317813782535',
-    nodes.count: '80247', processed.events: '200000', processed.events.local: '191413',
-    processed.events.remote: '8587', routing.method: round.robin}
+    bundle.size: '1', duration: 36155, events.per.second: 5531.738348776103, final.time: '1317813818690',
+    idle.time: '0', infection.degree: '5', initial.time: '1317813782535', nodes.count: '80247',
+    processed.events: '200000', processed.events.local: '191413', processed.events.remote: '8587',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 5500.874507648451
   processed.events.per.second.total: 10901.558922925979

@@ -2,22 +2,23 @@
   average.delay.local: 8875.5
   average.delay.remote: 9196.0
   bundle.size: 100
-  duration.total: !!python/long '20409'
+  duration.total: 20409
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '9069', average.delay.local: '11631', average.delay.remote: '7986',
-    bundle.size: '100', duration: !!python/long '20235', events.per.second: 4941.932295527551,
-    final.time: '1317807178325', idle.time: '0', infection.degree: '8', initial.time: '1317807158090',
-    nodes.count: '79753', processed.events: '100000', processed.events.local: '29700',
-    processed.events.remote: '70300', routing.method: round.robin}
+    bundle.size: '100', duration: 20235, events.per.second: 4941.932295527551, final.time: '1317807178325',
+    idle.time: '0', infection.degree: '8', initial.time: '1317807158090', nodes.count: '79753',
+    processed.events: '100000', processed.events.local: '29700', processed.events.remote: '70300',
+    routing.method: round.robin}
   - {average.delay: '7260', average.delay.local: '6120', average.delay.remote: '10406',
-    bundle.size: '100', duration: !!python/long '19132', events.per.second: 5226.845076311938,
-    final.time: '1317807177048', idle.time: '0', infection.degree: '8', initial.time: '1317807157916',
-    nodes.count: '80247', processed.events: '100000', processed.events.local: '73400',
-    processed.events.remote: '26600', routing.method: round.robin}
+    bundle.size: '100', duration: 19132, events.per.second: 5226.845076311938, final.time: '1317807177048',
+    idle.time: '0', infection.degree: '8', initial.time: '1317807157916', nodes.count: '80247',
+    processed.events: '100000', processed.events.local: '73400', processed.events.remote: '26600',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 5084.388685919745
   processed.events.per.second.total: 9799.598216473125

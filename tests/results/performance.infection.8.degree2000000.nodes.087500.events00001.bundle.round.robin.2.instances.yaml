@@ -2,22 +2,23 @@
   average.delay.local: 18398.5
   average.delay.remote: 40235.0
   bundle.size: 1
-  duration.total: !!python/long '117833'
+  duration.total: 117833
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '20531', average.delay.local: '20522', average.delay.remote: '29465',
-    bundle.size: '1', duration: !!python/long '117833', events.per.second: 848.6586949326589,
-    final.time: '1317813999417', idle.time: '0', infection.degree: '8', initial.time: '1317813881584',
-    nodes.count: '999567', processed.events: '100000', processed.events.local: '99892',
-    processed.events.remote: '108', routing.method: round.robin}
+    bundle.size: '1', duration: 117833, events.per.second: 848.6586949326589, final.time: '1317813999417',
+    idle.time: '0', infection.degree: '8', initial.time: '1317813881584', nodes.count: '999567',
+    processed.events: '100000', processed.events.local: '99892', processed.events.remote: '108',
+    routing.method: round.robin}
   - {average.delay: '23845', average.delay.local: '16275', average.delay.remote: '51005',
-    bundle.size: '1', duration: !!python/long '97779', events.per.second: 767.0358665971221,
-    final.time: '1317813993356', idle.time: '0', infection.degree: '8', initial.time: '1317813895577',
-    nodes.count: '1000433', processed.events: '75000', processed.events.local: '58652',
-    processed.events.remote: '16348', routing.method: round.robin}
+    bundle.size: '1', duration: 97779, events.per.second: 767.0358665971221, final.time: '1317813993356',
+    idle.time: '0', infection.degree: '8', initial.time: '1317813895577', nodes.count: '1000433',
+    processed.events: '75000', processed.events.local: '58652', processed.events.remote: '16348',
+    routing.method: round.robin}
   network.size: 2000000
   processed.events.per.second.per.instance: 807.8472807648905
   processed.events.per.second.total: 1485.152716132153

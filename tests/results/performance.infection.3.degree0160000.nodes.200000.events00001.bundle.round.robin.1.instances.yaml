@@ -7,6 +7,7 @@
   idle.time.total: 0
   infection.degree: '3'
   instance.count: 1
+  instance.type: m1.small
   instances:
   - {average.delay: '4076', average.delay.local: '4076', average.delay.remote: '0',
     bundle.size: '1', duration: 13418, events.per.second: 14905.351021016546, final.time: '1317814575205',
@@ -24,17 +25,18 @@
   average.delay.local: 4067.0
   average.delay.remote: 0.0
   bundle.size: 1
-  duration.total: !!python/long '13262'
+  duration.total: 13262
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 1
+  instance.type: m1.small
   instances:
   - {average.delay: '4067', average.delay.local: '4067', average.delay.remote: '0',
-    bundle.size: '1', duration: !!python/long '13262', events.per.second: 15080.681646810435,
-    final.time: '1317830205664', idle.time: '0', infection.degree: '3', initial.time: '1317830192402',
-    nodes.count: '160000', processed.events: '200000', processed.events.local: '200000',
-    processed.events.remote: '0', routing.method: round.robin}
+    bundle.size: '1', duration: 13262, events.per.second: 15080.681646810435, final.time: '1317830205664',
+    idle.time: '0', infection.degree: '3', initial.time: '1317830192402', nodes.count: '160000',
+    processed.events: '200000', processed.events.local: '200000', processed.events.remote: '0',
+    routing.method: round.robin}
   network.size: 160000
   processed.events.per.second.per.instance: 15080.681646810435
   processed.events.per.second.total: 15080.681646810435

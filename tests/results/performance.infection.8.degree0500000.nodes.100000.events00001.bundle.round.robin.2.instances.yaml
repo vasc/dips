@@ -2,22 +2,23 @@
   average.delay.local: 9776.0
   average.delay.remote: 9418.0
   bundle.size: 1
-  duration.total: !!python/long '31693'
+  duration.total: 31693
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '9543', average.delay.local: '9551', average.delay.remote: '4755',
-    bundle.size: '1', duration: !!python/long '28367', events.per.second: 3525.2229703528747,
-    final.time: '1317822291014', idle.time: '0', infection.degree: '8', initial.time: '1317822262647',
-    nodes.count: '249756', processed.events: '100000', processed.events.local: '99829',
-    processed.events.remote: '171', routing.method: round.robin}
+    bundle.size: '1', duration: 28367, events.per.second: 3525.2229703528747, final.time: '1317822291014',
+    idle.time: '0', infection.degree: '8', initial.time: '1317822262647', nodes.count: '249756',
+    processed.events: '100000', processed.events.local: '99829', processed.events.remote: '171',
+    routing.method: round.robin}
   - {average.delay: '10436', average.delay.local: '10001', average.delay.remote: '14081',
-    bundle.size: '1', duration: !!python/long '30639', events.per.second: 3263.8140931492544,
-    final.time: '1317822294340', idle.time: '0', infection.degree: '8', initial.time: '1317822263701',
-    nodes.count: '250244', processed.events: '100000', processed.events.local: '89331',
-    processed.events.remote: '10669', routing.method: round.robin}
+    bundle.size: '1', duration: 30639, events.per.second: 3263.8140931492544, final.time: '1317822294340',
+    idle.time: '0', infection.degree: '8', initial.time: '1317822263701', nodes.count: '250244',
+    processed.events: '100000', processed.events.local: '89331', processed.events.remote: '10669',
+    routing.method: round.robin}
   network.size: 500000
   processed.events.per.second.per.instance: 3394.5185317510645
   processed.events.per.second.total: 6310.541760010096

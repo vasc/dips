@@ -1,0 +1,38 @@
+- average.delay.global: 3746.0
+  average.delay.local: 261.25
+  average.delay.remote: 13513.75
+  bundle.size: 1
+  duration.total: 40518
+  idle.time.per.instance: 7915390869.5
+  idle.time.total: 31661563478
+  infection.degree: '3'
+  instance.count: 4
+  instance.type: m1.small
+  instances:
+  - {average.delay: '4025', average.delay.local: '185', average.delay.remote: '14739',
+    bundle.size: '1', duration: 37443, events.per.second: 2670.726170445744, final.time: '1317860609241',
+    idle.time: '1571893098', infection.degree: '3', initial.time: '1317860571798',
+    nodes.count: '249786', processed.events: '100000', processed.events.local: '73621',
+    processed.events.remote: '26379', routing.method: round.robin}
+  - {average.delay: '3290', average.delay.local: '126', average.delay.remote: '12356',
+    bundle.size: '1', duration: 38325, events.per.second: 2609.262883235486, final.time: '1317860608846',
+    idle.time: '12905945589', infection.degree: '3', initial.time: '1317860570521',
+    nodes.count: '249620', processed.events: '100000', processed.events.local: '74127',
+    processed.events.remote: '25873', routing.method: round.robin}
+  - {average.delay: '3343', average.delay.local: '112', average.delay.remote: '12636',
+    bundle.size: '1', duration: 38605, events.per.second: 2590.3380391141045, final.time: '1317860608302',
+    idle.time: '16167215202', infection.degree: '3', initial.time: '1317860569697',
+    nodes.count: '250327', processed.events: '100000', processed.events.local: '74198',
+    processed.events.remote: '25802', routing.method: round.robin}
+  - {average.delay: '4326', average.delay.local: '622', average.delay.remote: '14324',
+    bundle.size: '1', duration: 37909, events.per.second: 2637.8960141391226, final.time: '1317860610215',
+    idle.time: '1016509589', infection.degree: '3', initial.time: '1317860572306',
+    nodes.count: '250267', processed.events: '100000', processed.events.local: '72973',
+    processed.events.remote: '27027', routing.method: round.robin}
+  network.size: 1000000
+  processed.events.per.second.per.instance: 2627.055776733614
+  processed.events.per.second.total: 9872.155585172022
+  processed.events.total: 400000
+  routing.method: round.robin
+  simulation.name: infection
+  test.type: performance

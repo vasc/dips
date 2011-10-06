@@ -2,22 +2,23 @@
   average.delay.local: 7947.5
   average.delay.remote: 8154.0
   bundle.size: 1000
-  duration.total: !!python/long '27329'
+  duration.total: 27329
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '3'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '7235', average.delay.local: '6937', average.delay.remote: '7580',
-    bundle.size: '1000', duration: !!python/long '25543', events.per.second: 7829.933837059077,
-    final.time: '1317830490779', idle.time: '0', infection.degree: '3', initial.time: '1317830465236',
-    nodes.count: '124682', processed.events: '200000', processed.events.local: '107381',
-    processed.events.remote: '92619', routing.method: round.robin}
+    bundle.size: '1000', duration: 25543, events.per.second: 7829.933837059077, final.time: '1317830490779',
+    idle.time: '0', infection.degree: '3', initial.time: '1317830465236', nodes.count: '124682',
+    processed.events: '200000', processed.events.local: '107381', processed.events.remote: '92619',
+    routing.method: round.robin}
   - {average.delay: '8835', average.delay.local: '8958', average.delay.remote: '8728',
-    bundle.size: '1000', duration: !!python/long '26553', events.per.second: 7532.105600120513,
-    final.time: '1317830492565', idle.time: '0', infection.degree: '3', initial.time: '1317830466012',
-    nodes.count: '125318', processed.events: '200000', processed.events.local: '93162',
-    processed.events.remote: '106838', routing.method: round.robin}
+    bundle.size: '1000', duration: 26553, events.per.second: 7532.105600120513, final.time: '1317830492565',
+    idle.time: '0', infection.degree: '3', initial.time: '1317830466012', nodes.count: '125318',
+    processed.events: '200000', processed.events.local: '93162', processed.events.remote: '106838',
+    routing.method: round.robin}
   network.size: 250000
   processed.events.per.second.per.instance: 7681.019718589795
   processed.events.per.second.total: 14636.466756924878

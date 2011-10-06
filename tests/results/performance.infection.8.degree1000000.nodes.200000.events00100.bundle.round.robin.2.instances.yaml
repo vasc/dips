@@ -2,22 +2,23 @@
   average.delay.local: 23623.0
   average.delay.remote: 24983.0
   bundle.size: 100
-  duration.total: !!python/long '56427'
+  duration.total: 56427
   idle.time.per.instance: 0.0
-  idle.time.total: !!python/long '0'
+  idle.time.total: 0
   infection.degree: '8'
   instance.count: 2
+  instance.type: m1.small
   instances:
   - {average.delay: '24773', average.delay.local: '33321', average.delay.remote: '22609',
-    bundle.size: '100', duration: !!python/long '55210', events.per.second: 3622.532149972831,
-    final.time: '1317825541848', idle.time: '0', infection.degree: '8', initial.time: '1317825486638',
-    nodes.count: '499406', processed.events: '200000', processed.events.local: '40400',
-    processed.events.remote: '159600', routing.method: round.robin}
+    bundle.size: '100', duration: 55210, events.per.second: 3622.532149972831, final.time: '1317825541848',
+    idle.time: '0', infection.degree: '8', initial.time: '1317825486638', nodes.count: '499406',
+    processed.events: '200000', processed.events.local: '40400', processed.events.remote: '159600',
+    routing.method: round.robin}
   - {average.delay: '16631', average.delay.local: '13925', average.delay.remote: '27357',
-    bundle.size: '100', duration: !!python/long '47539', events.per.second: 4207.072088180231,
-    final.time: '1317825532960', idle.time: '0', infection.degree: '8', initial.time: '1317825485421',
-    nodes.count: '500594', processed.events: '200000', processed.events.local: '159700',
-    processed.events.remote: '40300', routing.method: round.robin}
+    bundle.size: '100', duration: 47539, events.per.second: 4207.072088180231, final.time: '1317825532960',
+    idle.time: '0', infection.degree: '8', initial.time: '1317825485421', nodes.count: '500594',
+    processed.events: '200000', processed.events.local: '159700', processed.events.remote: '40300',
+    routing.method: round.robin}
   network.size: 1000000
   processed.events.per.second.per.instance: 3914.802119076531
   processed.events.per.second.total: 7088.8050046963335
