@@ -14,7 +14,7 @@ def avg(i, l):
 	total = sum_key(i, l)
 	return 1.0*total/len(i)
 
-def main():
+def main(instancetype="m1.small"):
 	simulations = []
 	results = {}
 
@@ -68,6 +68,8 @@ def main():
 	results['instance.count'] = len(simulations)
 	results['infection.degree'] = simulations[0]['infection.degree']
 
+	results['instance.type'] = instancetype
+
 	results['instances'] = simulations
 
 	filename = ('results/' +
@@ -101,4 +103,7 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+    if len(sys.argv) > 1:
+    	main(sys.argv[1])
+    else:
+		main()

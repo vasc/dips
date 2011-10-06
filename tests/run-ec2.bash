@@ -94,9 +94,9 @@ do
 		if [ "$ACTMETHOD" ]
 		then
 			DONE=`expr $DONE + 1`
-			echo "Instance $i is ready"
+			echo -e '\033[01;32m[READY]\033[00m '"$i"
 		else
-			echo "Instance $i is not ready"
+			echo -e '\033[01;31m[BUSY]\033[00m '"$i"
 		fi
 		
 
@@ -131,10 +131,13 @@ do
 	do
 		i=`echo "$dns" | awk 'BEGIN{FS=":"}{print $1}'`
 		RUNNING=`ps aux | grep -v grep | grep "ssh -t ubuntu@$i ./dips-launch"`
+
+		line=`grep "Processing message at" /tmp/$i.output | tail -n 1 | awk '{print $9}'`
 		if [ "$RUNNING" ]
 		then
-			echo "Instance $i is still running"
+			echo -e '\033[01;31m[BUSY]\033[00m '"$line $i"
 		else
+			echo -e '\033[01;32m[DONE]\033[00m '"$i"
 			RUNNING_COUNT=`expr $RUNNING_COUNT - 1`
 		fi
 	done
