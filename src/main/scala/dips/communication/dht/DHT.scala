@@ -1,33 +1,30 @@
 package dips.communication.dht
 
 import java.net.InetAddress
-import scala.actors.remote.Node
+
 import scala.actors.remote.RemoteActor
 import scala.actors.remote.TcpService
-import scala.actors.AbstractActor
 import scala.actors.OutputChannel
-import scala.annotation.serializable
+import scala.actors.AbstractActor
 import scala.collection.immutable.TreeSet
-import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
+import scala.collection.mutable.HashMap
+
 import dips.communication.Addressable
 import dips.communication.Anounce
 import dips.communication.Connect
+import dips.communication.Connected
 import dips.communication.Message
 import dips.communication.PostOffice
-import dips.communication.Retrieve
+import dips.communication.Publication
+import dips.communication.RequestMessages
 import dips.communication.Routable
 import dips.communication.Routing
 import dips.communication.Subscription
 import dips.communication.Uri
+import dips.simulation.{DistributedSimulation => ds}
 import dips.util.Logger.log
 import dips.NotImplementedException
-import scala.actors.Debug
-import scala.collection.mutable.ListBuffer
-import dips.communication.Publication
-import dips.communication.Connected
-import dips.simulation.{DistributedSimulation => ds}
-import dips.communication.RequestMessages
 
 
 object DHT{

@@ -1,0 +1,58 @@
+- average.delay.global: 3437.0
+  average.delay.local: 1684.125
+  average.delay.remote: 7684.375
+  bundle.size: 1
+  duration.total: !!python/long '19580'
+  idle.time.per.instance: 0.0
+  idle.time.total: !!python/long '0'
+  infection.degree: '8'
+  instance.count: 8
+  instance.type: c1.medium
+  instances:
+  - {average.delay: '2931', average.delay.local: '1514', average.delay.remote: '6682',
+    bundle.size: '1', duration: !!python/long '15295', events.per.second: 4903.563255966002,
+    final.time: '1317903720652', idle.time: '0', infection.degree: '8', initial.time: '1317903705357',
+    nodes.count: '249818', processed.events: '75000', processed.events.local: '54427',
+    processed.events.remote: '20573', routing.method: round.robin}
+  - {average.delay: '4097', average.delay.local: '2049', average.delay.remote: '7821',
+    bundle.size: '1', duration: !!python/long '15628', events.per.second: 4799.078576913233,
+    final.time: '1317903721622', idle.time: '0', infection.degree: '8', initial.time: '1317903705994',
+    nodes.count: '250052', processed.events: '75000', processed.events.local: '48392',
+    processed.events.remote: '26608', routing.method: round.robin}
+  - {average.delay: '3672', average.delay.local: '1634', average.delay.remote: '8591',
+    bundle.size: '1', duration: !!python/long '16838', events.per.second: 5938.947618482005,
+    final.time: '1317903722346', idle.time: '0', infection.degree: '8', initial.time: '1317903705508',
+    nodes.count: '250282', processed.events: '100000', processed.events.local: '70703',
+    processed.events.remote: '29297', routing.method: round.robin}
+  - {average.delay: '2834', average.delay.local: '1480', average.delay.remote: '6780',
+    bundle.size: '1', duration: !!python/long '17771', events.per.second: 5627.145349164369,
+    final.time: '1317903722405', idle.time: '0', infection.degree: '8', initial.time: '1317903704634',
+    nodes.count: '249338', processed.events: '100000', processed.events.local: '74447',
+    processed.events.remote: '25553', routing.method: round.robin}
+  - {average.delay: '2657', average.delay.local: '1404', average.delay.remote: '6509',
+    bundle.size: '1', duration: !!python/long '18351', events.per.second: 5449.294316386028,
+    final.time: '1317903722412', idle.time: '0', infection.degree: '8', initial.time: '1317903704061',
+    nodes.count: '250030', processed.events: '100000', processed.events.local: '75440',
+    processed.events.remote: '24560', routing.method: round.robin}
+  - {average.delay: '3946', average.delay.local: '1957', average.delay.remote: '8417',
+    bundle.size: '1', duration: !!python/long '18172', events.per.second: 5502.97160466652,
+    final.time: '1317903723641', idle.time: '0', infection.degree: '8', initial.time: '1317903705469',
+    nodes.count: '250918', processed.events: '100000', processed.events.local: '69218',
+    processed.events.remote: '30782', routing.method: round.robin}
+  - {average.delay: '3708', average.delay.local: '1794', average.delay.remote: '8032',
+    bundle.size: '1', duration: !!python/long '16981', events.per.second: 5888.934691714268,
+    final.time: '1317903721998', idle.time: '0', infection.degree: '8', initial.time: '1317903705017',
+    nodes.count: '249493', processed.events: '100000', processed.events.local: '69318',
+    processed.events.remote: '30682', routing.method: round.robin}
+  - {average.delay: '3651', average.delay.local: '1641', average.delay.remote: '8643',
+    bundle.size: '1', duration: !!python/long '17521', events.per.second: 5707.436790137549,
+    final.time: '1317903723151', idle.time: '0', infection.degree: '8', initial.time: '1317903705630',
+    nodes.count: '250069', processed.events: '100000', processed.events.local: '71284',
+    processed.events.remote: '28716', routing.method: round.robin}
+  network.size: 2000000
+  processed.events.per.second.per.instance: 5477.171525428747
+  processed.events.per.second.total: 38304.39223697651
+  processed.events.total: 750000
+  routing.method: round.robin
+  simulation.name: infection
+  test.type: performance

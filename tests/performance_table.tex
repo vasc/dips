@@ -1,18 +1,62 @@
-\begin{tabular}{|r*{8}|}
-Number of Instances	& 
-\multicolumn{2}{|c|}{Processed Events} & 
-\multicolumn{3}{|c|}{Average Message Delay} & 
-\multicolumn{2}{|c|}{Idle Time}  \\
+%\begin{sidewaystable}
 
-{% for s in simulations %}
 
-\hline
-            {{ s.icount }} & {{ s.eps.total }}  & {{ s.eps.pi }} & 
-                           & {{ s.amd.global }} & {{ s.amd.local }} & {{ s.amd.remote }}
-                           & {{ s.it.total }} & {{ s.it.pi }}  \\
+{% for itype in instances %}
+	%\multirow{ {{ itype.size }} }{*}{ {{ itype.name }} } &
+	{% for icount in itype.children %}
+	    %\multirow{ {{ icount.size }} }{*}{ {{ icount.name }} } &
+	    {% for simtype in icount.children %}
+			%\multirow{ {{ simtype.size }} }{*}{ infection:{{ simtype.name }} } &
 
-{% endfor %}
+\begin{table}
+	  \caption[Performance results, \emph{infection:{{simtype.name}} on {{icount.name}} {{itype.name}} instances }]{ Performance results for \emph{ infection } simulation with degree {{ simtype.name }} ran on {{icount.name}} {{itype.name}} AWS instantances }
+	%\resizebox{12cm}{!}{
+	\begin{tabular}{rrrrrrrrr}
+	\hline\noalign{\smallskip}
+
+	%Inst. Type &
+	%Inst. Count &
+	%Sim. Type &
+	Network Size &
+	Bundle Size &
+	\multicolumn{2}{c}{Processed Events/s} & 
+	\multicolumn{3}{c}{Average Message Delay (s)} & 
+	\multicolumn{2}{c}{Idle Time (s)}  \\
+
+	 & 
+	 & 
+	 total & per instance
+     & global & local & remote
+     & total & per instance\\
+
+			{% for netsize in simtype.children %}
+				\noalign{\smallskip}\hline
+				\multirow{ {{ netsize.children|count }} }{*}{ {{ netsize.name }} } &
+				{% for bundle in netsize.children %}
+					{% if not loop.first %} &  {% endif %}
+					 
+					\multirow{ {{ bundle.size }} }{*}{ {{ bundle.name }} } &
+					{% for s in bundle.children %}
+						{% if not loop.first %} & &  {% endif %}
+							    
+							     {{s.eps.total}}  & {{s.eps.pi}}  
+	                           & {{s.amd.global}} & {{s.amd.local}} & {{s.amd.remote}}
+	                           & {{s.it.total}} & {{s.it.pi}}  \\
+	     					%\hline
+	                {% endfor %}
+	            {% endfor %}
+	        {% endfor %}
 
 \hline
 
 \end{tabular}
+%}
+\end{table}
+\clearpage
+
+
+	    {% endfor %}
+	{% endfor %}
+{% endfor %}
+
+%\end{sidewaystable}

@@ -55,8 +55,10 @@ object DEDSimulator {
     
     simulation.status = 'running
     
+    log.debug("Bootstraping")
     DistributedSimulation.migrator.bootstrap()
     
+    log.debug("Starting Event Loop")
     while(processNextMessage){}
     println("Distributed simulation finished.")
   }

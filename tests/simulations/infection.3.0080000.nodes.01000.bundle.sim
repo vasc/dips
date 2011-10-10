@@ -1,0 +1,50 @@
+# PEERSIM Infection Example
+
+simulation.name infection
+
+distributed
+distributed.bundle.size 1000
+
+#random.seed 1234567890
+
+network.size 80000
+
+protocol.lnk SimpleLink
+
+protocol.inf Infection
+protocol.inf.linkable lnk
+protocol.inf.degree 3
+protocol.inf.limit 100
+
+init.rnd dips.example.SimpleWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+init.lin ConstantDistributionSingleValue
+init.lin.protocol inf
+init.lin.value 0
+
+init.bs SimpleBootstrap
+init.bs.protocol inf
+init.bs.message_count 2000
+
+include.init rnd lin bs
+
+control.stats Performance
+control.stats.name performance
+control.stats.step 25000
+
+control.info InfectionObserver
+control.info.protocol inf
+control.info.max 100
+control.info.slots 5
+control.info.step 5000
+control.info.degree 3
+
+
+
+distributed.sub stats
+
+control.s Stop
+control.s.at 100001
+

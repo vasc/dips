@@ -30,7 +30,7 @@ do
 done
 
 echo "Running $COUNT new instances..."
-ec2-run-instances $AMI  -k default-vaio -t m1.small -n $COUNT
+ec2-run-instances $AMI  -k default-vaio -t c1.medium -n $COUNT
 
 RUNNING_INSTANCE_COUNT=0
 

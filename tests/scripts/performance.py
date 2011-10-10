@@ -15,6 +15,7 @@ def avg(i, l):
 	return 1.0*total/len(i)
 
 def main(instancetype="m1.small"):
+	print instancetype
 	simulations = []
 	results = {}
 
@@ -36,6 +37,7 @@ def main(instancetype="m1.small"):
 
 	while True:
 		host = sys.stdin.readline().strip('\n')
+		print host
 		if not host: break
 
 		simulation = {}

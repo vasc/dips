@@ -3,8 +3,10 @@
 CONF_FILE=""
 COUNT=1
 AMI=ami-40053734
+EVENTS=50000
+INSTANCE="m1.small"
 
-while getopts ":a:c:n:" opt; do
+while getopts ":a:c:n:i:" opt; do
   case $opt in
     a)
       AMI=$OPTARG
@@ -12,8 +14,14 @@ while getopts ":a:c:n:" opt; do
     n)
       COUNT=$OPTARG
       ;;
+    e)
+      EVENTS=$OPTARG
+      ;;
     c)
       CONF_FILE=$OPTARG
+      ;;
+    i)
+      INSTANCE=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -130,10 +138,16 @@ do
 	for dns in $SIMULATION_INSTANCES
 	do
 		i=`echo "$dns" | awk 'BEGIN{FS=":"}{print $1}'`
-		RUNNING=`ps aux | grep -v grep | grep "ssh -t ubuntu@$i ./dips-launch"`
+		#RUNNING=`ps aux | grep -v grep | grep "ssh -t ubuntu@$i ./dips-launch"`
 
 		line=`grep "Processing message at" /tmp/$i.output | tail -n 1 | awk '{print $9}'`
-		if [ "$RUNNING" ]
+		if [ -z $line ]
+		then
+			line=0
+		fi
+
+		#if [ "$RUNNING" ]
+		if [ $line -lt $EVENTS ]
 		then
 			echo -e '\033[01;31m[BUSY]\033[00m '"$line $i"
 		else
@@ -157,6 +171,13 @@ do
 
 done
 
+for dns in $SIMULATION_INSTANCES
+do
+	instance=`echo "$dns" | awk 'BEGIN{FS=":"}{print $1}'`
+	echo "Stoping $instance"
+	ssh -t ubuntu@$instance pkill -9 java
+done
+
 #	RUNNING_COUNT=`ps aux | grep -v grep | grep "bash -c ./dips-launch" | wc -l`
 #	echo "Still running: $RUNNING_COUNT" 
 #	sleep 3s
@@ -167,6 +188,6 @@ cd ./tests
 
 pub=`echo "$SIMULATION_INSTANCES" | awk 'BEGIN{FS=":"}{print $1}'`
 
-echo "$pub" | python ./scripts/performance.py
+echo "$pub" | python ./scripts/performance.py $INSTANCE
 
 echo "Simulation data saved"

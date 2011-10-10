@@ -4,102 +4,95 @@ import simplejson
 import itertools
 import re
 import random
+import yaml
+import argparse as a
 
-def main(i):
+def groupby(values, keys):
+	if len(keys) == 0:
+		return list(values)
+	else:
+		r = {}
+		key = keys[0]
+		l = lambda x: x[key]
+		svalues = sorted(values, key=l)
+		for key_val, gvalues in itertools.groupby(svalues, l):
+			r[str(key_val)] = groupby(gvalues, keys[1:])
+		return r
+
+def load_results(keys):
 	values = []
 	for j in glob.glob("results/*.json"):
 		with open(j) as f:
 			r = simplejson.loads(f.read())
 			values.extend(r)
 	
-	hierark = {}
+	return hierark = groupby(values, keys)
 
-	l = lambda x: x['simulation.name']
-	g = sorted(values, key=l)
-	for simname, g in itertools.groupby(g, l):
-		hierark[simname] = {}
-		l = lambda x: x['infection.degree']
-		g = sorted(g, key=l)
-		for degree, g in itertools.groupby(g, l):
-			hierark[simname][degree] = {}
-			l = lambda x: x['network.size']
-			g = sorted(g, key=l)
-			for networksize, g in itertools.groupby(g, l):
-				networksize=str(networksize)
-				hierark[simname][degree][networksize] = {}
-				l = lambda x: x['instances'][0]['processed.events']
-				g = sorted(g, key=l)
-				for processedevents, g in itertools.groupby(g, l):
-					processedevents=str(processedevents)
-					hierark[simname][degree][networksize][processedevents] = {}
-					l = lambda x: x['bundle.size']
-					g = sorted(g, key=l)
-					for bundle, g in itertools.groupby(g, l):
-						bundle=str(bundle)
-						hierark[simname][degree][networksize][processedevents][bundle] = {}
-						l = lambda x: x['routing.method']
-						g = sorted(g, key=l)
-						for routing, g in itertools.groupby(g, l):
-							hierark[simname][degree][networksize][processedevents][bundle][routing] = {}
-							l = lambda x: x['instance.count']
-							g = sorted(g, key=l)
-							for instances, g in itertools.groupby(g, l):
-								instances=str(instances)
-								hierark[simname][degree][networksize][processedevents][bundle][routing][instances] = list(g)
-								#print simname, networksize, processedevents, bundle, routing, instances, len(list(g))
 
+
+
+
+def main(instance_count, instance_type, list):
+	hierark = load_results([ 'instance.type', 
+								'instance.count',
+								'routing.method',
+								'simulation.name',
+								'infection.degree',
+								'network.size', 
+								'bundle.size'])
+
+	
+	hierark = hierark[instance_type]
+	hierark = hierark[str(instance_count)]
+	hierark = hierark['round.robin']
 
 	sims = {}
 	for sim in glob.glob("simulations/*.sim"):
+		values = hierark
 		sims[sim] = 0
-		m = re.match(r"simulations/(\w+)\.(\d+)\.(\d+)\.nodes\.(\d+)\.events\.(\d+)\.bundle\.sim", sim)
+		m = re.match(r"simulations/(\w+)\.(\d+)\.(\d+)\.nodes\.(\d+)\.bundle\.sim", sim)
 
 		groups = []
 		groups.append(m.group(1))
 		groups.append(str(int(m.group(2))))
 		groups.append(str(int(m.group(3))))
 		groups.append(str(int(m.group(4))))
-		groups.append(str(int(m.group(5))))
 
+		if m.group(1) in values:
+			values = values[m.group(1)]
+			if str(int(m.group(2))) in values:
+				values = values[str(int(m.group(2)))]
+				if str(int(m.group(3))) in values:
+					values = values[str(int(m.group(3)))]
+					if str(int(m.group(4))) in values:
+						values = values[str(int(m.group(4)))]
 
-		v = hierark
-		for g in groups:
-			if g in v: v = v[g]
-			else: 
-				break
-
-		
-		if i == '--list':
-			for m in v:
-				sims[sim] = {}
-				for j in v[m]:
-					sims[sim][j] = len(v['round.robin'][j])
-		else:
-			if not 'round.robin' in v: continue
-			if i in v['round.robin']: sims[sim] = len(v['round.robin'][i])
-
+						sims[sim] = len(values)
 	
+	ssims = sorted(sims.keys(), key=lambda x: sims[x])
 
-	s = sorted(sims.keys(), key=lambda x: sims[x])
+	if list:
+		for sim in reversed(ssims): print sim, sims[sim]
+		print
 
-	if i == '--list':
-		counts = {}
+		print "%.2f%% coverage" % (100.0 * sum(1 for sim in sims.keys() if sims[sim] > 0) / len(sims.keys()))
 
-		for sim in s:
-			for j in sims[sim]:
-				if not j in counts: counts[j] = 0
-				counts[j] += 1#sims[sim][j]
-				#print j, ":", sim, sims[sim][j]
-		for k, v in counts.items():
-			print k, "%0.1f%%" % (1.0*v/len(sims)*100)
 	else:
 		lowest = min(sims.values())
 		possible = [sim for sim in sims.keys() if sims[sim] == lowest]
 
-		config = random.choice(possible)
-		print config
+		print random.choice(possible)
+
+	return
 
 
 
 if __name__ == "__main__":
-	main(sys.argv[1])
+	ap = a.ArgumentParser(description="get next simulation")
+	ap.add_argument('-l', action='store_true')
+	ap.add_argument('-t', default='m1.small')
+	ap.add_argument('instance_count', type=int)
+
+	arguments = ap.parse_args()
+
+	main(arguments.instance_count, arguments.t, arguments.l)

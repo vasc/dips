@@ -10,7 +10,7 @@ import scala.collection.mutable.SynchronizedQueue
 import dips.simulation.DistributedSimulation
 import dips.simulation.Migration
 
-case class Publication(name:Symbol, msg:Any)
+case class Publication(name:Symbol, msg:Any) extends Communication 
 case class Subscription(name:Symbol, msg:Any, sender:OutputChannel[Any])
 case class Connected(uri:Uri)
 
@@ -20,7 +20,7 @@ trait PostOffice extends Router{
   var messages = new SynchronizedQueue[Message]()
   var received_messages_count = 0
   
-  def retrieve_messages = this !! Retrieve
+  //def retrieve_messages = this !! Retrieve
   
   def subscribe(name:Symbol, actor:AbstractActor)
   protected def deliver_to_subscribers(name:Symbol, msg:Any, sender:OutputChannel[Any])
@@ -56,9 +56,9 @@ trait PostOffice extends Router{
         */
         case r:Routing =>
           this.routing_event(r)
-        case Exit =>
-          this.exit()
-          return
+        //case Exit =>
+        //  this.exit()
+        // return
         case Publication(name, msg) =>
           log.debug("Received publication: " + msg)
           //log.debug("Received publication: " + name + ", " + msg)
