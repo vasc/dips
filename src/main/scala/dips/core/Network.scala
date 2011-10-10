@@ -64,7 +64,8 @@ class DistributedNetwork(val dht:DHT) extends Network {
     //node_map(index)
     //throw new NotImplementedException()
     //log.debug("getint " + index)
-    node_map.find{ _._2.getIndex == index }.get._2
+    //node_map.find{ _._2.getIndex == index }.get._2
+    local_node_map(index)
  }
   
   def get(id:Long):Node = {
