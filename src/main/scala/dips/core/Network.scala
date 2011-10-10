@@ -33,6 +33,7 @@ class DistributedNetwork(val dht:DHT) extends Network {
   override def reset() = {
     log.debug("--- Starting network reset")
     node_map = new HashMap[Long, Node]()
+    local_node_map = new HashMap[Int, Node]()
     
     network_size = Configuration.getLong(Network.PAR_SIZE)
     log.debug("--- Network size: " + network_size)
