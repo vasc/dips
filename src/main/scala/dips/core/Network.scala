@@ -14,6 +14,7 @@ class DistributedNetwork(val dht:DHT) extends Network {
   //TODO: network becomes fragile after a remove
   
   protected var node_map:HashMap[Long, Node] = _
+  protected var local_node_map:HashMap[Int, Node] = _
   protected var network_size = 0L
   
   def getNodeMap = node_map
@@ -21,6 +22,7 @@ class DistributedNetwork(val dht:DHT) extends Network {
   override def add(node:Node) = {
     if(dht local node.getID){
     	node_map(node.getID) = node
+    	local_node_map(node.getIndex) = node
     	network_size += 1
     }
     else{
@@ -45,6 +47,7 @@ class DistributedNetwork(val dht:DHT) extends Network {
         val node = prototype.duplicate(i)
         //log.debug(i)
         node.setIndex(node_map.size)
+        local_node_map(node.getIndex) = node
         node_map(i) = node
       }
       log.debug("--- Number of nodes created in this instance: " + node_map.size)
