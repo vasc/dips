@@ -36,7 +36,7 @@ public class MemoryObserver implements Control
 	private static final long serialVersionUID = 1L;
 
 /** The runtime object to obtain memory info */
-private final static Runtime r = Runtime.getRuntime(); 
+public final static Runtime r = Runtime.getRuntime(); 
 
 /** The prefix to be printed */
 private final String prefix;

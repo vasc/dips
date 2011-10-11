@@ -1,12 +1,13 @@
 package dips.example.infection
+import scala.collection.mutable.StringBuilder
+
 import dips.core.DistributedControl
 import dips.simulation.DistributedSimulation
+import dips.stats.Registry
+import dips.stats.StatsControl
 import dips.util.Logger.log
 import peersim.config.Configuration
 import peersim.vector.SingleValue
-import scala.collection.mutable.StringBuilder
-import dips.stats.Registry
-import dips.stats.Stats
 
 class InfectionObserver(val prefix:String) extends DistributedControl{
   private val PAR_PROT = "protocol";
@@ -21,7 +22,7 @@ class InfectionObserver(val prefix:String) extends DistributedControl{
   
   def execute() = {
     if(!saved){
-      Registry.get[Stats]("performance").get.save("infection.degree", Configuration.getInt(prefix + ".degree"))
+      Registry.get[StatsControl]("performance").get.save("infection.degree", Configuration.getInt(prefix + ".degree"))
       saved = true
     }
     

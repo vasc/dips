@@ -1,13 +1,16 @@
 package dips.core
 
-import peersim.core._
-import java.util.Comparator
-import dips.communication.dht.DHT
 import scala.collection.mutable.HashMap
+
+import dips.communication.dht.DHT
+import dips.example.MemoryStats
+import dips.simulation.DistributedSimulation
+import dips.util.Logger.log
 import dips.NotImplementedException
 import peersim.config.Configuration
-import dips.util.Logger.log
-import dips.simulation.DistributedSimulation
+import peersim.core.Fallible
+import peersim.core.Network
+import peersim.core.Node
 
 
 class DistributedNetwork(val dht:DHT) extends Network {
@@ -34,6 +37,7 @@ class DistributedNetwork(val dht:DHT) extends Network {
     log.debug("--- Starting network reset")
     node_map = new HashMap[Long, Node]()
     local_node_map = new HashMap[Int, Node]()
+    val mo = new MemoryStats("control.mo")
     
     network_size = Configuration.getLong(Network.PAR_SIZE)
     log.debug("--- Network size: " + network_size)
@@ -45,8 +49,12 @@ class DistributedNetwork(val dht:DHT) extends Network {
       log.debug("--- Generating nodes")
       for(val i:Long <- 0L until network_size if dht local i){
         //log.debug("---- node: " + i)
+        if(i % 1000 == 0){
+          mo.execute()
+          log.debug("Creating node: " + i)
+        }
+        
         val node = prototype.duplicate(i)
-        //log.debug(i)
         node.setIndex(node_map.size)
         local_node_map(node.getIndex) = node
         node_map(i) = node

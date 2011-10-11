@@ -9,6 +9,9 @@ import peersim.core.Simulation
 import peersim.vector.SingleValueHolder
 import dips.core.DistributedNetwork
 import dips.simulation.DistributedSimulation
+import peersim.core.Node
+import dips.util.Logger.log
+
 
 case class AveragePing(value:Double)
 case class AveragePong(avg:Double)
@@ -32,10 +35,10 @@ class SimpleAverage(prefix:String) extends SingleValueHolder(prefix) with DEDPro
     
     val neighbor = linkable.getNeighbor(CommonState.r.nextInt(linkable.degree))
     
-    DEDSimulator.sendMessage(node, neighbor, pid, AveragePing(getValue))    
+    DEDSimulator.sendMessage(neighbor, node, pid, AveragePing(getValue))    
   }
   
-  def bootstrap(pid:Int) = {
-    send_message(CommonState.r.nextInt(Simulation.network.size), pid)
+  def bootstrap(n:Node, pid:Int) = {
+    send_message(n.getID, pid)
   }
 }

@@ -7,8 +7,9 @@ trait Sub{
   def receive(key:Symbol, value:Any)
 }
 
-class Stats(val prefix:String) extends Control {
-
+trait Stats{
+  val prefix = "stats"
+  
   lazy val testname =  {
     Configuration.getString(prefix + ".name", prefix)
   }
@@ -43,6 +44,9 @@ class Stats(val prefix:String) extends Control {
   def save(key:Namespace, value:Any){
     Registry.redis.set(Registry.id+testname+key, value)
   }
+}
+
+class StatsControl(override val prefix:String) extends Stats with Control {
   
   def execute():Boolean = false
 }

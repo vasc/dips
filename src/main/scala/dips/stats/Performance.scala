@@ -3,7 +3,7 @@ import peersim.core.CommonState
 import dips.simulation.DistributedSimulation
 import peersim.config.Configuration
 
-class Performance(prefix:String) extends Stats(prefix) with Sub {
+class Performance(prefix:String) extends StatsControl(prefix) with Sub {
 	Registry.register("performance", this)
   
 	val initial_time = DistributedSimulation.networkTimeMilis

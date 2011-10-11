@@ -10,6 +10,7 @@ import peersim.config.FastConfig
 import peersim.core.CommonState
 import peersim.core.Simulation
 import peersim.vector.SingleValueHolder
+import peersim.core.Node
 
 case object Increase
 
@@ -38,7 +39,7 @@ class Infection(prefix:String) extends SingleValueHolder(prefix) with DEDProtoco
     }
   }
   
-  def bootstrap(pid:Int) = {
+  def bootstrap(n:Node, pid:Int) = {
     val node = Simulation.network.get(CommonState.r.nextInt(Simulation.network.size)).getID
     send_message(node, pid)
   }

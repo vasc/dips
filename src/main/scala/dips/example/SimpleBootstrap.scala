@@ -3,14 +3,13 @@ package dips.example
 
 
 import peersim.config.Configuration
-import peersim.core.Control
-import peersim.core.Network
-import peersim.core.Simulation
 import peersim.core.CommonState
-import dips.simulation.DistributedSimulation
+import peersim.core.Control
+import peersim.core.Simulation
+import peersim.core.Node
 
 trait Bootstrapable{
-  def bootstrap(pid:Int)
+  def bootstrap(n:Node, pid:Int)
 }
 
 
@@ -21,8 +20,9 @@ class SimpleBootstrap(prefix:String) extends Control{
   
   def execute():Boolean = {
       Range(0, mc) foreach { i =>
-        val bs = Simulation.network.get(CommonState.r.nextInt(Simulation.network.size)).getProtocol(protocol_pid).asInstanceOf[Bootstrapable]
-        bs.bootstrap(protocol_pid)
+        val n = Simulation.network.get(CommonState.r.nextInt(Simulation.network.size))
+        val bs = n.getProtocol(protocol_pid).asInstanceOf[Bootstrapable]
+        bs.bootstrap(n, protocol_pid)
       }
     false
   }
