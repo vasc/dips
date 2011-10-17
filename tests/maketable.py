@@ -3,6 +3,7 @@ import yaml
 import simplejson
 import itertools
 from jinja2 import Template
+import sys
 
 def sum_key(i, l):
 	values = [l(x) for x in i]
@@ -34,8 +35,10 @@ def make_values(values):
 
 
 def main():
+	temp = sys.argv[1]
+
 	values = []
-	for j in glob.glob("results/*.json"):
+	for j in glob.glob("results/performance.infection.*.json"):
 		with open(j) as f:
 			r = simplejson.loads(f.read())
 			values.extend(r)
@@ -80,10 +83,10 @@ def main():
 						netsize['children'].append(bundle)
 	
 	#print yaml.dump(instance)
-	with open('performance_table.tex') as f:
+	with open(temp) as f:
 		template = Template(f.read())
 	
-	with open('performance.table.gen.tex', 'w') as f:
+	with open(temp[:-4]+'.gen.tex', 'w') as f:
 		result = template.render(instances=instances)
 		f.write(result)
 

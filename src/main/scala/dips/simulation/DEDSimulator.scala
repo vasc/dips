@@ -55,8 +55,8 @@ object DEDSimulator {
     
     simulation.status = 'running
     
-    log.debug("Bootstraping")
-    DistributedSimulation.migrator.bootstrap()
+    //log.debug("Bootstraping")
+    //DistributedSimulation.migrator.bootstrap()
     
     log.debug("Starting Event Loop")
     while(processNextMessage){}
@@ -67,7 +67,7 @@ object DEDSimulator {
     
     while(!dht.control_messages.isEmpty ){
       val (cm, sender) = dht.control_messages.dequeue()
-	  log debug controls.map { _.name } 
+	  //log debug controls.map { _.name } 
       val control = controls.find( _.name == cm.name ).get.control.asInstanceOf[NetworkControl]
       control receive_message (cm, sender)
     }
@@ -80,8 +80,13 @@ object DEDSimulator {
     }
   }
   
-  def runScheduledControlers() = {
-    ( controls filter { _.scheduler.active } exists { _.control.execute } ) 
+  def runScheduledControlers():Boolean = {
+    controls foreach { sched =>
+      if(sched.scheduler.active && sched.control.execute)
+        return true
+    }
+    false
+    //( controls filter  { _.scheduler.active } exists { _.control.execute } ) 
   }
   
   /**
@@ -90,9 +95,9 @@ object DEDSimulator {
    * Executes all control objects scheduled and then processes the next message in the queue
    */
   def processNextMessage:Boolean = {
-    if(CommonState.getTime % 5000 == 0){
+    /*if(CommonState.getTime % 5000 == 0){
       log.debug("Processing message at " + CommonState.getTime)
-    }
+    }*/
     
     //Code to be executed during simulation paused
     simulation.synchronized{
@@ -121,7 +126,7 @@ object DEDSimulator {
     simulation.synchronized{
 	  val msg = dht.messages.dequeue
 	  CommonState.setTime(CommonState.getTime + 1)
-	  pub('delay, (DistributedSimulation.networkTimeMilis-msg.creationTime ,msg.local))
+	  //pub('delay, (DistributedSimulation.networkTimeMilis-msg.creationTime ,msg.local))
 	  try{
 	    val node = DistributedSimulation.network.get(msg.destination_node_id)
 	    node.getProtocol(msg.pid).asInstanceOf[DEDProtocol]

@@ -1,7 +1,6 @@
 package dips.core
 
 import scala.collection.mutable.HashMap
-
 import dips.communication.dht.DHT
 import dips.example.MemoryStats
 import dips.simulation.DistributedSimulation
@@ -11,6 +10,8 @@ import peersim.config.Configuration
 import peersim.core.Fallible
 import peersim.core.Network
 import peersim.core.Node
+import peersim.core.Control
+import peersim.util.IncrementalStats
 
 
 class DistributedNetwork(val dht:DHT) extends Network {
@@ -37,7 +38,9 @@ class DistributedNetwork(val dht:DHT) extends Network {
     log.debug("--- Starting network reset")
     node_map = new HashMap[Long, Node]()
     local_node_map = new HashMap[Int, Node]()
-    val mo = new MemoryStats("control.mo")
+    
+    val mo = Configuration.getInstance("simulation.memoryprofile", null).asInstanceOf[Control]
+    //val mo = new MemoryStats("control.mo")
     
     network_size = Configuration.getLong(Network.PAR_SIZE)
     log.debug("--- Network size: " + network_size)
@@ -49,12 +52,14 @@ class DistributedNetwork(val dht:DHT) extends Network {
       log.debug("--- Generating nodes")
       for(val i:Long <- 0L until network_size if dht local i){
         //log.debug("---- node: " + i)
-        if(i % 1000 == 0){
+        if(i % 1000 == 0 && mo != null){
           mo.execute()
           log.debug("Creating node: " + i)
         }
         
         val node = prototype.duplicate(i)
+        
+        
         node.setIndex(node_map.size)
         local_node_map(node.getIndex) = node
         node_map(i) = node
@@ -75,6 +80,8 @@ class DistributedNetwork(val dht:DHT) extends Network {
     //node_map.find{ _._2.getIndex == index }.get._2
     local_node_map(index)
  }
+  
+  val is = new IncrementalStats()
   
   def get(id:Long):Node = {
     node_map(id)

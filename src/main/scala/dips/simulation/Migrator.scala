@@ -27,7 +27,7 @@ class Migrator(val dht:DHT, val msgs:SynchronizedQueue[Message]) {
   
   def apply(m:Migration){
     
-    log debug "Received migration"
+    log debug ("Received migration " + m)
     simulation.synchronized{
       nodes ++= m.nodes getOrElse List() map (n => ( n.getID, n))
       msgs ++= m.msgs getOrElse List()

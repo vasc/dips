@@ -1,0 +1,56 @@
+%\begin{sidewaystable}
+
+
+{% for itype in instances %}
+	%\multirow{ {{ itype.size }} }{*}{ {{ itype.name }} } &
+	{% for icount in itype.children %}
+	    %\multirow{ {{ icount.size }} }{*}{ {{ icount.name }} } &
+	    {% for simtype in icount.children %}
+			%\multirow{ {{ simtype.size }} }{*}{ infection:{{ simtype.name }} } &
+
+\begin{table}
+	  \caption[Performance results, \emph{infection:{{simtype.name}} on {{icount.name}} {{itype.name}} instances }]{ Performance results for \emph{ infection } simulation with degree {{ simtype.name }} ran on {{icount.name}} {{itype.name}} AWS instantances }
+	%\resizebox{12cm}{!}{
+	\begin{tabular}{rrrrrrrrr}
+	\hline\noalign{\smallskip}
+
+	%Inst. Type &
+	%Inst. Count &
+	%Sim. Type &
+	Network Size &
+	Bundle Size &
+	\multicolumn{3}{c}{Average Message Delay (s)}  \\
+
+	 & 
+     & global & local & remote\\
+
+			{% for netsize in simtype.children %}
+				\noalign{\smallskip}\hline
+				\multirow{ {{ netsize.children|count }} }{*}{ {{ netsize.name }} } &
+				{% for bundle in netsize.children %}
+					{% if not loop.first %} &  {% endif %}
+					 
+					\multirow{ {{ bundle.size }} }{*}{ {{ bundle.name }} } &
+					{% for s in bundle.children %}
+						{% if not loop.first %} & &  {% endif %}
+							    
+							    
+	                           {{s.amd.global}} & {{s.amd.local}} & {{s.amd.remote}}  \\
+	     					%\hline
+	                {% endfor %}
+	            {% endfor %}
+	        {% endfor %}
+
+\hline
+
+\end{tabular}
+%}
+\end{table}
+\clearpage
+
+
+	    {% endfor %}
+	{% endfor %}
+{% endfor %}
+
+%\end{sidewaystable}

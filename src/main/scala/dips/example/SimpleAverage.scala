@@ -12,25 +12,28 @@ import dips.simulation.DistributedSimulation
 import peersim.core.Node
 import dips.util.Logger.log
 
-
-case class AveragePing(value:Double)
-case class AveragePong(avg:Double)
+trait PingPong
+case class AveragePing(value:Double) extends PingPong
+case class AveragePong(value:Double) extends PingPong
 
 class SimpleAverage(prefix:String) extends SingleValueHolder(prefix) with DEDProtocol with Bootstrapable{
-  def processEvent(node:Long, from:Long, pid:Int, event:Any): Unit = { 
+  def processEvent(local_node:Long, peer_node:Long, pid:Int, event:Any): Unit = { 
+    
+    val value = getValue
     event match{
       case event:AveragePing =>
+        //log.debug("old, new: " + getValue  +", " + event.value)
       	setValue((getValue + event.value) / 2)
-      	DEDSimulator.sendMessage(node, from, pid, AveragePong(getValue))
+      	DEDSimulator.sendMessage(peer_node, local_node, pid, AveragePong(value))
         
       case event:AveragePong =>
-        setValue(event.avg)
+        //log.debug("old, new: " + getValue  +", " + event.value)
+        setValue((getValue + event.value) / 2)
+        send_message_from(local_node, pid)
     }
-    
-    send_message(node, pid)
   }
   
-  def send_message(node:Long, pid:Int) = {
+  def send_message_from(node:Long, pid:Int) = {
     val linkable = DistributedSimulation.network.get(node).getProtocol( FastConfig.getLinkable(pid) ).asInstanceOf[Linkable]
     
     val neighbor = linkable.getNeighbor(CommonState.r.nextInt(linkable.degree))
@@ -39,6 +42,6 @@ class SimpleAverage(prefix:String) extends SingleValueHolder(prefix) with DEDPro
   }
   
   def bootstrap(n:Node, pid:Int) = {
-    send_message(n.getID, pid)
+    send_message_from(n.getID, pid)
   }
 }

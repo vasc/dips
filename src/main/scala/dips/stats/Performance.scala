@@ -2,6 +2,7 @@ package dips.stats
 import peersim.core.CommonState
 import dips.simulation.DistributedSimulation
 import peersim.config.Configuration
+import dips.util.Logger.log
 
 class Performance(prefix:String) extends StatsControl(prefix) with Sub {
 	Registry.register("performance", this)
@@ -50,11 +51,14 @@ class Performance(prefix:String) extends StatsControl(prefix) with Sub {
 	  save("average.delay.remote", average_delay.remote)
 	  save("average.delay.local", average_delay.local)
 	  
-	  save("nodes.count", DistributedSimulation.network.size)
-	  save("bundle.size", Configuration.getString("distributed.bundle.size"))
+	  //save("nodes.count", DistributedSimulation.network.size)
+	  //save("bundle.size", Configuration.getString("distributed.bundle.size"))
 	  
 	  save("routing.method", "round.robin")
 	  
+	  log.debug("processed.events.per.second: " + processed_events / ( (final_time - initial_time) / 1000.0 ))
+	  
+	  //log debug ("Node get stats: " + DistributedSimulation.network.is)
 	  false
 	}
 	

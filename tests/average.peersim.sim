@@ -1,0 +1,43 @@
+# PEERSIM EXAMPLE 1
+
+#random.seed 1234567899
+
+simulation.name average:peersim
+simulation.endtime 600001
+
+
+
+network.size 10000
+ 
+protocol.lnk SimplePeersimLink
+
+protocol.avg SimplePeersimAverage
+protocol.avg.linkable lnk
+ 
+init.rnd SimplePeersimWire
+init.rnd.protocol lnk
+init.rnd.k 20
+
+init.lin LinearDistribution
+init.lin.protocol avg
+init.lin.max 100
+init.lin.min 1
+
+# you can change this to select the peak initializer instead
+include.init rnd lin
+
+control.avgo example.aggregation.AverageObserver
+control.avgo.protocol avg
+control.avgo.step 10000
+
+#control.stats SimpleAverageStats
+#control.stats.protocol avg
+#control.stats.step 10000
+
+control.bs SimpleBootstrap
+control.bs.protocol avg
+control.bs.message_count 10000
+control.bs.at 0
+
+#control.perf Performance
+#control.perf.at 600000

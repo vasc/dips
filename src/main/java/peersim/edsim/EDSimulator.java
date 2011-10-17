@@ -262,6 +262,9 @@ private static boolean executeNext() {
 	}
 	
 	long time = ev.time;
+	
+	long difference = time - CommonState.getTime();
+	
 	if (time >= nextlog)
 	{
 		System.err.println("Current time: " + time);

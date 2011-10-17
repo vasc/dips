@@ -60,7 +60,7 @@ class DHT(var local_port:Int) extends PostOffice{
   def route(r:Routable) = {
     //val n = instances find (r.hash < _.hash )
     //val result = (n getOrElse instances.first)
-    
+    //log debug instances.size
     //instances.toIndexedSeq((r.hash.abs % instances.size).toInt)
     indexed_instances( (r.hash.abs % instances.size).toInt )
   }

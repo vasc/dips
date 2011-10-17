@@ -19,9 +19,9 @@ def make_buckets(r, key, count):
 
 
 def main(host="localhost", port=6379):
-	r = redis.Redis(host=host, port=port, db=0)
-	l = r.llen("infection:1:test:control.stats")-2
-	els = r.lrange("infection:1:test:control.stats", 0, l-1)
+	
+
+
 	
 	list_of_events = []
 	for el in els:
