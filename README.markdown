@@ -36,17 +36,17 @@ The simples way to run **Dips** is:
 
 This will take care of all dependencies and run the simulator. However it lacks flexibility.
 
-The prefered way to run the simulator is, form the root of the project:
+The prefered way to run the simulator is, from the root of the project:
 
     java -classpath lib/*:target/scala-2.9.1.final/dips_2.9.1-1.0-alpha.jar dips.Dips
 
 Default port is 7653.
 
-Secondary instancies of the simulator must receive the host and port of one already runnig instances:
+Secondary instancies of the simulator must receive the host and port of one already running instance:
 
     java -classpath lib/*:target/scala-2.9.1.final/dips_2.9.1-1.0-alpha.jar dips.Dips -h <host> -p <port>
 
-In order for the simulator to actually perform a simulation it mus be configured, this command will and run a distributed simulation:
+In order for the simulator to actually perform a simulation it must be configured, this command will and run a distributed simulation:
 
     java -classpath lib/*:target/scala-2.9.1.final/dips_2.9.1-1.0-alpha.jar dips.Coordinator -h <host> -p <port> <configfile>
 
