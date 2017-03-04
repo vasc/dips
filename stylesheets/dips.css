@@ -5,8 +5,7 @@ body {
   line-height: 22px;
   color: #252519;
   margin: 0; padding: 0;
-  background-color: #EDEDE8;
-  background-image: url('../images/dips-inset.png'), url('../images/wood-dark.jpg');
+  background-color: white;
   background-repeat: no-repeat, repeat;
   background-position: bottom center, top left;
 }
