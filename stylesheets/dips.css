@@ -109,8 +109,11 @@ pre{
 }
 
 .annotated td.comment{
-	padding: 5px 15px 5px 0px;
+	padding: 5px 15px 5px 15px;
 	font-size: 13px;
+	font-style: italic;
+	background-color: #f7f7f7;
+    	color: #777;
 }
 
 .annotated td.comment p{
